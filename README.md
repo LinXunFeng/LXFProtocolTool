@@ -40,7 +40,7 @@ pod 'LXFProtocolTool/LXFEmptyDataSetable'
 
 ## Example
 
-详细使用请打开Example工程查看，以下做简要使用说明
+详细使用请打开Example工程查看，以下做简要使用说明
 
 - LXFNibloadable
 
@@ -53,6 +53,8 @@ class LXFXibTestView: UIView, LXFNibloadable {
 ```
 let view = LXFXibTestView.loadFromNib()
 ```
+
+<br>
 
 - LXFEmptyDataSetable
 
