@@ -26,7 +26,7 @@ LXFProtocolTool 支持CocoaPods:
 pod 'LXFProtocolTool'
 ```
 
-当然，也可以根据自己的需要安装指定子库
+当然，也可以根据自己的需要安装指定子库
 
 - Xib加载
 ```
@@ -39,6 +39,8 @@ pod 'LXFProtocolTool/LXFEmptyDataSetable'
 ```
 
 ## Example
+
+详细使用请打开Example工程查看，以下做简要使用说明
 
 - LXFNibloadable
 
