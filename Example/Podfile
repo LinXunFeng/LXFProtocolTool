@@ -1,0 +1,15 @@
+use_frameworks!
+
+target 'LXFProtocolTool_Example' do
+    
+  pod 'LXFProtocolTool/LXFNibloadable', :path => '../'
+  pod 'LXFProtocolTool/LXFEmptyDataSetable', :path => '../'
+  
+#  pod 'LXFProtocolTool', :path => '../'
+
+  target 'LXFProtocolTool_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
