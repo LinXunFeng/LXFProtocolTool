@@ -72,12 +72,14 @@ lxf_EmptyDataSet(tableView)
 // 定制方式
 lxf_EmptyDataSet(tableView) { () -> ([LXFEmptyDataSetAttributeKeyType : Any]) in
     return [
-        .tipStr:"数据不见了",
+        .tipStr:"哟哟哟",
         .verticalOffset:-150,
         .allowScroll: false
     ]
 }
 ```
+![lxf_EmptyDataSet](https://github.com/LinXunFeng/LXFProtocolTool/raw/master/Screenshots/lxf_EmptyDataSet.png)
+
 **占位图可以使用定制方式的`.tipImage`来指定，也可以丢指定名字`LXFEmptyDataPic`的图片到工程的Images.xcassets中 **
 
 
