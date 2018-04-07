@@ -78,6 +78,7 @@ lxf_EmptyDataSet(tableView) { () -> ([LXFEmptyDataSetAttributeKeyType : Any]) in
     ]
 }
 ```
+**占位图可以使用定制方式的`.tipImage`来指定，也可以丢指定名字`LXFEmptyDataPic`的图片到工程的Images.xcassets中 **
 
 
 ## License
