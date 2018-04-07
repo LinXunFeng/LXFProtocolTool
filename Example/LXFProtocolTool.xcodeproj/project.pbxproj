@@ -31,7 +31,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		03EAD71704D6E10804EBBFA1 /* LXFProtocolTool.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LXFProtocolTool.podspec; path = ../LXFProtocolTool.podspec; sourceTree = "<group>"; };
+		03EAD71704D6E10804EBBFA1 /* LXFProtocolTool.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LXFProtocolTool.podspec; path = ../LXFProtocolTool.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		1ACCF631A3E398D58EEC5EB4 /* Pods-LXFProtocolTool_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LXFProtocolTool_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-LXFProtocolTool_Tests/Pods-LXFProtocolTool_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		48A3ADB9D94EE96EBA349D0D /* Pods-LXFProtocolTool_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LXFProtocolTool_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LXFProtocolTool_Example/Pods-LXFProtocolTool_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		4D34B57BE0A303E7F39A745B /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };

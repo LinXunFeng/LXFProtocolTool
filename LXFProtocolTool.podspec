@@ -29,6 +29,7 @@ LXFProtocolTool是使用Swift中的协议来实现多种方便、实用的工具
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.ios.deployment_target = '8.0'
+  s.pod_target_xcconfig = { 'SWIFT_VERSION' => '4.0' }
 
   # s.source_files = 'LXFProtocolTool/Classes/**/*.swift'
 
