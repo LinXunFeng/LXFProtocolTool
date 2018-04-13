@@ -9,6 +9,7 @@
 import UIKit
 import DZNEmptyDataSet
 
+public typealias LXFTapEmptyBlock = ((UIView)->())
 public enum LXFEmptyDataSetAttributeKeyType {
     /// 纵向偏移(-50)  CGFloat
     case verticalOffset
@@ -26,15 +27,31 @@ public enum LXFEmptyDataSetAttributeKeyType {
 
 extension UIScrollView {
     private struct AssociatedKeys {
-        static var lxf_emptyAttributeDict:[LXFEmptyDataSetAttributeKeyType : Any]?
+        static var lxf_emptyAttributeDictKey = "lxf_emptyAttributeDictKey"
+        static var lxf_emptyTapBlockKey = "lxf_emptyTapBlockKey"
     }
+    
+    // 专门存放闭包属性
+    private class BlockContainer: NSObject, NSCopying {
+        func copy(with zone: NSZone? = nil) -> Any {
+            return self
+        }
+        var rearrange_lxf_emptyTapBlock : LXFTapEmptyBlock?
+    }
+    
     /// 属性字典
     var lxf_emptyAttributeDict: [LXFEmptyDataSetAttributeKeyType : Any]? {
         get {
-            return objc_getAssociatedObject(self, &AssociatedKeys.lxf_emptyAttributeDict) as? [LXFEmptyDataSetAttributeKeyType : Any]
+            return objc_getAssociatedObject(self, &AssociatedKeys.lxf_emptyAttributeDictKey) as? [LXFEmptyDataSetAttributeKeyType : Any]
+        } set {
+            objc_setAssociatedObject(self, &AssociatedKeys.lxf_emptyAttributeDictKey, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
         }
-        set {
-            objc_setAssociatedObject(self, &AssociatedKeys.lxf_emptyAttributeDict, newValue as [LXFEmptyDataSetAttributeKeyType : Any]?, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+    }
+    var lxf_emptyTapBlock : LXFTapEmptyBlock? {
+        get {
+            return objc_getAssociatedObject(self, &AssociatedKeys.lxf_emptyTapBlockKey) as? LXFTapEmptyBlock
+        } set {
+            objc_setAssociatedObject(self, &AssociatedKeys.lxf_emptyTapBlockKey, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_COPY_NONATOMIC)
         }
     }
     
@@ -46,20 +63,30 @@ public protocol LXFEmptyDataSetable {
 }
 
 // MARK:- UIViewController - 空视图占位协议
-public extension LXFEmptyDataSetable where Self : UIViewController {
+public extension LXFEmptyDataSetable where Self : NSObject {
+    // MARK: 初始化数据
     func lxf_EmptyDataSet(_ scrollView: UIScrollView, attributeBlock: (()->([LXFEmptyDataSetAttributeKeyType : Any]))? = nil) {
         scrollView.lxf_emptyAttributeDict = attributeBlock != nil ? attributeBlock!() : nil
         scrollView.emptyDataSetDelegate = self
         scrollView.emptyDataSetSource = self
     }
-}
-
-// MARK:- UIView - 空视图占位协议
-public extension LXFEmptyDataSetable where Self : UIView {
-    func lxf_EmptyDataSet(_ scrollView: UIScrollView, attributeBlock: (()->([LXFEmptyDataSetAttributeKeyType : Any]))? = nil) {
-        scrollView.lxf_emptyAttributeDict = attributeBlock != nil ? attributeBlock!() : nil
-        scrollView.emptyDataSetDelegate = self
-        scrollView.emptyDataSetSource = self
+    // MARK:- 更新数据
+    func lxf_updateEmptyDataSet(_ scrollView: UIScrollView, attributeBlock: (()->([LXFEmptyDataSetAttributeKeyType : Any]))) {
+        let dict = attributeBlock()
+        if scrollView.lxf_emptyAttributeDict == nil {
+            scrollView.lxf_emptyAttributeDict = dict
+        } else {
+            for key in dict.keys {
+                scrollView.lxf_emptyAttributeDict![key] = dict[key]
+            }
+        }
+        scrollView.reloadEmptyDataSet()
+    }
+    
+    
+    // MARK: 点击回调
+    func lxf_tapEmptyView(_ scrollView: UIScrollView, block: @escaping LXFTapEmptyBlock) {
+        scrollView.lxf_emptyTapBlock = block
     }
 }
 
@@ -94,5 +121,17 @@ extension NSObject : DZNEmptyDataSetDelegate, DZNEmptyDataSetSource {
     }
     public func emptyDataSetShouldAllowScroll(_ scrollView: UIScrollView!) -> Bool {
         return (scrollView.lxf_emptyAttributeDict?[.allowScroll] as? Bool) ?? true
+    }
+    
+    public func emptyDataSet(_ scrollView: UIScrollView!, didTap view: UIView!) {
+        if scrollView.lxf_emptyTapBlock != nil {
+            scrollView.lxf_emptyTapBlock!(view)
+        }
+    }
+    
+    public func emptyDataSet(_ scrollView: UIScrollView!, didTap button: UIButton!) {
+        if scrollView.lxf_emptyTapBlock != nil {
+            scrollView.lxf_emptyTapBlock!(button)
+        }
     }
 }
