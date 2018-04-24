@@ -9,7 +9,7 @@
 import UIKit
 import LXFProtocolTool
 
-class LXFXibTestView: UIView, LXFNibloadable {
+class LXFXibTestView: UIView {
     override func awakeFromNib() {
         super.awakeFromNib()
         

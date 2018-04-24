@@ -83,7 +83,7 @@ extension LXFEmptyDemoController: LXFEmptyDataSetable {
         
         // 监听点击事件
         lxf_tapEmptyView(tableView) { (view) in
-            print("akdfjakdsfj")
+            print("点击了空白视图")
         }
     }
 }

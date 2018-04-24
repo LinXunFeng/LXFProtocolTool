@@ -41,6 +41,7 @@ extension ViewController {
         emptyBtn.setTitleColor(UIColor.red, for: UIControlState.normal)
         emptyBtn.frame = CGRect(x: 80, y: 200, width: 200, height: 30)
         self.view.addSubview(emptyBtn)
+
     }
 }
 
