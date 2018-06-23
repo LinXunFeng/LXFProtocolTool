@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'LXFProtocolTool'
-  s.version          = '0.1.2'
+  s.version          = '0.2.0'
   s.summary          = 'LXFProtocolTool是实用的协议应用工具库'
 
 # This description is used to generate tags and improve search results.
@@ -43,6 +43,10 @@ LXFProtocolTool是使用Swift中的协议来实现多种方便、实用的工具
       'LXFProtocolTool' => ['LXFProtocolTool/Assets/LXFEmptyDataSetable/*']
     }
     t.dependency 'DZNEmptyDataSet', '~> 1.8.1'
+  end
+  
+  s.subspec 'AssociatedObjectStore' do |t|
+      t.source_files = 'LXFProtocolTool/Classes/AssociatedObjectStore/**/*.{swift}'
   end
 
   # pod 'DZNEmptyDataSet', '~> 1.8.1'

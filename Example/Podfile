@@ -4,6 +4,7 @@ target 'LXFProtocolTool_Example' do
     
   pod 'LXFProtocolTool/LXFNibloadable', :path => '../'
   pod 'LXFProtocolTool/LXFEmptyDataSetable', :path => '../'
+  pod 'LXFProtocolTool/AssociatedObjectStore', :path => '../'
   
 #  pod 'LXFProtocolTool', :path => '../'
 

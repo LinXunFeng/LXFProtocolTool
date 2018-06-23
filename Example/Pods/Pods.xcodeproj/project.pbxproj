@@ -7,49 +7,43 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		23F1E363B1648F94070071E72E856790 /* LXFProtocolTool-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 4A9EF0294D99DF4EB6DB64DCC63BD45A /* LXFProtocolTool-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		2E891DED164AEAFAA09925137CB10C8C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B91EB6647FF0D6CC5B5BD24E50DC533F /* Foundation.framework */; };
 		4568C6CC7F78399CA1312B20E26EA8FE /* UIScrollView+EmptyDataSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B69C7D7B9E7B6E52563319625578F7E /* UIScrollView+EmptyDataSet.m */; };
 		4C144355E41C99902528AAD3CF069680 /* DZNEmptyDataSet-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 9B3E727E89F8C88AA168BC9AC9CAC935 /* DZNEmptyDataSet-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6531AB7F3ADEF983315DE71A7A47A01C /* DZNEmptyDataSet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6673A1A7F8F14DA1262C5F9BBEE9762B /* DZNEmptyDataSet.framework */; };
+		63E10AB51DBBF4A7CD2FB16DB810FFF1 /* DZNEmptyDataSet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6673A1A7F8F14DA1262C5F9BBEE9762B /* DZNEmptyDataSet.framework */; };
+		65AD6E0657CE1287EC554633D4A9068B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B91EB6647FF0D6CC5B5BD24E50DC533F /* Foundation.framework */; };
+		6D4B656DCFBF4CAEAB44F7C6520B1FEC /* LXFEmptyDataSetable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EEC1A20EE89328793CF2F638D7318DD /* LXFEmptyDataSetable.swift */; };
 		75D0A461B8CF202F41C55CA1E732124C /* DZNEmptyDataSet-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = E76D566068414FA510524885118A1DE6 /* DZNEmptyDataSet-dummy.m */; };
+		75D8DDCFC1BED1AEF9C8F2066B679753 /* LXFProtocolTool.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 363452521E3409E285297B6B8E53D442 /* LXFProtocolTool.bundle */; };
 		7744F0E6E116059F324FA6273B4DEB98 /* Pods-LXFProtocolTool_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 56BBFB7AA8D0A84EF50D6F5364AC3A96 /* Pods-LXFProtocolTool_Tests-dummy.m */; };
 		7745F10DC231BE18390C303C418F4308 /* Pods-LXFProtocolTool_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 25AB000B8F655B5691DD3BBA1EF13390 /* Pods-LXFProtocolTool_Example-dummy.m */; };
-		83A2B85A57CE1763C349BBE2971CA910 /* LXFProtocolTool-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BFB61802B9EF6BBC5F9218EB3B90D70 /* LXFProtocolTool-dummy.m */; };
+		8115BC5AC1EA36AD30EB8D16D9AB997A /* LXFNibloadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D8200BD0D510AF5697BFA7214AB762D /* LXFNibloadable.swift */; };
 		8511E9645F5C2B18746B4B4B29284451 /* UIScrollView+EmptyDataSet.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B6B21AF41EBE54F12A278D7A573A5A1 /* UIScrollView+EmptyDataSet.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		88364DFE710A5ED2CF696CD005F0681F /* lxf_noData@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BCFD4B79A3A2CD4DC85357034B4D356 /* lxf_noData@2x.png */; };
+		8842377A8EC2FC2CC6B2691421D1FA43 /* LXFProtocolTool-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = ECBC88FB2ECA94E335F49DD9DF87F92A /* LXFProtocolTool-dummy.m */; };
 		8E03EA970466C8247109BB1FA186D929 /* Pods-LXFProtocolTool_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = DA1AD82F089F623DAC5D1DC24C48D2A3 /* Pods-LXFProtocolTool_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8E31EF89BD192C6AACDE9E0655861D3D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4559E21E059776B2D073577F613DE1E9 /* UIKit.framework */; };
-		95F2931A244FF77D26EC63EEDF8752D3 /* LXFProtocolTool.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 363452521E3409E285297B6B8E53D442 /* LXFProtocolTool.bundle */; };
+		90D029FD586E6C025DACF5609E819563 /* LXFProtocolTool-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = E4BA9293F067B0B6429085E8324166BC /* LXFProtocolTool-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B6077814E2DEAE0CACE414A08D9965F0 /* AssociatedObjectStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01D6C0C85E249422EC7ADEF64BF9D5C /* AssociatedObjectStore.swift */; };
 		C577B322B52228B272D52FF32B7BE30C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B91EB6647FF0D6CC5B5BD24E50DC533F /* Foundation.framework */; };
-		CD9E6737DAAA8A3F3F3417F1B1E64256 /* LXFEmptyDataSetable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A339C87D7D16722B7371667929D608F7 /* LXFEmptyDataSetable.swift */; };
 		D53EF3C8198DB0DC7AB7C94185DAA857 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B91EB6647FF0D6CC5B5BD24E50DC533F /* Foundation.framework */; };
 		EB536051EF4DDA989E405AA9CFD18DF5 /* Pods-LXFProtocolTool_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = ECF1E65C110854F0C658D5487D0C9359 /* Pods-LXFProtocolTool_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F5793FDE497CE6A304B294E6FD287460 /* LXFNibloadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D283B4839904A9B2313276C6ADD32473 /* LXFNibloadable.swift */; };
 		FA58CE9D085BF44206DB06623717B76E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B91EB6647FF0D6CC5B5BD24E50DC533F /* Foundation.framework */; };
+		FBF9FE9BF77EB117B8E9F418423C53B4 /* lxf_noData@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 51349AEB1C934970F252915740787DE2 /* lxf_noData@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		238CEE763048D91427E3311EFCB32F78 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 36C43FF1440161C7B460A0A9E10BCD28;
-			remoteInfo = "LXFProtocolTool-LXFProtocolTool";
-		};
-		499D3A490FD5D07025E46F0EEBD51D90 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 744BE78AA4B400C7714BB5E3EB8DB83A;
-			remoteInfo = LXFProtocolTool;
-		};
-		6166ACB394D5B71B4B9572B7ACAC9858 /* PBXContainerItemProxy */ = {
+		40632F1E7EAAC8BA47C87C85E389FDFB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = D386C75EFD4F03725E4EFB866B600B9A;
 			remoteInfo = DZNEmptyDataSet;
+		};
+		499D3A490FD5D07025E46F0EEBD51D90 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 566C140D2AACD02A553D1DE1804BA473;
+			remoteInfo = LXFProtocolTool;
 		};
 		DC93F9C2F476C833048675515E67A943 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -57,6 +51,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 4F4A2BFA18B950885AA02875B9340F3A;
 			remoteInfo = "Pods-LXFProtocolTool_Example";
+		};
+		DFFF4543362157030739B7A1DB1D403D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 963E67475932F36E7618B8DB464E2FEF;
+			remoteInfo = "LXFProtocolTool-LXFProtocolTool";
 		};
 		F45DAA235B7B96CEF2BF36B80DE24ED1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -68,55 +69,56 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		04AB257E4E03AF2C3EDA4404FE2E066B /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0573A31938D1C70CE36A6601EA0EE730 /* Pods-LXFProtocolTool_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-LXFProtocolTool_Example.modulemap"; sourceTree = "<group>"; };
-		0BFB61802B9EF6BBC5F9218EB3B90D70 /* LXFProtocolTool-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "LXFProtocolTool-dummy.m"; sourceTree = "<group>"; };
-		16A99516E8B77A5B6C4568D7193DD2E8 /* LXFProtocolTool.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = LXFProtocolTool.xcconfig; sourceTree = "<group>"; };
+		0EEC1A20EE89328793CF2F638D7318DD /* LXFEmptyDataSetable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LXFEmptyDataSetable.swift; path = LXFProtocolTool/Classes/LXFEmptyDataSetable/LXFEmptyDataSetable.swift; sourceTree = "<group>"; };
 		1B6B21AF41EBE54F12A278D7A573A5A1 /* UIScrollView+EmptyDataSet.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIScrollView+EmptyDataSet.h"; path = "Source/UIScrollView+EmptyDataSet.h"; sourceTree = "<group>"; };
 		205757F509599A0AC0E550D262656E3E /* Pods-LXFProtocolTool_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-LXFProtocolTool_Example-frameworks.sh"; sourceTree = "<group>"; };
+		229915185B43DB3204F3C5BDBEA5E9CB /* ResourceBundle-LXFProtocolTool-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ResourceBundle-LXFProtocolTool-Info.plist"; sourceTree = "<group>"; };
 		25AB000B8F655B5691DD3BBA1EF13390 /* Pods-LXFProtocolTool_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-LXFProtocolTool_Example-dummy.m"; sourceTree = "<group>"; };
-		294A97A1DA11DDF4A2BC0E89952EBF0E /* LXFProtocolTool-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "LXFProtocolTool-prefix.pch"; sourceTree = "<group>"; };
 		296B33E07D3A5441043A53D138573C1A /* Pods-LXFProtocolTool_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-LXFProtocolTool_Example.release.xcconfig"; sourceTree = "<group>"; };
 		2D0D0675D42FCD6834DA64579C3221F8 /* DZNEmptyDataSet.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = DZNEmptyDataSet.modulemap; sourceTree = "<group>"; };
 		2FEC68E0BA32DB8E5C0BBFFA8E65C872 /* Pods-LXFProtocolTool_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-LXFProtocolTool_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
 		363452521E3409E285297B6B8E53D442 /* LXFProtocolTool.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = LXFProtocolTool.bundle; path = "LXFProtocolTool-LXFProtocolTool.bundle"; sourceTree = BUILT_PRODUCTS_DIR; };
 		390CEBD690C9C786B47EFC3188DB2F71 /* Pods-LXFProtocolTool_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-LXFProtocolTool_Tests.release.xcconfig"; sourceTree = "<group>"; };
-		3BCFD4B79A3A2CD4DC85357034B4D356 /* lxf_noData@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "lxf_noData@2x.png"; path = "LXFProtocolTool/Assets/LXFEmptyDataSetable/lxf_noData@2x.png"; sourceTree = "<group>"; };
+		42EEB13E44A28A385060F19D5730FC5B /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
 		43A6F32646368DDF6FB7358EDB891D6A /* Pods-LXFProtocolTool_Example-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-LXFProtocolTool_Example-resources.sh"; sourceTree = "<group>"; };
 		4559E21E059776B2D073577F613DE1E9 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
-		4A9EF0294D99DF4EB6DB64DCC63BD45A /* LXFProtocolTool-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "LXFProtocolTool-umbrella.h"; sourceTree = "<group>"; };
-		51E7ACFDC21B7F38628526ED01482C34 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
+		4EC125FE9900F3147F2FEBE27180F28A /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		51349AEB1C934970F252915740787DE2 /* lxf_noData@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "lxf_noData@2x.png"; path = "LXFProtocolTool/Assets/LXFEmptyDataSetable/lxf_noData@2x.png"; sourceTree = "<group>"; };
 		54F288FF989B21894C4D32E28D01A557 /* Pods-LXFProtocolTool_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-LXFProtocolTool_Example-acknowledgements.plist"; sourceTree = "<group>"; };
 		551AD980C56014C87A693FA4F45408B6 /* Pods-LXFProtocolTool_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-LXFProtocolTool_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
 		56BBFB7AA8D0A84EF50D6F5364AC3A96 /* Pods-LXFProtocolTool_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-LXFProtocolTool_Tests-dummy.m"; sourceTree = "<group>"; };
 		578E18C3967DA4BFDE1DD66CF1EC2943 /* Pods-LXFProtocolTool_Tests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-LXFProtocolTool_Tests-frameworks.sh"; sourceTree = "<group>"; };
 		5C267AA523092C52982ED44A322E09D1 /* Pods-LXFProtocolTool_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-LXFProtocolTool_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
-		5E907CA5BFEAC6F6F781CEF3FDA9F6DF /* LXFProtocolTool.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; path = LXFProtocolTool.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		5D8200BD0D510AF5697BFA7214AB762D /* LXFNibloadable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LXFNibloadable.swift; path = LXFProtocolTool/Classes/LXFNibloadable/LXFNibloadable.swift; sourceTree = "<group>"; };
+		644F55A9B7A221111C43847E2367DC27 /* LXFProtocolTool.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = LXFProtocolTool.xcconfig; sourceTree = "<group>"; };
 		6673A1A7F8F14DA1262C5F9BBEE9762B /* DZNEmptyDataSet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DZNEmptyDataSet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6923BE5540C69916CC3F79F4045EA069 /* DZNEmptyDataSet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = DZNEmptyDataSet.framework; path = DZNEmptyDataSet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		705E707D462DA7DF73F4AEEBDFF72956 /* LXFProtocolTool-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "LXFProtocolTool-prefix.pch"; sourceTree = "<group>"; };
+		72419B74AFDAE16D978E15A0234FEA6E /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
 		7B69C7D7B9E7B6E52563319625578F7E /* UIScrollView+EmptyDataSet.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIScrollView+EmptyDataSet.m"; path = "Source/UIScrollView+EmptyDataSet.m"; sourceTree = "<group>"; };
 		82C3F3480F42BBE27895279A3E208D3C /* Pods_LXFProtocolTool_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_LXFProtocolTool_Tests.framework; path = "Pods-LXFProtocolTool_Tests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A728FED440B3B1793DEB40B04C11143 /* DZNEmptyDataSet.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = DZNEmptyDataSet.xcconfig; sourceTree = "<group>"; };
 		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		95DA88F2B89151D34A8EAEE6FFDBE866 /* LXFProtocolTool.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = LXFProtocolTool.modulemap; sourceTree = "<group>"; };
 		968C18A9C8201CBE4FE441AB4557FA91 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9B3E727E89F8C88AA168BC9AC9CAC935 /* DZNEmptyDataSet-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "DZNEmptyDataSet-umbrella.h"; sourceTree = "<group>"; };
-		A339C87D7D16722B7371667929D608F7 /* LXFEmptyDataSetable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LXFEmptyDataSetable.swift; path = LXFProtocolTool/Classes/LXFEmptyDataSetable/LXFEmptyDataSetable.swift; sourceTree = "<group>"; };
 		AF01295E008B22C144AF925A7628ACCC /* Pods-LXFProtocolTool_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-LXFProtocolTool_Tests.modulemap"; sourceTree = "<group>"; };
 		AF5D2C480125FC495548A84D063B39E6 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B91EB6647FF0D6CC5B5BD24E50DC533F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		C337B569069663E4FD23FCC4506364B3 /* LXFProtocolTool.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = LXFProtocolTool.framework; path = LXFProtocolTool.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C873FD9923FE93931235D75D53F85E87 /* ResourceBundle-LXFProtocolTool-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ResourceBundle-LXFProtocolTool-Info.plist"; sourceTree = "<group>"; };
-		D283B4839904A9B2313276C6ADD32473 /* LXFNibloadable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LXFNibloadable.swift; path = LXFProtocolTool/Classes/LXFNibloadable/LXFNibloadable.swift; sourceTree = "<group>"; };
+		D01D6C0C85E249422EC7ADEF64BF9D5C /* AssociatedObjectStore.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AssociatedObjectStore.swift; path = LXFProtocolTool/Classes/AssociatedObjectStore/AssociatedObjectStore.swift; sourceTree = "<group>"; };
 		DA1AD82F089F623DAC5D1DC24C48D2A3 /* Pods-LXFProtocolTool_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-LXFProtocolTool_Tests-umbrella.h"; sourceTree = "<group>"; };
 		DA2F91A8D5FAEB3D3758A8682C9B7E3A /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E25984E9875E420640E7038E0B1BD563 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
+		E4BA9293F067B0B6429085E8324166BC /* LXFProtocolTool-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "LXFProtocolTool-umbrella.h"; sourceTree = "<group>"; };
 		E76D566068414FA510524885118A1DE6 /* DZNEmptyDataSet-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "DZNEmptyDataSet-dummy.m"; sourceTree = "<group>"; };
+		ECBC88FB2ECA94E335F49DD9DF87F92A /* LXFProtocolTool-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "LXFProtocolTool-dummy.m"; sourceTree = "<group>"; };
 		ECEE8F6322317D425CDEBAD38E044562 /* Pods-LXFProtocolTool_Tests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-LXFProtocolTool_Tests-resources.sh"; sourceTree = "<group>"; };
 		ECF1E65C110854F0C658D5487D0C9359 /* Pods-LXFProtocolTool_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-LXFProtocolTool_Example-umbrella.h"; sourceTree = "<group>"; };
-		ED26DE666E175C9C5F8E8D8ED791E87D /* LXFProtocolTool.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = LXFProtocolTool.modulemap; sourceTree = "<group>"; };
 		EE1D88E2534E0A275E11976FDC489249 /* Pods_LXFProtocolTool_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_LXFProtocolTool_Example.framework; path = "Pods-LXFProtocolTool_Example.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2B4E239E7079893CF9BDE9FDFB28595 /* Pods-LXFProtocolTool_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-LXFProtocolTool_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		FA0A24C724DDD622FAF0F384D7D20816 /* DZNEmptyDataSet-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "DZNEmptyDataSet-prefix.pch"; sourceTree = "<group>"; };
+		FB7D2443029046CAF11F40A0FD37831E /* LXFProtocolTool.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; path = LXFProtocolTool.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		FED9572C9858DA2110AC996EC7DC2906 /* Pods-LXFProtocolTool_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-LXFProtocolTool_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -129,12 +131,28 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		4718AE950160D2BDA8AD23BD77B3A2CB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		59E0885EF9D269547F22DB9E026FB793 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				C577B322B52228B272D52FF32B7BE30C /* Foundation.framework in Frameworks */,
 				8E31EF89BD192C6AACDE9E0655861D3D /* UIKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7CF22CB29E0FCD16E0E064D172D57108 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				63E10AB51DBBF4A7CD2FB16DB810FFF1 /* DZNEmptyDataSet.framework in Frameworks */,
+				65AD6E0657CE1287EC554633D4A9068B /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -146,55 +164,56 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C9C921781DDEE45C8BCFDFBF847824F1 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		E92573752151FA9EE4602BEBD191600B /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				6531AB7F3ADEF983315DE71A7A47A01C /* DZNEmptyDataSet.framework in Frameworks */,
-				2E891DED164AEAFAA09925137CB10C8C /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		02631EBCCD75B2E4CDACC74BD87E38FD /* Support Files */ = {
+		069AF2EAC3864694EF496C39BB4E0F32 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				04AB257E4E03AF2C3EDA4404FE2E066B /* Info.plist */,
-				ED26DE666E175C9C5F8E8D8ED791E87D /* LXFProtocolTool.modulemap */,
-				16A99516E8B77A5B6C4568D7193DD2E8 /* LXFProtocolTool.xcconfig */,
-				0BFB61802B9EF6BBC5F9218EB3B90D70 /* LXFProtocolTool-dummy.m */,
-				294A97A1DA11DDF4A2BC0E89952EBF0E /* LXFProtocolTool-prefix.pch */,
-				4A9EF0294D99DF4EB6DB64DCC63BD45A /* LXFProtocolTool-umbrella.h */,
-				C873FD9923FE93931235D75D53F85E87 /* ResourceBundle-LXFProtocolTool-Info.plist */,
+				4EC125FE9900F3147F2FEBE27180F28A /* Info.plist */,
+				95DA88F2B89151D34A8EAEE6FFDBE866 /* LXFProtocolTool.modulemap */,
+				644F55A9B7A221111C43847E2367DC27 /* LXFProtocolTool.xcconfig */,
+				ECBC88FB2ECA94E335F49DD9DF87F92A /* LXFProtocolTool-dummy.m */,
+				705E707D462DA7DF73F4AEEBDFF72956 /* LXFProtocolTool-prefix.pch */,
+				E4BA9293F067B0B6429085E8324166BC /* LXFProtocolTool-umbrella.h */,
+				229915185B43DB3204F3C5BDBEA5E9CB /* ResourceBundle-LXFProtocolTool-Info.plist */,
 			);
 			name = "Support Files";
 			path = "Example/Pods/Target Support Files/LXFProtocolTool";
 			sourceTree = "<group>";
 		};
-		0B4DF3AF31EC731629BDE4D8D0A5492D /* Development Pods */ = {
+		0EC4259620159260B8F29F34DE8CA940 /* Pod */ = {
 			isa = PBXGroup;
 			children = (
-				458E0BC63ACF69DE27C2843C58237EB3 /* LXFProtocolTool */,
+				72419B74AFDAE16D978E15A0234FEA6E /* LICENSE */,
+				FB7D2443029046CAF11F40A0FD37831E /* LXFProtocolTool.podspec */,
+				42EEB13E44A28A385060F19D5730FC5B /* README.md */,
+			);
+			name = Pod;
+			sourceTree = "<group>";
+		};
+		1545B4366A6C81854098FE35C9834BA7 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				51349AEB1C934970F252915740787DE2 /* lxf_noData@2x.png */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		1F6142CB2A12E227262DC3800B2434EB /* Development Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B9CF2594EA0BFEBCA387F270DB6D525B /* LXFProtocolTool */,
 			);
 			name = "Development Pods";
 			sourceTree = "<group>";
 		};
-		254466E629A31F19D471D89B3371C1FC /* LXFEmptyDataSetable */ = {
+		2698C51D5E179E3EA5FDBB19578CF7D8 /* LXFNibloadable */ = {
 			isa = PBXGroup;
 			children = (
-				A339C87D7D16722B7371667929D608F7 /* LXFEmptyDataSetable.swift */,
-				7CEFD32F76D48610544D6A9BCBCB4875 /* Resources */,
+				5D8200BD0D510AF5697BFA7214AB762D /* LXFNibloadable.swift */,
 			);
-			name = LXFEmptyDataSetable;
+			name = LXFNibloadable;
 			sourceTree = "<group>";
 		};
 		391E7CF3BE0B277DC3EF26607E1B9DD1 /* Pods */ = {
@@ -214,16 +233,13 @@
 			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
-		458E0BC63ACF69DE27C2843C58237EB3 /* LXFProtocolTool */ = {
+		565C058EBDC20D14FE4E618113381DBF /* LXFEmptyDataSetable */ = {
 			isa = PBXGroup;
 			children = (
-				254466E629A31F19D471D89B3371C1FC /* LXFEmptyDataSetable */,
-				7BB3972530FA21A4A1EF426DA3196F30 /* LXFNibloadable */,
-				FC318A712002CF449C6828137A2CB7EA /* Pod */,
-				02631EBCCD75B2E4CDACC74BD87E38FD /* Support Files */,
+				0EEC1A20EE89328793CF2F638D7318DD /* LXFEmptyDataSetable.swift */,
+				1545B4366A6C81854098FE35C9834BA7 /* Resources */,
 			);
-			name = LXFProtocolTool;
-			path = ../..;
+			name = LXFEmptyDataSetable;
 			sourceTree = "<group>";
 		};
 		578A4CA0C80AAFB697D4E39CC3DE10B9 /* Pods-LXFProtocolTool_Example */ = {
@@ -256,32 +272,24 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		7BB3972530FA21A4A1EF426DA3196F30 /* LXFNibloadable */ = {
-			isa = PBXGroup;
-			children = (
-				D283B4839904A9B2313276C6ADD32473 /* LXFNibloadable.swift */,
-			);
-			name = LXFNibloadable;
-			sourceTree = "<group>";
-		};
-		7CEFD32F76D48610544D6A9BCBCB4875 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				3BCFD4B79A3A2CD4DC85357034B4D356 /* lxf_noData@2x.png */,
-			);
-			name = Resources;
-			sourceTree = "<group>";
-		};
 		7DB346D0F39D3F0E887471402A8071AB = {
 			isa = PBXGroup;
 			children = (
 				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
-				0B4DF3AF31EC731629BDE4D8D0A5492D /* Development Pods */,
+				1F6142CB2A12E227262DC3800B2434EB /* Development Pods */,
 				DB4B1231C2FCD40D9EE54F51147A2198 /* Frameworks */,
 				391E7CF3BE0B277DC3EF26607E1B9DD1 /* Pods */,
 				76BB68C0E9A41628DEEDFBF00AE74874 /* Products */,
 				3FFDFC5D311519D39B96CF4A4EE9DC2E /* Targets Support Files */,
 			);
+			sourceTree = "<group>";
+		};
+		81E17C945BD5E48E8B382F42607BD9F0 /* AssociatedObjectStore */ = {
+			isa = PBXGroup;
+			children = (
+				D01D6C0C85E249422EC7ADEF64BF9D5C /* AssociatedObjectStore.swift */,
+			);
+			name = AssociatedObjectStore;
 			sourceTree = "<group>";
 		};
 		8F4C1981A3CD5849D1926B2D86509DA7 /* DZNEmptyDataSet */ = {
@@ -307,6 +315,19 @@
 			);
 			name = "Support Files";
 			path = "../Target Support Files/DZNEmptyDataSet";
+			sourceTree = "<group>";
+		};
+		B9CF2594EA0BFEBCA387F270DB6D525B /* LXFProtocolTool */ = {
+			isa = PBXGroup;
+			children = (
+				81E17C945BD5E48E8B382F42607BD9F0 /* AssociatedObjectStore */,
+				565C058EBDC20D14FE4E618113381DBF /* LXFEmptyDataSetable */,
+				2698C51D5E179E3EA5FDBB19578CF7D8 /* LXFNibloadable */,
+				0EC4259620159260B8F29F34DE8CA940 /* Pod */,
+				069AF2EAC3864694EF496C39BB4E0F32 /* Support Files */,
+			);
+			name = LXFProtocolTool;
+			path = ../..;
 			sourceTree = "<group>";
 		};
 		BE619206F77A9C2749C5234F78E1DCAE /* Pods-LXFProtocolTool_Tests */ = {
@@ -345,16 +366,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		FC318A712002CF449C6828137A2CB7EA /* Pod */ = {
-			isa = PBXGroup;
-			children = (
-				E25984E9875E420640E7038E0B1BD563 /* LICENSE */,
-				5E907CA5BFEAC6F6F781CEF3FDA9F6DF /* LXFProtocolTool.podspec */,
-				51E7ACFDC21B7F38628526ED01482C34 /* README.md */,
-			);
-			name = Pod;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -363,14 +374,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				EB536051EF4DDA989E405AA9CFD18DF5 /* Pods-LXFProtocolTool_Example-umbrella.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		20A665D783327792C5B8AA801D6BBF84 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				23F1E363B1648F94070071E72E856790 /* LXFProtocolTool-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -391,26 +394,17 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		813157EC2D3F456BF273BE04DAA3C315 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				90D029FD586E6C025DACF5609E819563 /* LXFProtocolTool-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		36C43FF1440161C7B460A0A9E10BCD28 /* LXFProtocolTool-LXFProtocolTool */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = D838F11EFC3AF5DFE5A7DC1B59C4FD27 /* Build configuration list for PBXNativeTarget "LXFProtocolTool-LXFProtocolTool" */;
-			buildPhases = (
-				D100E755CA8A1A451C49B65A50835B75 /* Sources */,
-				C9C921781DDEE45C8BCFDFBF847824F1 /* Frameworks */,
-				307C3E6954A160AB784C8FA186524371 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "LXFProtocolTool-LXFProtocolTool";
-			productName = "LXFProtocolTool-LXFProtocolTool";
-			productReference = 363452521E3409E285297B6B8E53D442 /* LXFProtocolTool.bundle */;
-			productType = "com.apple.product-type.bundle";
-		};
 		4F4A2BFA18B950885AA02875B9340F3A /* Pods-LXFProtocolTool_Example */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0A17779E060F40781A0C3004B444B24E /* Build configuration list for PBXNativeTarget "Pods-LXFProtocolTool_Example" */;
@@ -430,20 +424,20 @@
 			productReference = EE1D88E2534E0A275E11976FDC489249 /* Pods_LXFProtocolTool_Example.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		744BE78AA4B400C7714BB5E3EB8DB83A /* LXFProtocolTool */ = {
+		566C140D2AACD02A553D1DE1804BA473 /* LXFProtocolTool */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = ED1C6630C08B77D6D52AA4DE26B77DF5 /* Build configuration list for PBXNativeTarget "LXFProtocolTool" */;
+			buildConfigurationList = 9D4BED8BD8299023DFF55ADBE389C737 /* Build configuration list for PBXNativeTarget "LXFProtocolTool" */;
 			buildPhases = (
-				07A99C3FCB5C5A89C10BAFE39D6DF080 /* Sources */,
-				E92573752151FA9EE4602BEBD191600B /* Frameworks */,
-				707C0CF553A780FEE7CBE4CE555C5451 /* Resources */,
-				20A665D783327792C5B8AA801D6BBF84 /* Headers */,
+				893F17609B6CC8FBF44F5F7FDAD06AAD /* Sources */,
+				7CF22CB29E0FCD16E0E064D172D57108 /* Frameworks */,
+				3585048C7C7564743E402BAB64477AB7 /* Resources */,
+				813157EC2D3F456BF273BE04DAA3C315 /* Headers */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				1D32994A8F7FC83BC28729C734080B3D /* PBXTargetDependency */,
-				7798E6AF87FBAA91EAA883551F41BF91 /* PBXTargetDependency */,
+				4A35319FF92C3631AEFDD3CFD65AC6F5 /* PBXTargetDependency */,
+				4C2C38A6FFCED904FDD5BE2E0F5D6B23 /* PBXTargetDependency */,
 			);
 			name = LXFProtocolTool;
 			productName = LXFProtocolTool;
@@ -467,6 +461,23 @@
 			productName = "Pods-LXFProtocolTool_Tests";
 			productReference = 82C3F3480F42BBE27895279A3E208D3C /* Pods_LXFProtocolTool_Tests.framework */;
 			productType = "com.apple.product-type.framework";
+		};
+		963E67475932F36E7618B8DB464E2FEF /* LXFProtocolTool-LXFProtocolTool */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 286BE17B48ED6144FBC2765850BFF468 /* Build configuration list for PBXNativeTarget "LXFProtocolTool-LXFProtocolTool" */;
+			buildPhases = (
+				6C1FD3EAD646D3423951D36F700C8B34 /* Sources */,
+				4718AE950160D2BDA8AD23BD77B3A2CB /* Frameworks */,
+				D88F3B26C2BF79714A174EFE3E55FCE6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "LXFProtocolTool-LXFProtocolTool";
+			productName = "LXFProtocolTool-LXFProtocolTool";
+			productReference = 363452521E3409E285297B6B8E53D442 /* LXFProtocolTool.bundle */;
+			productType = "com.apple.product-type.bundle";
 		};
 		D386C75EFD4F03725E4EFB866B600B9A /* DZNEmptyDataSet */ = {
 			isa = PBXNativeTarget;
@@ -507,8 +518,8 @@
 			projectRoot = "";
 			targets = (
 				D386C75EFD4F03725E4EFB866B600B9A /* DZNEmptyDataSet */,
-				744BE78AA4B400C7714BB5E3EB8DB83A /* LXFProtocolTool */,
-				36C43FF1440161C7B460A0A9E10BCD28 /* LXFProtocolTool-LXFProtocolTool */,
+				566C140D2AACD02A553D1DE1804BA473 /* LXFProtocolTool */,
+				963E67475932F36E7618B8DB464E2FEF /* LXFProtocolTool-LXFProtocolTool */,
 				4F4A2BFA18B950885AA02875B9340F3A /* Pods-LXFProtocolTool_Example */,
 				9153638BECF05579AD2DA5F33473753C /* Pods-LXFProtocolTool_Tests */,
 			);
@@ -516,41 +527,38 @@
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		307C3E6954A160AB784C8FA186524371 /* Resources */ = {
+		3585048C7C7564743E402BAB64477AB7 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				88364DFE710A5ED2CF696CD005F0681F /* lxf_noData@2x.png in Resources */,
+				75D8DDCFC1BED1AEF9C8F2066B679753 /* LXFProtocolTool.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		707C0CF553A780FEE7CBE4CE555C5451 /* Resources */ = {
+		D88F3B26C2BF79714A174EFE3E55FCE6 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				95F2931A244FF77D26EC63EEDF8752D3 /* LXFProtocolTool.bundle in Resources */,
+				FBF9FE9BF77EB117B8E9F418423C53B4 /* lxf_noData@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		07A99C3FCB5C5A89C10BAFE39D6DF080 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				CD9E6737DAAA8A3F3F3417F1B1E64256 /* LXFEmptyDataSetable.swift in Sources */,
-				F5793FDE497CE6A304B294E6FD287460 /* LXFNibloadable.swift in Sources */,
-				83A2B85A57CE1763C349BBE2971CA910 /* LXFProtocolTool-dummy.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		5235DD2B24AFCD194FE2DD74A43760D8 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				75D0A461B8CF202F41C55CA1E732124C /* DZNEmptyDataSet-dummy.m in Sources */,
 				4568C6CC7F78399CA1312B20E26EA8FE /* UIScrollView+EmptyDataSet.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6C1FD3EAD646D3423951D36F700C8B34 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -562,10 +570,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D100E755CA8A1A451C49B65A50835B75 /* Sources */ = {
+		893F17609B6CC8FBF44F5F7FDAD06AAD /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B6077814E2DEAE0CACE414A08D9965F0 /* AssociatedObjectStore.swift in Sources */,
+				6D4B656DCFBF4CAEAB44F7C6520B1FEC /* LXFEmptyDataSetable.swift in Sources */,
+				8115BC5AC1EA36AD30EB8D16D9AB997A /* LXFNibloadable.swift in Sources */,
+				8842377A8EC2FC2CC6B2691421D1FA43 /* LXFProtocolTool-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -586,11 +598,17 @@
 			target = D386C75EFD4F03725E4EFB866B600B9A /* DZNEmptyDataSet */;
 			targetProxy = F45DAA235B7B96CEF2BF36B80DE24ED1 /* PBXContainerItemProxy */;
 		};
-		1D32994A8F7FC83BC28729C734080B3D /* PBXTargetDependency */ = {
+		4A35319FF92C3631AEFDD3CFD65AC6F5 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = DZNEmptyDataSet;
 			target = D386C75EFD4F03725E4EFB866B600B9A /* DZNEmptyDataSet */;
-			targetProxy = 6166ACB394D5B71B4B9572B7ACAC9858 /* PBXContainerItemProxy */;
+			targetProxy = 40632F1E7EAAC8BA47C87C85E389FDFB /* PBXContainerItemProxy */;
+		};
+		4C2C38A6FFCED904FDD5BE2E0F5D6B23 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "LXFProtocolTool-LXFProtocolTool";
+			target = 963E67475932F36E7618B8DB464E2FEF /* LXFProtocolTool-LXFProtocolTool */;
+			targetProxy = DFFF4543362157030739B7A1DB1D403D /* PBXContainerItemProxy */;
 		};
 		60914B50D27222951C1EF9A76A7005D1 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -598,16 +616,10 @@
 			target = 4F4A2BFA18B950885AA02875B9340F3A /* Pods-LXFProtocolTool_Example */;
 			targetProxy = DC93F9C2F476C833048675515E67A943 /* PBXContainerItemProxy */;
 		};
-		7798E6AF87FBAA91EAA883551F41BF91 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "LXFProtocolTool-LXFProtocolTool";
-			target = 36C43FF1440161C7B460A0A9E10BCD28 /* LXFProtocolTool-LXFProtocolTool */;
-			targetProxy = 238CEE763048D91427E3311EFCB32F78 /* PBXContainerItemProxy */;
-		};
 		9D0C5FA23F3C262386ECE429DA8EC1D6 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = LXFProtocolTool;
-			target = 744BE78AA4B400C7714BB5E3EB8DB83A /* LXFProtocolTool */;
+			target = 566C140D2AACD02A553D1DE1804BA473 /* LXFProtocolTool */;
 			targetProxy = 499D3A490FD5D07025E46F0EEBD51D90 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -715,9 +727,9 @@
 			};
 			name = Debug;
 		};
-		3C8FDFBE0E0ACADD8157574694815F51 /* Release */ = {
+		4D687B46F5B3675D539FAE19B28F9EC6 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 16A99516E8B77A5B6C4568D7193DD2E8 /* LXFProtocolTool.xcconfig */;
+			baseConfigurationReference = 644F55A9B7A221111C43847E2367DC27 /* LXFProtocolTool.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/LXFProtocolTool";
@@ -730,71 +742,6 @@
 				WRAPPER_EXTENSION = bundle;
 			};
 			name = Release;
-		};
-		4B034E9E35BC40C69533EC688DE34164 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 16A99516E8B77A5B6C4568D7193DD2E8 /* LXFProtocolTool.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/LXFProtocolTool/LXFProtocolTool-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/LXFProtocolTool/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/LXFProtocolTool/LXFProtocolTool.modulemap";
-				PRODUCT_MODULE_NAME = LXFProtocolTool;
-				PRODUCT_NAME = LXFProtocolTool;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		7A6769FF241B1C38388DD7CB3385CA04 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 16A99516E8B77A5B6C4568D7193DD2E8 /* LXFProtocolTool.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/LXFProtocolTool/LXFProtocolTool-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/LXFProtocolTool/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/LXFProtocolTool/LXFProtocolTool.modulemap";
-				PRODUCT_MODULE_NAME = LXFProtocolTool;
-				PRODUCT_NAME = LXFProtocolTool;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
 		};
 		8B33C5230DE4A9DFA6D8F46505DD7AF7 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -893,6 +840,71 @@
 			};
 			name = Release;
 		};
+		91F6E3CBFBB55F4047677DB92B014403 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 644F55A9B7A221111C43847E2367DC27 /* LXFProtocolTool.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/LXFProtocolTool/LXFProtocolTool-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/LXFProtocolTool/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/LXFProtocolTool/LXFProtocolTool.modulemap";
+				PRODUCT_MODULE_NAME = LXFProtocolTool;
+				PRODUCT_NAME = LXFProtocolTool;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		AC443A5549E00D22F60C467FF1AEB19B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 644F55A9B7A221111C43847E2367DC27 /* LXFProtocolTool.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/LXFProtocolTool/LXFProtocolTool-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/LXFProtocolTool/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/LXFProtocolTool/LXFProtocolTool.modulemap";
+				PRODUCT_MODULE_NAME = LXFProtocolTool;
+				PRODUCT_NAME = LXFProtocolTool;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
 		AF5F31F5D2E360EE8C8F7989FD9F7081 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = FED9572C9858DA2110AC996EC7DC2906 /* Pods-LXFProtocolTool_Tests.debug.xcconfig */;
@@ -984,9 +996,9 @@
 			};
 			name = Release;
 		};
-		CE6B8F429A50D74181E860EAFB3CCA74 /* Debug */ = {
+		E95E5984FF1D3FDAF2AC7D6C3BE93F49 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 16A99516E8B77A5B6C4568D7193DD2E8 /* LXFProtocolTool.xcconfig */;
+			baseConfigurationReference = 644F55A9B7A221111C43847E2367DC27 /* LXFProtocolTool.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/LXFProtocolTool";
@@ -1043,6 +1055,15 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		286BE17B48ED6144FBC2765850BFF468 /* Build configuration list for PBXNativeTarget "LXFProtocolTool-LXFProtocolTool" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E95E5984FF1D3FDAF2AC7D6C3BE93F49 /* Debug */,
+				4D687B46F5B3675D539FAE19B28F9EC6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -1061,29 +1082,20 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		9D4BED8BD8299023DFF55ADBE389C737 /* Build configuration list for PBXNativeTarget "LXFProtocolTool" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AC443A5549E00D22F60C467FF1AEB19B /* Debug */,
+				91F6E3CBFBB55F4047677DB92B014403 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		AC2CBCE24382919CB3DBFC8BB3CC6503 /* Build configuration list for PBXNativeTarget "DZNEmptyDataSet" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F6E311BD5995BFCDFEE2CB4DA90ED3D9 /* Debug */,
 				19445A2B1B8F304B25AB4D7FA1E08ACB /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		D838F11EFC3AF5DFE5A7DC1B59C4FD27 /* Build configuration list for PBXNativeTarget "LXFProtocolTool-LXFProtocolTool" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				CE6B8F429A50D74181E860EAFB3CCA74 /* Debug */,
-				3C8FDFBE0E0ACADD8157574694815F51 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		ED1C6630C08B77D6D52AA4DE26B77DF5 /* Build configuration list for PBXNativeTarget "LXFProtocolTool" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				7A6769FF241B1C38388DD7CB3385CA04 /* Debug */,
-				4B034E9E35BC40C69533EC688DE34164 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
