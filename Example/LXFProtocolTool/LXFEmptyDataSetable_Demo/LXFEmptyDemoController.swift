@@ -9,7 +9,7 @@
 import UIKit
 import LXFProtocolTool
 
-class LXFEmptyDemoController: UIViewController {
+class LXFEmptyDemoController: UIViewController, EmptyDataSetable, RefreshControllable {
 
     // 数据
     fileprivate var tipStrArr = ["无法转换", "无法定位", "无法拨通", "无法屏幕分享"]
@@ -30,12 +30,10 @@ extension LXFEmptyDemoController {
         let randomInt = Int(arc4random())%tipStrArr.count // 1~100 的随机数
         
         // 更新空白页数据
-        lxf_updateEmptyDataSet(tableView) { () -> ([LXFEmptyDataSetAttributeKeyType : Any]) in
-            return [
-                .tipImage:UIImage(named: "tipImg\(randomInt)")!,
-                .tipStr:tipStrArr[randomInt]
-            ]
-        }
+        var config = EmptyConfig.normal
+        config.tipStr = tipStrArr[randomInt]
+        config.tipImage = UIImage(named: "tipImg\(randomInt)")
+        self.lxf.updateEmptyDataSet(tableView, config: config)
     }
 }
 
@@ -55,7 +53,7 @@ extension LXFEmptyDemoController: UITableViewDataSource {
     }
 }
 
-extension LXFEmptyDemoController: LXFEmptyDataSetable {
+extension LXFEmptyDemoController {
     fileprivate func initUI() {
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "switch", style: UIBarButtonItemStyle.plain, target: self, action: #selector(switchEmpty))
         
@@ -68,22 +66,31 @@ extension LXFEmptyDemoController: LXFEmptyDataSetable {
         tableView.dataSource = self
         tableView.frame = self.view.bounds
         
-        // 高定制
-        lxf_EmptyDataSet(tableView) { () -> ([LXFEmptyDataSetAttributeKeyType : Any]) in
-            return [
-                .tipStr:"哟哟哟",
-                .verticalOffset:-150,
-                .allowScroll: false
-            ]
-        }
-        
-        // 默认定制
-//        lxf_EmptyDataSet(tableView)
-        
-        
+        // 定制
+        self.lxf.updateEmptyDataSet(tableView, config: EmptyConfig.noData)
+
         // 监听点击事件
-        lxf_tapEmptyView(tableView) { (view) in
+        self.lxf.tapEmptyView(tableView) { view in
             print("点击了空白视图")
         }
     }
+}
+
+
+// 常用配置
+struct EmptyConfig {
+    static let normal = EmptyDataSetConfigure(tipFont: UIFont.systemFont(ofSize: 14), tipColor: UIColor.gray, tipImage: UIImage(named: "LXFEmptyDataPic")!, spaceHeight: 15)
+    static let noData = { () -> EmptyDataSetConfigure in
+        var config = EmptyConfig.normal
+        config.tipStr = "暂无数据"
+        return config
+    }()
+    static let loadFaile = { () -> EmptyDataSetConfigure in
+        var config = EmptyConfig.normal
+        config.tipStr = "呃，页面加载失败"
+        config.buttonImageBlock = { _ in
+            return UIImage(named: "reloadData")
+        }
+        return config
+    }()
 }

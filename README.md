@@ -11,15 +11,6 @@
 
 [iOS - Swift 面向协议编程（二）](https://juejin.im/post/59ee05846fb9a0451329dd52)
 
-## Update
-
-版本 | 更新内容
--|-
-0.2.0 | *  AssociatedObjectStore 动态存储属性协议 
-0.1.2| *  LXFNibloadable 不再需要手动遵守协议，增加了多种nib加载 
-0.1.1| * LXFEmptyDataSetable 添加点击事件回调方法，提供更新数据入口 
-0.1.0| * xib便捷加载<br> * scrollView空白页显示(依赖DZNEmptyDataSet) 
-
 ## CocoaPods
 
 LXFProtocolTool 支持CocoaPods:

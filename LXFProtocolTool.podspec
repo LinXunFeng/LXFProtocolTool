@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'LXFProtocolTool'
-  s.version          = '0.2.0'
+  s.version          = '0.3.0'
   s.summary          = 'LXFProtocolTool是实用的协议应用工具库'
 
 # This description is used to generate tags and improve search results.
@@ -31,18 +31,32 @@ LXFProtocolTool是使用Swift中的协议来实现多种方便、实用的工具
   s.ios.deployment_target = '8.0'
   s.pod_target_xcconfig = { 'SWIFT_VERSION' => '4.0' }
 
-  # s.source_files = 'LXFProtocolTool/Classes/**/*.swift'
+  s.source_files = 'LXFProtocolTool/Classes/**/*.swift'
 
+  s.subspec "Base" do |t|
+      t.source_files  = "LXFProtocolTool/Classes/Base/**/*.{swift}"
+  end
+  
   s.subspec 'LXFNibloadable' do |t|
     t.source_files = 'LXFProtocolTool/Classes/LXFNibloadable/**/*.{swift}'
   end
+  
+  s.subspec 'Refreshable' do |t|
+      t.source_files = 'LXFProtocolTool/Classes/Refreshable/**/*.{swift}'
+      t.dependency 'MJRefresh'
+      t.dependency 'RxSwift', '>= 4.0.0'
+      t.dependency "LXFProtocolTool/AssociatedObjectStore"
+      t.dependency "LXFProtocolTool/Base"
+  end
 
-  s.subspec 'LXFEmptyDataSetable' do |t|
-    t.source_files = 'LXFProtocolTool/Classes/LXFEmptyDataSetable/**/*.{swift}'
-    t.resource_bundles = {
-      'LXFProtocolTool' => ['LXFProtocolTool/Assets/LXFEmptyDataSetable/*']
-    }
-    t.dependency 'DZNEmptyDataSet', '~> 1.8.1'
+  s.subspec 'EmptyDataSetable' do |t|
+    t.source_files = 'LXFProtocolTool/Classes/EmptyDataSetable/**/*.{swift}'
+    #t.resource_bundles = {
+    #'LXFProtocolTool' => ['LXFProtocolTool/Assets/#EmptyDataSetable/*']
+      #}
+    t.dependency 'DZNEmptyDataSet', '>= 1.8.1'
+    t.dependency "LXFProtocolTool/AssociatedObjectStore"
+    t.dependency "LXFProtocolTool/Base"
   end
   
   s.subspec 'AssociatedObjectStore' do |t|
