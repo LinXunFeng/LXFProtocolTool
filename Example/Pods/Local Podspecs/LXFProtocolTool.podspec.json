@@ -1,6 +1,6 @@
 {
   "name": "LXFProtocolTool",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "summary": "LXFProtocolTool是实用的协议应用工具库",
   "description": "LXFProtocolTool是使用Swift中的协议来实现多种方便、实用的工具库",
   "homepage": "https://github.com/LinXunFeng/LXFProtocolTool",
@@ -13,7 +13,7 @@
   },
   "source": {
     "git": "https://github.com/LinXunFeng/LXFProtocolTool.git",
-    "tag": "0.2.0"
+    "tag": "0.3.0"
   },
   "platforms": {
     "ios": "8.0"

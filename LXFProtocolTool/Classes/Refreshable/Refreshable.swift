@@ -34,22 +34,18 @@ public enum RefreshStatus {
 
 private var refreshStatusKey = "refreshStatusKey"
 
-public protocol RefreshControllable: class, AssociatedObjectStore, LXFCompatible {
-    // 告诉外界的tableView当前的刷新状态
-    var refreshStatus : Variable<RefreshStatus> { get }
-}
+public protocol RefreshControllable: class, AssociatedObjectStore, LXFCompatible { }
 
-public extension LXFExtension where Base: RefreshControllable {
+public extension LXFNameSpace where Base: RefreshControllable {
+    // 告诉外界的tableView当前的刷新状态
     var refreshStatus : Variable<RefreshStatus> {
         return base.associatedObject(
             forKey: &refreshStatusKey,
             default: Variable<RefreshStatus>(.none))
     }
-}
-
-extension RefreshControllable {
+    
     fileprivate func autoSetRefreshHeaderStatus(header: RefreshHeader?, footer: RefreshFooter?) -> Disposable {
-        return refreshStatus.asObservable()
+        return  refreshStatus.asObservable()
             .subscribe(onNext: { (status) in
                 switch status {
                 case .beginHeaderRefresh:
@@ -106,11 +102,11 @@ public class RefreshableConfigure: NSObject {
 public protocol Refreshable: LXFCompatible { }
 
 // MARK: 创建刷新控件
-public extension LXFExtension where Base: Refreshable {
+public extension LXFNameSpace where Base: Refreshable {
     public func initRefresh<T: RefreshControllable>(_ vm: T, _ scrollView: UIScrollView, headerConfig: RefreshableHeaderConfig? = nil, footerConfig: RefreshableFooterConfig? = nil, headerAction: (() -> Void)? = nil, footerAction: (() -> Void)? = nil) -> Disposable {
         let header = headerAction == nil ? nil : initRefreshHeader(scrollView, config: headerConfig, headerAction!)
         let footer = footerAction == nil ? nil : initRefreshFooter(scrollView, config: footerConfig, footerAction!)
-        return vm.autoSetRefreshHeaderStatus(header: header, footer: footer)
+        return vm.lxf.autoSetRefreshHeaderStatus(header: header, footer: footer)
     }
     
     fileprivate func initRefreshHeader(_ scrollView: UIScrollView, config: RefreshableHeaderConfig? = nil, _ action: @escaping () -> Void) -> RefreshHeader {
@@ -300,7 +296,7 @@ public struct RefreshableHeaderConfig {
     var pullingImages: [UIImage] = []
     var refreshingImages: [UIImage] = []
     
-    init(type: RefreshHeaderType = .normal, idleTitle: String? = nil, pullingTitle: String? = nil, refreshingTitle: String? = nil, stateFont: UIFont? = nil, lastUpdatedTimeFont: UIFont? = nil, stateColor: UIColor? = nil, lastUpdatedTimeColor: UIColor? = nil, hideState: Bool = false, hideLastUpdatedTime: Bool = false, labelLeftInset: CGFloat? = nil, activityIndicatorViewStyle: UIActivityIndicatorViewStyle = .gray, idleImages: [UIImage] = [], pullingImages: [UIImage] = [], refreshingImages: [UIImage] = []) {
+    public init(type: RefreshHeaderType = .normal, idleTitle: String? = nil, pullingTitle: String? = nil, refreshingTitle: String? = nil, stateFont: UIFont? = nil, lastUpdatedTimeFont: UIFont? = nil, stateColor: UIColor? = nil, lastUpdatedTimeColor: UIColor? = nil, hideState: Bool = false, hideLastUpdatedTime: Bool = false, labelLeftInset: CGFloat? = nil, activityIndicatorViewStyle: UIActivityIndicatorViewStyle = .gray, idleImages: [UIImage] = [], pullingImages: [UIImage] = [], refreshingImages: [UIImage] = []) {
         self.type = type
         self.idleTitle = idleTitle
         self.pullingTitle = pullingTitle

@@ -23,28 +23,41 @@ pod 'LXFProtocolTool'
 当然，也可以根据自己的需要安装指定子库
 
 - Xib加载
-```
+```ruby
 pod 'LXFProtocolTool/LXFNibloadable'
 ```
 
 - 空白视图
-```
-pod 'LXFProtocolTool/LXFEmptyDataSetable'
+```ruby
+pod 'LXFProtocolTool/EmptyDataSetable'
 ```
 
-## Example
+- 刷新控件
 
-详细使用请打开Example工程查看，以下做简要使用说明
+```ruby
+pod 'LXFProtocolTool/Refreshable'
+```
+
+- 关联属性
+
+```ruby
+pod 'LXFProtocolTool/AssociatedObjectStore'
+```
+
+
+
+## Usage
+
+详细使用请打开Example工程查看，以下只做简要使用说明
 
 - LXFNibloadable
 
 1、~~View遵守协议LXFNibloadable~~  不用自己手动遵守，这步跳过
-```
-class LXFXibTestView: UIView, LXFNibloadable {
-}
+```swift
+class LXFXibTestView: UIView, LXFNibloadable { }
 ```
 2、通过静态方法`loadFromNib()`创建View
-```
+```swift
 let view = LXFXibTestView.loadFromNib()
 ```
 
@@ -65,27 +78,20 @@ tableView.registerHeaderFooterView(LXFCustomHeaderView.self)
 
 <br>
 
-- LXFEmptyDataSetable
+- EmptyDataSetable
 
-1、UIViewControllor或UIView遵守协议LXFEmptyDataSetable
-```
-extension LXFEmptyDemoController: LXFEmptyDataSetable {
+1、UIViewControllor或UIView遵守协议 `EmptyDataSetable`
+```swift
+extension LXFEmptyDemoController: EmptyDataSetable {
 }
 ```
 
-2、调用方法`lxf_EmptyDataSet()`
-```
-// 简单方式
-lxf_EmptyDataSet(tableView)
+2、调用方法 `updateEmptyDataSet`
 
+```swift
 // 定制方式
-lxf_EmptyDataSet(tableView) { () -> ([LXFEmptyDataSetAttributeKeyType : Any]) in
-    return [
-        .tipStr:"哟哟哟",
-        .verticalOffset:-150,
-        .allowScroll: false
-    ]
-}
+// config 不传值时使用默认配置
+self.lxf.updateEmptyDataSet(tableView, config: EmptyConfig.noData)
 ```
 ![lxf_EmptyDataSet](https://github.com/LinXunFeng/LXFProtocolTool/raw/master/Screenshots/lxf_EmptyDataSet.png)
 
@@ -94,18 +100,61 @@ lxf_EmptyDataSet(tableView) { () -> ([LXFEmptyDataSetAttributeKeyType : Any]) in
 3、 更新定制
 
 ```swift
-lxf_updateEmptyDataSet(tableView) { () -> ([LXFEmptyDataSetAttributeKeyType : Any]) in
-    return [
-        .tipStr:"更新提示语"
-    ]
-}
+// 更新空白页数据
+var config = EmptyConfig.normal
+config.tipStr = tipStrArr[randomInt]
+config.tipImage = UIImage(named: "tipImg\(randomInt)")
+
+self.lxf.updateEmptyDataSet(tableView, config: config)
 ```
 
 ![lxf_EmptyDataSet_update](https://github.com/LinXunFeng/LXFProtocolTool/raw/master/Screenshots/lxf_EmptyDataSet.gif)
 
+- Refreshable
 
+1、遵守协议 `Refreshable`
 
-**占位图可以使用定制方式的`.tipImage`来指定，也可以丢指定名字`LXFEmptyDataPic`的图片到工程的Images.xcassets中 
+```swift
+class LXFRefreshableController: UIViewController, View, Refreshable {}
+```
+
+2、配置与绑定
+
+```swift
+// 自定义配置
+/* 
+initRefresh<T: RefreshControllable>(
+	_ vm: T, 
+	_ scrollView: UIScrollView, 
+	headerConfig: RefreshableHeaderConfig? = nil, 
+	footerConfig: RefreshableFooterConfig? = nil, 
+	headerAction: (() -> Void)? = nil, footerAction: (() -> Void)? = nil
+)
+*/
+
+// 注：vm 需要传入一个遵守了 RefreshControllable 协议的对象
+
+lxf.initRefresh(reactor, tableView, headerConfig: RefreshConfig.normalHeader, headerAction: { 
+    reactor.action.onNext(.fetchList(true))
+}) {
+    reactor.action.onNext(.fetchList(false))
+}.disposed(by: disposeBag)
+```
+
+3、viewModel 遵守协议 
+
+```swift
+final class LXFRefreshableReactor: Reactor, RefreshControllable {}
+```
+
+遵守协议  `RefreshControllable` 后便拥有 `refreshStatus` 属性，可以用来控制刷新控件的状态
+
+```swift
+self.lxf.refreshStatus.value = .noMoreData
+self.lxf.refreshStatus.value = .resetNoMoreData
+```
+
+![lxf_EmptyDataSet_update](https://github.com/LinXunFeng/LXFProtocolTool/raw/master/Screenshots/lxf_Refreshable.gif)
 
 
 
@@ -121,3 +170,4 @@ LXFProtocolTool is available under the MIT license. See the LICENSE file for mor
     - [linxunfeng.top](http://linxunfeng.top/)
     - [掘金](https://juejin.im/user/58f8065e61ff4b006646c72d/posts)
     - [简书](https://www.jianshu.com/u/31e85e7a22a2)
+

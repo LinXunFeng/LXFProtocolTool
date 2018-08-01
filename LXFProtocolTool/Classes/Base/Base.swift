@@ -7,7 +7,7 @@
 
 import Foundation
 
-public final class LXFExtension<Base> {
+public final class LXFNameSpace<Base> {
     public let base: Base
     public init(_ base: Base) {
         self.base = base
@@ -20,7 +20,7 @@ public protocol LXFCompatible {
 }
 
 public extension LXFCompatible {
-    public var lxf: LXFExtension<Self> {
-        get { return LXFExtension(self) }
+    public var lxf: LXFNameSpace<Self> {
+        get { return LXFNameSpace(self) }
     }
 }

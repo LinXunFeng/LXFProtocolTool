@@ -9,6 +9,16 @@ target 'LXFProtocolTool_Example' do
   
 #  pod 'LXFProtocolTool', :path => '../'
 
+
+  pod 'MoyaMapper'
+  pod 'MoyaMapper/Rx'
+  pod 'RxCocoa'
+  pod 'RxDataSources'
+  pod 'ReactorKit'
+  pod 'ReusableKit'
+  pod 'Then'
+  pod 'Kingfisher'
+
   target 'LXFProtocolTool_Tests' do
     inherit! :search_paths
 

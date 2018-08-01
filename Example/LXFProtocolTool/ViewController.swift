@@ -11,6 +11,8 @@ import LXFProtocolTool
 
 class ViewController: UIViewController {
 
+    let dataArray = ["LXFNibloadable", "EmptyDataSetable", "Refreshable"]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -18,30 +20,45 @@ class ViewController: UIViewController {
     }
 }
 
-// MARK:- 事件处理
-extension ViewController {
-    @objc fileprivate func trans2emptyVc() {
-        let vc = LXFEmptyDemoController()
-        self.navigationController?.pushViewController(vc, animated: true)
-    }
-}
-
 // MARK:- 初始化UI
 extension ViewController {
     fileprivate func initUI() {
-        // LXFNibloadable
-        let vc = LXFXibTestView.loadFromNib()
-        vc.frame = CGRect(x: 140, y: 80, width: 100, height: 100)
-        self.view.addSubview(vc)
-        
-        // LXFEmptyDataSetable
-        let emptyBtn = UIButton(type: .custom)
-        emptyBtn.addTarget(self, action: #selector(trans2emptyVc), for: UIControlEvents.touchUpInside)
-        emptyBtn.setTitle("emptyTest - 点我", for: UIControlState.normal)
-        emptyBtn.setTitleColor(UIColor.red, for: UIControlState.normal)
-        emptyBtn.frame = CGRect(x: 80, y: 200, width: 200, height: 30)
-        self.view.addSubview(emptyBtn)
-
+        self.title = "LXFProtocolTool"
+        let tableView = UITableView(frame: self.view.bounds, style: .plain)
+        tableView.dataSource = self
+        tableView.delegate = self
+        self.view.addSubview(tableView)
     }
 }
 
+extension ViewController: UITableViewDataSource, UITableViewDelegate {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return dataArray.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cellID = "cellID"
+        var cell = tableView.dequeueReusableCell(withIdentifier: cellID)
+        if cell == nil {
+            cell = UITableViewCell(style: .default, reuseIdentifier: cellID)
+        }
+        cell?.textLabel?.text = dataArray[indexPath.row]
+        return cell!
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        var vc: UIViewController?
+        if indexPath.row == 0 {
+            vc = LXFNibloadableController()
+        } else if indexPath.row == 1 {
+            vc = LXFEmptyDemoController()
+        } else if indexPath.row == 2 {
+            vc = LXFRefreshableController(reactor: LXFRefreshableReactor())
+        }
+        
+        if vc == nil { return }
+        vc?.title = dataArray[indexPath.row]
+        self.navigationController?.pushViewController(vc!, animated: true)
+    }
+}

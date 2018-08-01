@@ -103,7 +103,7 @@ extension UIScrollView: AssociatedObjectStore {
 // MARK:- 空视图占位协议
 public protocol EmptyDataSetable: LXFCompatible { }
 
-public extension LXFExtension where Base: NSObject {
+public extension LXFNameSpace where Base: NSObject {
     // MARK:- 更新数据
     public func updateEmptyDataSet(_ scrollView: UIScrollView, config: EmptyDataSetConfigure? = nil, hideEmpty: Bool = false) {
         scrollView.emptyDataSetConfig = config
