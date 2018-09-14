@@ -11,7 +11,12 @@ import LXFProtocolTool
 
 class ViewController: UIViewController {
 
-    let dataArray = ["LXFNibloadable", "EmptyDataSetable", "Refreshable"]
+    let dataArray = [
+        "LXFNibloadable",
+        "EmptyDataSetable",
+        "Refreshable",
+        "FullScreenable"
+    ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,6 +60,8 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
             vc = LXFEmptyDemoController()
         } else if indexPath.row == 2 {
             vc = LXFRefreshableController(reactor: LXFRefreshableReactor())
+        } else if indexPath.row == 3 {
+            vc = LXFFullScreenableController()
         }
         
         if vc == nil { return }

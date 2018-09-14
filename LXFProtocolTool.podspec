@@ -38,7 +38,7 @@ LXFProtocolTool是使用Swift中的协议来实现多种方便、实用的工具
   end
   
   s.subspec 'LXFNibloadable' do |t|
-    t.source_files = 'LXFProtocolTool/Classes/LXFNibloadable/**/*.{swift}'
+      t.source_files = 'LXFProtocolTool/Classes/LXFNibloadable/**/*.{swift}'
   end
   
   s.subspec 'Refreshable' do |t|
@@ -50,17 +50,23 @@ LXFProtocolTool是使用Swift中的协议来实现多种方便、实用的工具
   end
 
   s.subspec 'EmptyDataSetable' do |t|
-    t.source_files = 'LXFProtocolTool/Classes/EmptyDataSetable/**/*.{swift}'
+      t.source_files = 'LXFProtocolTool/Classes/EmptyDataSetable/**/*.{swift}'
     #t.resource_bundles = {
     #'LXFProtocolTool' => ['LXFProtocolTool/Assets/#EmptyDataSetable/*']
       #}
-    t.dependency 'DZNEmptyDataSet', '>= 1.8.1'
-    t.dependency "LXFProtocolTool/AssociatedObjectStore"
-    t.dependency "LXFProtocolTool/Base"
+      t.dependency 'DZNEmptyDataSet', '>= 1.8.1'
+      t.dependency "LXFProtocolTool/AssociatedObjectStore"
+      t.dependency "LXFProtocolTool/Base"
   end
   
   s.subspec 'AssociatedObjectStore' do |t|
       t.source_files = 'LXFProtocolTool/Classes/AssociatedObjectStore/**/*.{swift}'
+  end
+  
+  s.subspec 'FullScreenable' do |t|
+      t.source_files = 'LXFProtocolTool/Classes/FullScreenable/**/*.{swift}'
+      t.dependency "LXFProtocolTool/AssociatedObjectStore"
+      t.dependency "LXFProtocolTool/Base"
   end
 
   # pod 'DZNEmptyDataSet', '~> 1.8.1'

@@ -3,19 +3,29 @@ PODS:
   - Differentiator (3.0.2)
   - DZNEmptyDataSet (1.8.1)
   - Kingfisher (4.8.0)
-  - LXFProtocolTool/AssociatedObjectStore (0.3.0)
-  - LXFProtocolTool/Base (0.3.0)
-  - LXFProtocolTool/EmptyDataSetable (0.3.0):
+  - LXFProtocolTool (0.3.1):
+    - LXFProtocolTool/AssociatedObjectStore (= 0.3.1)
+    - LXFProtocolTool/Base (= 0.3.1)
+    - LXFProtocolTool/EmptyDataSetable (= 0.3.1)
+    - LXFProtocolTool/FullScreenable (= 0.3.1)
+    - LXFProtocolTool/LXFNibloadable (= 0.3.1)
+    - LXFProtocolTool/Refreshable (= 0.3.1)
+  - LXFProtocolTool/AssociatedObjectStore (0.3.1)
+  - LXFProtocolTool/Base (0.3.1)
+  - LXFProtocolTool/EmptyDataSetable (0.3.1):
     - DZNEmptyDataSet (>= 1.8.1)
     - LXFProtocolTool/AssociatedObjectStore
     - LXFProtocolTool/Base
-  - LXFProtocolTool/LXFNibloadable (0.3.0)
-  - LXFProtocolTool/Refreshable (0.3.0):
+  - LXFProtocolTool/FullScreenable (0.3.1):
+    - LXFProtocolTool/AssociatedObjectStore
+    - LXFProtocolTool/Base
+  - LXFProtocolTool/LXFNibloadable (0.3.1)
+  - LXFProtocolTool/Refreshable (0.3.1):
     - LXFProtocolTool/AssociatedObjectStore
     - LXFProtocolTool/Base
     - MJRefresh
     - RxSwift (>= 4.0.0)
-  - MJRefresh (3.1.15.3)
+  - MJRefresh (3.1.15.7)
   - Moya (11.0.2):
     - Moya/Core (= 11.0.2)
   - Moya/Core (11.0.2):
@@ -51,10 +61,7 @@ PODS:
 
 DEPENDENCIES:
   - Kingfisher
-  - LXFProtocolTool/AssociatedObjectStore (from `../`)
-  - LXFProtocolTool/EmptyDataSetable (from `../`)
-  - LXFProtocolTool/LXFNibloadable (from `../`)
-  - LXFProtocolTool/Refreshable (from `../`)
+  - LXFProtocolTool (from `../`)
   - MoyaMapper
   - MoyaMapper/Rx
   - ReactorKit
@@ -90,8 +97,8 @@ SPEC CHECKSUMS:
   Differentiator: a87be69eba49ec4ab460c7671143ee3a9eececfd
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
   Kingfisher: 976d828df2b24834c6a3f2fc4d82cdbd26552be1
-  LXFProtocolTool: 42406ecf541f9ad46ca79e2055e20d1e380692d3
-  MJRefresh: b48380ae2b927b46c4ef000de9adb8dc748e1df7
+  LXFProtocolTool: 64956818004c017575c930852b94a54df0274886
+  MJRefresh: 697f8ec75ebdbe9207767bb682cf0f51b0d8a41f
   Moya: a725035953bc1c0eb1be505ab903984501d82440
   MoyaMapper: 7adef08492d780308e5270915ddc63e0da884021
   ReactorKit: 26470a9eff5094fae909a30af0be7cd0cf8a182d
@@ -103,6 +110,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: c29297daf073d2aa016295d5809cdd68045c39b3
   Then: ee21c97b85ff6062b9b0080c9abb1eea46743345
 
-PODFILE CHECKSUM: 4e5afb540c940afbe3e5c558938e9c0977fc8ca4
+PODFILE CHECKSUM: f065a02fe9d06fc855a5784c87297bafbb39afef
 
 COCOAPODS: 1.5.0

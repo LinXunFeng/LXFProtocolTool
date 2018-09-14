@@ -2,12 +2,13 @@ use_frameworks!
 
 target 'LXFProtocolTool_Example' do
     
-  pod 'LXFProtocolTool/LXFNibloadable', :path => '../'
-  pod 'LXFProtocolTool/Refreshable', :path => '../'
-  pod 'LXFProtocolTool/EmptyDataSetable', :path => '../'
-  pod 'LXFProtocolTool/AssociatedObjectStore', :path => '../'
+  # pod 'LXFProtocolTool/LXFNibloadable', :path => '../'
+  # pod 'LXFProtocolTool/Refreshable', :path => '../'
+  # pod 'LXFProtocolTool/EmptyDataSetable', :path => '../'
+  # pod 'LXFProtocolTool/AssociatedObjectStore', :path => '../'
+  # pod 'LXFProtocolTool/Refreshable', :path => '../'
   
-#  pod 'LXFProtocolTool', :path => '../'
+ pod 'LXFProtocolTool', :path => '../'
 
 
   pod 'MoyaMapper'
