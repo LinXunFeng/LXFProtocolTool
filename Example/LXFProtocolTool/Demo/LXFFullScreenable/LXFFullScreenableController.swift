@@ -15,12 +15,16 @@ class LXFFullScreenableController: UIViewController, FullScreenable {
         let v = UIButton()
         v.backgroundColor = .red
         v.frame = CGRect(x: 50, y: 100, width: 200, height: 100)
+//        v.setTitle("click red view", for: .normal)
+        v.setTitle("enter full screen", for: .normal)
         return v
     }()
     
     fileprivate lazy var cyanView: LXFFullScreenView = {
         let v = LXFFullScreenView()
         v.frame = CGRect(x: 50, y: 250, width: 200, height: 100)
+        v.setTitle("exit full screen", for: .normal)
+        v.setTitleColor(.black, for: .normal)
         return v
     }()
     
@@ -39,14 +43,13 @@ class LXFFullScreenableController: UIViewController, FullScreenable {
 
 // MARK:- Events
 extension LXFFullScreenableController {
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        lxf.switchFullScreen(isEnter: true, specifiedView: redView, superView: self.view)
-    }
-    
     @objc func redViewClick() {
-        lxf.switchFullScreen(isEnter: !self.lxf.isFullScreen, specifiedView: redView, superView: self.view)
+//        lxf.switchFullScreen()
+//        lxf.enterFullScreen(specifiedView: cyanView)
+        cyanView.lxf.enterFullScreen()
     }
     @objc func cyanViewClick() {
-        cyanView.lxf.switchFullScreen(isEnter: !cyanView.lxf.isFullScreen)
+//        lxf.exitFullScreen(superView: self.view)
+        cyanView.lxf.exitFullScreen()
     }
 }
