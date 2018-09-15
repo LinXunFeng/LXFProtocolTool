@@ -57,9 +57,11 @@ public extension LXFNameSpace where Base: FullScreenable {
         // 开启/关闭屏幕旋转
         UIApplication.shared.lxf.allowRotation = isEnter
         
-        // 强制横竖屏
-        let orientation: UIInterfaceOrientation = isEnter ? config.enterFullScreenOrientation : .portrait
-        UIDevice.current.setValue(orientation.rawValue, forKey: "orientation")
+        UIView.animate(withDuration: config.animateDuration) {
+            // 强制横竖屏
+            let orientation: UIInterfaceOrientation = isEnter ? config.enterFullScreenOrientation : .portrait
+            UIDevice.current.setValue(orientation.rawValue, forKey: "orientation")
+        }
         
         if isEnter { // 进入全屏
             if isFullScreen { return }
@@ -171,6 +173,11 @@ extension LXFNameSpace where Base : UIApplication {
 }
 
 public struct FullScreenableConfig {
-    var animateDuration = 0.25
-    var enterFullScreenOrientation : UIInterfaceOrientation = .landscapeRight
+    public var animateDuration: Double
+    public var enterFullScreenOrientation : UIInterfaceOrientation
+    
+    public init(animateDuration: Double = 0.25, enterFullScreenOrientation : UIInterfaceOrientation = .landscapeRight) {
+        self.animateDuration = animateDuration
+        self.enterFullScreenOrientation = enterFullScreenOrientation
+    }
 }

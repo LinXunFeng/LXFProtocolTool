@@ -28,6 +28,14 @@ class LXFFullScreenableController: UIViewController, FullScreenable {
         return v
     }()
     
+    fileprivate lazy var diyConfig: FullScreenableConfig = {
+        return FullScreenableConfig(
+            animateDuration: 1,
+            enterFullScreenOrientation : .landscapeLeft
+        )
+    }()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -46,10 +54,15 @@ extension LXFFullScreenableController {
     @objc func redViewClick() {
 //        lxf.switchFullScreen()
 //        lxf.enterFullScreen(specifiedView: cyanView)
-        cyanView.lxf.enterFullScreen()
+//        cyanView.lxf.enterFullScreen()
+        
+        cyanView.lxf.enterFullScreen(config: diyConfig)
+        
     }
     @objc func cyanViewClick() {
 //        lxf.exitFullScreen(superView: self.view)
-        cyanView.lxf.exitFullScreen()
+//        cyanView.lxf.exitFullScreen()
+        
+        cyanView.lxf.exitFullScreen(config: diyConfig)
     }
 }
