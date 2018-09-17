@@ -46,6 +46,12 @@ class LXFFullScreenableController: UIViewController, FullScreenable {
         redView.addTarget(self, action: #selector(redViewClick), for: .touchUpInside)
         
         cyanView.addTarget(self, action: #selector(cyanViewClick), for: .touchUpInside)
+        
+        lxf.autoFullScreen(specifiedView: redView, superView: view)
+    }
+    
+    deinit {
+        print("deinit -- LXFFullScreenableController")
     }
 }
 
