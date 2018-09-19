@@ -3,24 +3,24 @@ PODS:
   - Differentiator (3.0.2)
   - DZNEmptyDataSet (1.8.1)
   - Kingfisher (4.8.0)
-  - LXFProtocolTool (0.4.0):
-    - LXFProtocolTool/AssociatedObjectStore (= 0.4.0)
-    - LXFProtocolTool/Base (= 0.4.0)
-    - LXFProtocolTool/EmptyDataSetable (= 0.4.0)
-    - LXFProtocolTool/FullScreenable (= 0.4.0)
-    - LXFProtocolTool/LXFNibloadable (= 0.4.0)
-    - LXFProtocolTool/Refreshable (= 0.4.0)
-  - LXFProtocolTool/AssociatedObjectStore (0.4.0)
-  - LXFProtocolTool/Base (0.4.0)
-  - LXFProtocolTool/EmptyDataSetable (0.4.0):
+  - LXFProtocolTool (0.4.1):
+    - LXFProtocolTool/AssociatedObjectStore (= 0.4.1)
+    - LXFProtocolTool/Base (= 0.4.1)
+    - LXFProtocolTool/EmptyDataSetable (= 0.4.1)
+    - LXFProtocolTool/FullScreenable (= 0.4.1)
+    - LXFProtocolTool/LXFNibloadable (= 0.4.1)
+    - LXFProtocolTool/Refreshable (= 0.4.1)
+  - LXFProtocolTool/AssociatedObjectStore (0.4.1)
+  - LXFProtocolTool/Base (0.4.1)
+  - LXFProtocolTool/EmptyDataSetable (0.4.1):
     - DZNEmptyDataSet (>= 1.8.1)
     - LXFProtocolTool/AssociatedObjectStore
     - LXFProtocolTool/Base
-  - LXFProtocolTool/FullScreenable (0.4.0):
+  - LXFProtocolTool/FullScreenable (0.4.1):
     - LXFProtocolTool/AssociatedObjectStore
     - LXFProtocolTool/Base
-  - LXFProtocolTool/LXFNibloadable (0.4.0)
-  - LXFProtocolTool/Refreshable (0.4.0):
+  - LXFProtocolTool/LXFNibloadable (0.4.1)
+  - LXFProtocolTool/Refreshable (0.4.1):
     - LXFProtocolTool/AssociatedObjectStore
     - LXFProtocolTool/Base
     - MJRefresh
@@ -97,7 +97,7 @@ SPEC CHECKSUMS:
   Differentiator: a87be69eba49ec4ab460c7671143ee3a9eececfd
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
   Kingfisher: 976d828df2b24834c6a3f2fc4d82cdbd26552be1
-  LXFProtocolTool: 6fd860a18050a585a331d058fa3ccb3678da2896
+  LXFProtocolTool: 2d7031698e4ef4073179873d3b13e1d93b776278
   MJRefresh: 697f8ec75ebdbe9207767bb682cf0f51b0d8a41f
   Moya: a725035953bc1c0eb1be505ab903984501d82440
   MoyaMapper: 7adef08492d780308e5270915ddc63e0da884021

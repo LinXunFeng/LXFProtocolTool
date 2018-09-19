@@ -11,10 +11,11 @@ import DZNEmptyDataSet
 
 public typealias EmptyViewTapBlock = ((UIView)->())
 public typealias EmptyButtonTapBlock = ((UIButton)->())
+public typealias EmptyNormalBlock = (()->Void)
 fileprivate let defaultEmptyConfig = EmptyDataSetableConfigure.shared.emptyDataSetConfigure
 
 public struct EmptyDataSetConfigure {
-    /// 纵向偏移(-50)  CGFloat
+    /// 纵向偏移(0)  CGFloat
     public var verticalOffset : CGFloat
     /// 提示语(暂无数据)  String
     public var tipStr : String
@@ -26,7 +27,7 @@ public struct EmptyDataSetConfigure {
     public var tipImage : UIImage?
     /// 允许滚动(true) Bool
     public var allowScroll : Bool
-    /// 各元素之间的间距
+    /// 各元素之间的间距(11)
     public var spaceHeight : CGFloat
     /// 按钮标题
     public var buttonTitle : NSAttributedString
@@ -40,8 +41,36 @@ public struct EmptyDataSetConfigure {
     public var imageTintColor : UIColor?
     /// customView
     public var customEmptyView : UIView?
+    /// shouldFade(true)
+    public var shouldFade : Bool
+    /// shouldBeForcedToDisplay(false)
+    public var shouldBeForcedToDisplay : Bool
+    /// shouldDisplay(true)
+    public var shouldDisplay : Bool
+    /// shouldAllowTouch(true)
+    public var shouldAllowTouch : Bool
+    /// shouldAnimateImageView(false)
+    public var shouldAnimateImageView : Bool
     
-    public init(verticalOffset: CGFloat = -50, tipStr: String = "", tipFont: UIFont = .systemFont(ofSize: 15), tipColor: UIColor = .lightGray, tipImage: UIImage? = nil, allowScroll: Bool = true, spaceHeight: CGFloat = 11, buttonTitle : NSAttributedString = NSAttributedString(), buttonImageBlock : ((UIControlState)-> UIImage?)? = nil, buttonBackgroundImageBlock : ((UIControlState)-> UIImage?)? = nil, imageAnimation : CAAnimation? = nil, imageTintColor : UIColor? = nil, customEmptyView : UIView? = nil) {
+    public init(
+        verticalOffset: CGFloat = -50,
+        tipStr: String = "",
+        tipFont: UIFont = .systemFont(ofSize: 15),
+        tipColor: UIColor = .lightGray,
+        tipImage: UIImage? = nil,
+        allowScroll: Bool = true,
+        spaceHeight: CGFloat = 11,
+        buttonTitle : NSAttributedString = NSAttributedString(),
+        buttonImageBlock : ((UIControlState)-> UIImage?)? = nil,
+        buttonBackgroundImageBlock : ((UIControlState)-> UIImage?)? = nil,
+        imageAnimation : CAAnimation? = nil, imageTintColor : UIColor? = nil,
+        customEmptyView : UIView? = nil,
+        shouldFade : Bool = true,
+        shouldBeForcedToDisplay : Bool = false,
+        shouldDisplay: Bool = true,
+        shouldAllowTouch: Bool = true,
+        shouldAnimateImageView : Bool = false
+        ) {
         self.verticalOffset = verticalOffset
         self.tipStr = tipStr
         self.tipFont = tipFont
@@ -55,6 +84,11 @@ public struct EmptyDataSetConfigure {
         self.imageAnimation = imageAnimation
         self.imageTintColor = imageTintColor
         self.customEmptyView = customEmptyView
+        self.shouldFade = shouldFade
+        self.shouldBeForcedToDisplay = shouldBeForcedToDisplay
+        self.shouldDisplay = shouldDisplay
+        self.shouldAllowTouch = shouldAllowTouch
+        self.shouldAnimateImageView = shouldAnimateImageView
     }
 }
 
@@ -70,33 +104,37 @@ public class EmptyDataSetableConfigure: NSObject {
     public static func setDefaultEmptyDataSetConfigure(_ configure: EmptyDataSetConfigure) {
         EmptyDataSetableConfigure.shared.emptyDataSetConfigure = configure
     }
-    
 }
 
 extension UIScrollView: AssociatedObjectStore {
-    
     /// 属性字典
     var emptyDataSetConfig: EmptyDataSetConfigure? {
-        get {
-            return associatedObject(forKey: &lxf_emptyDataSetConfigureKey)
-        } set {
-            setAssociatedObject(newValue, forKey: &lxf_emptyDataSetConfigureKey)
-        }
+        get { return associatedObject(forKey: &lxf_emptyDataSetConfigureKey) }
+        set { setAssociatedObject(newValue, forKey: &lxf_emptyDataSetConfigureKey) }
     }
     var emptyViewTapBlock : EmptyViewTapBlock? {
-        get {
-            return associatedObject(forKey: &lxf_emptyViewTapBlockKey)
-        } set {
-            setAssociatedObject(newValue, forKey: &lxf_emptyViewTapBlockKey)
-        }
+        get { return associatedObject(forKey: &lxf_emptyViewTapBlockKey) }
+        set { setAssociatedObject(newValue, forKey: &lxf_emptyViewTapBlockKey) }
     }
-    
     var emptyButtonTapBlock : EmptyButtonTapBlock? {
-        get {
-            return associatedObject(forKey: &lxf_emptyButtonTapBlockKey)
-        } set {
-            setAssociatedObject(newValue, forKey: &lxf_emptyButtonTapBlockKey)
-        }
+        get { return associatedObject(forKey: &lxf_emptyButtonTapBlockKey) }
+        set { setAssociatedObject(newValue, forKey: &lxf_emptyButtonTapBlockKey) }
+    }
+    var emptyDataSetWillAppearBlock : EmptyNormalBlock? {
+        get { return associatedObject(forKey: &lxf_emptyDataSetWillAppearKey) }
+        set { setAssociatedObject(newValue, forKey: &lxf_emptyDataSetWillAppearKey) }
+    }
+    var emptyDataSetDidAppearBlock : EmptyNormalBlock? {
+        get { return associatedObject(forKey: &lxf_emptyDataSetDidAppearKey) }
+        set { setAssociatedObject(newValue, forKey: &lxf_emptyDataSetDidAppearKey) }
+    }
+    var emptyDataSetWillDisappearBlock : EmptyNormalBlock? {
+        get { return associatedObject(forKey: &lxf_emptyDataSetWillDisappearKey) }
+        set { setAssociatedObject(newValue, forKey: &lxf_emptyDataSetWillDisappearKey) }
+    }
+    var emptyDataSetDidDisappearBlock : EmptyNormalBlock? {
+        get { return associatedObject(forKey: &lxf_emptyDataSetDidDisappearKey) }
+        set { setAssociatedObject(newValue, forKey: &lxf_emptyDataSetDidDisappearKey) }
     }
 }
 
@@ -128,6 +166,20 @@ public extension LXFNameSpace where Base: NSObject {
     public func tapEmptyButton(_ scrollView: UIScrollView, block: @escaping EmptyButtonTapBlock) {
         scrollView.emptyButtonTapBlock = block
     }
+    
+    // MARK: 生命周期回调
+    public func emptyViewWillAppear(_ scrollView: UIScrollView, block: @escaping EmptyNormalBlock) {
+        scrollView.emptyDataSetWillAppearBlock = block
+    }
+    public func emptyViewDidAppear(_ scrollView: UIScrollView, block: @escaping EmptyNormalBlock) {
+        scrollView.emptyDataSetDidAppearBlock = block
+    }
+    public func emptyViewWillDisappear(_ scrollView: UIScrollView, block: @escaping EmptyNormalBlock) {
+        scrollView.emptyDataSetWillDisappearBlock = block
+    }
+    public func emptyViewDidDisappear(_ scrollView: UIScrollView, block: @escaping EmptyNormalBlock) {
+        scrollView.emptyDataSetDidDisappearBlock = block
+    }
 }
 
 extension NSObject : DZNEmptyDataSetDelegate, DZNEmptyDataSetSource {
@@ -152,29 +204,19 @@ extension NSObject : DZNEmptyDataSetDelegate, DZNEmptyDataSetSource {
             ])
         return attrStr
     }
+    
     public func verticalOffset(forEmptyDataSet scrollView: UIScrollView) -> CGFloat {
         let curConfig = scrollView.emptyDataSetConfig
         
         let offset = curConfig?.verticalOffset != nil ? curConfig!.verticalOffset : defaultEmptyConfig.verticalOffset
         return offset
     }
+    
     public func emptyDataSetShouldAllowScroll(_ scrollView: UIScrollView) -> Bool {
         let curConfig = scrollView.emptyDataSetConfig
         
         let allowScroll = curConfig?.allowScroll != nil ? curConfig!.allowScroll : defaultEmptyConfig.allowScroll
         return allowScroll
-    }
-    
-    public func emptyDataSet(_ scrollView: UIScrollView, didTap view: UIView) {
-        if scrollView.emptyViewTapBlock != nil {
-            scrollView.emptyViewTapBlock!(view)
-        }
-    }
-    
-    public func emptyDataSet(_ scrollView: UIScrollView, didTap button: UIButton) {
-        if scrollView.emptyButtonTapBlock != nil {
-            scrollView.emptyButtonTapBlock!(button)
-        }
     }
     
     public func spaceHeight(forEmptyDataSet scrollView: UIScrollView) -> CGFloat {
@@ -241,15 +283,53 @@ extension NSObject : DZNEmptyDataSetDelegate, DZNEmptyDataSetSource {
         }
         return imageAnimation
     }
+    
+    public func emptyDataSet(_ scrollView: UIScrollView, didTap view: UIView) {
+        if scrollView.emptyViewTapBlock != nil {
+            scrollView.emptyViewTapBlock!(view)
+        }
+    }
+    
+    public func emptyDataSet(_ scrollView: UIScrollView, didTap button: UIButton) {
+        if scrollView.emptyButtonTapBlock != nil {
+            scrollView.emptyButtonTapBlock!(button)
+        }
+    }
+    
+    public func emptyDataSetWillAppear(_ scrollView: UIScrollView!) {
+        // 修复 emptyDataSetView 偏移问题(如:与MJRefresh结合使用时y会出现-54)
+        guard let view = scrollView.value(forKey: "emptyDataSetView") as? UIView else { return }
+        var frame = view.frame
+        frame.origin = CGPoint.zero
+        view.frame = frame
+        if scrollView.emptyDataSetWillAppearBlock != nil {
+            scrollView.emptyDataSetWillAppearBlock!()
+        }
+    }
+    
+    public func emptyDataSetDidAppear(_ scrollView: UIScrollView!) {
+        if scrollView.emptyDataSetDidAppearBlock != nil {
+            scrollView.emptyDataSetDidAppearBlock!()
+        }
+    }
+    
+    public func emptyDataSetWillDisappear(_ scrollView: UIScrollView!) {
+        if scrollView.emptyDataSetWillDisappearBlock != nil {
+            scrollView.emptyDataSetWillDisappearBlock!()
+        }
+    }
+    
+    public func emptyDataSetDidDisappear(_ scrollView: UIScrollView!) {
+        if scrollView.emptyDataSetDidDisappearBlock != nil {
+            scrollView.emptyDataSetDidDisappearBlock!()
+        }
+    }
 }
 
 extension UIScrollView {
     var hideEmptyView: Bool {
-        get {
-            return associatedObject(forKey: &lxf_emptyHideEmptyViewKey) ?? false
-        } set {
-            setAssociatedObject(newValue, forKey: &lxf_emptyHideEmptyViewKey)
-        }
+        get {  return associatedObject(forKey: &lxf_emptyHideEmptyViewKey) ?? false }
+        set { setAssociatedObject(newValue, forKey: &lxf_emptyHideEmptyViewKey) }
     }
 }
 
@@ -257,4 +337,8 @@ fileprivate var lxf_emptyHideEmptyViewKey = "lxf_emptyHideEmptyViewKey"
 fileprivate var lxf_emptyDataSetConfigureKey = "lxf_emptyDataSetConfigureKey"
 fileprivate var lxf_emptyViewTapBlockKey = "lxf_emptyViewTapBlockKey"
 fileprivate var lxf_emptyButtonTapBlockKey = "lxf_emptyButtonTapBlockKey"
+fileprivate var lxf_emptyDataSetWillAppearKey = "lxf_emptyDataSetWillAppearKey"
+fileprivate var lxf_emptyDataSetDidAppearKey = "lxf_emptyDataSetDidAppearKey"
+fileprivate var lxf_emptyDataSetWillDisappearKey = "lxf_emptyDataSetWillDisappearKey"
+fileprivate var lxf_emptyDataSetDidDisappearKey = "lxf_emptyDataSetDidDisappearKey"
 
