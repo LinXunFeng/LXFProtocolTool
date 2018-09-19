@@ -22,6 +22,10 @@ class LXFEmptyDemoController: UIViewController, EmptyDataSetable {
 
         initUI()
     }
+    
+    deinit {
+        print("deinit --- LXFEmptyDemoController")
+    }
 }
 
 // MARK:- 事件处理
@@ -72,6 +76,9 @@ extension LXFEmptyDemoController {
         // 监听点击事件
         self.lxf.tapEmptyView(tableView) { view in
             print("点击了空白视图")
+        }
+        self.lxf.emptyViewDidAppear(tableView) {
+            print("emptyViewDidAppear")
         }
     }
 }
