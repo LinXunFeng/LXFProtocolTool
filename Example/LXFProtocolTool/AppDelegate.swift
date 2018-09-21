@@ -20,10 +20,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
         return UIApplication.shared.lxf.currentVcOrientationMask
-//        if UIApplication.shared.lxf.allowRotation {
-//            return UIInterfaceOrientationMask.landscape
-//        }
-//        return .portrait
     }
 }
 
