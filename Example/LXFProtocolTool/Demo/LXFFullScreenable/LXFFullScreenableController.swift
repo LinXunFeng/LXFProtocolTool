@@ -58,16 +58,16 @@ class LXFFullScreenableController: UIViewController, FullScreenable {
 // MARK:- Events
 extension LXFFullScreenableController {
     @objc func redViewClick() {
-        lxf.switchFullScreen()
+//        lxf.switchFullScreen()
 //        lxf.enterFullScreen(specifiedView: cyanView)
-//        cyanView.lxf.enterFullScreen()
+        cyanView.lxf.enterFullScreen()
         
 //        cyanView.lxf.enterFullScreen(config: diyConfig)
         
     }
     @objc func cyanViewClick() {
 //        lxf.exitFullScreen(superView: self.view)
-//        cyanView.lxf.exitFullScreen()
+        cyanView.lxf.exitFullScreen()
         
 //        cyanView.lxf.exitFullScreen(config: diyConfig)
     }

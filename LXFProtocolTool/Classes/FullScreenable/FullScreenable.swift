@@ -307,12 +307,6 @@ public extension LXFNameSpace where Base : UIView, Base : FullScreenable {
         )
         curVc?.lxf_disableAutoFullScreen = false
     }
-    
-//    func observeOrientationChange() {
-//        guard let orientationChangeBlock = base.viewController()?.lxf_orientationChangeBlock else {
-//            <#statements#>
-//        }
-//    }
 }
 
 // MARK:- UIApplication
@@ -331,11 +325,8 @@ extension LXFNameSpace where Base : UIApplication {
     
     /// 设置当前全屏配置
     fileprivate func setCurrentFullScreenConfig(isEnter: Bool, config: FullScreenableConfig?) {
-        if config != nil {
-            base.lxf.currentFullScreenConfig = config!
-        } else {
-            base.lxf.currentFullScreenConfig.supportInterfaceOrientation = isEnter ? .landscape : .portrait
-        }
+        if config != nil { base.lxf.currentFullScreenConfig = config! }
+        else { base.lxf.currentFullScreenConfig.supportInterfaceOrientation = isEnter ? .landscape : .portrait }
     }
 }
 
@@ -401,6 +392,7 @@ fileprivate func LXFSwizzleMethod(originalCls: AnyClass?, originalSelector: Sele
     }
 }
 
+// MARK:- UIView
 extension UIView {
     fileprivate func viewController()->UIViewController? {
         var nextResponder: UIResponder? = self
