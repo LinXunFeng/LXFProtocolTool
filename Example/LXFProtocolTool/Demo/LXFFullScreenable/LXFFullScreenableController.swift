@@ -12,7 +12,7 @@ import LXFProtocolTool
 class LXFFullScreenableController: UIViewController, FullScreenable {
     // MARK:- UI
     fileprivate lazy var redView: UIButton = {
-        let v = UIButton()
+        let v = UIButton(type: .custom)
         v.backgroundColor = .red
         v.frame = CGRect(x: 50, y: 100, width: 200, height: 100)
 //        v.setTitle("click red view", for: .normal)
@@ -21,7 +21,7 @@ class LXFFullScreenableController: UIViewController, FullScreenable {
     }()
     
     fileprivate lazy var cyanView: LXFFullScreenView = {
-        let v = LXFFullScreenView()
+        let v = LXFFullScreenView(type: .custom)
         v.frame = CGRect(x: 50, y: 250, width: 200, height: 100)
         v.setTitle("exit full screen", for: .normal)
         v.setTitleColor(.black, for: .normal)
@@ -59,15 +59,15 @@ class LXFFullScreenableController: UIViewController, FullScreenable {
 extension LXFFullScreenableController {
     @objc func redViewClick() {
 //        lxf.switchFullScreen()
-//        lxf.enterFullScreen(specifiedView: cyanView)
-        cyanView.lxf.enterFullScreen()
+        lxf.enterFullScreen(specifiedView: cyanView)
+//        cyanView.lxf.enterFullScreen()
         
 //        cyanView.lxf.enterFullScreen(config: diyConfig)
         
     }
     @objc func cyanViewClick() {
-//        lxf.exitFullScreen(superView: self.view)
-        cyanView.lxf.exitFullScreen()
+        lxf.exitFullScreen(superView: self.view)
+//        cyanView.lxf.exitFullScreen()
         
 //        cyanView.lxf.exitFullScreen(config: diyConfig)
     }

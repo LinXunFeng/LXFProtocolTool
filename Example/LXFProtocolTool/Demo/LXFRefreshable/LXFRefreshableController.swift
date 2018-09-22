@@ -22,7 +22,7 @@ class LXFRefreshableController: UIViewController, View, Refreshable {
     fileprivate lazy var dataSource = self.dataSourceFactory()
     
     // UI
-    fileprivate var tableView = UITableView().then {
+    fileprivate var tableView = UITableView(frame: .zero).then {
         $0.register(Reusable.refreshableCell)
         $0.rowHeight = 270
     }

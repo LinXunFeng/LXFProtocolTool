@@ -204,7 +204,7 @@ extension UIViewController: AssociatedObjectStore {
 
 public extension LXFNameSpace where Base : UIViewController, Base: FullScreenable {
     func enterFullScreen(specifiedView: UIView, config: FullScreenableConfig? = nil, completed: FullScreenableCompleteType? = nil) {
-        UIApplication.shared.lxf.setCurrentFullScreenConfig(isEnter: true, config: config)
+        UIApplication.shared.lxf.currentFullScreenConfig.supportInterfaceOrientation = .landscape
         self.base.lxf_disableAutoFullScreen = true
         switchFullScreen(
             isEnter: true,
@@ -228,6 +228,7 @@ public extension LXFNameSpace where Base : UIViewController, Base: FullScreenabl
             config: config,
             completed: completed
         )
+        self.base.lxf_disableAutoFullScreen = false
     }
     
     func autoFullScreen(specifiedView: UIView, superView: UIView, config: FullScreenableConfig? = nil) {
