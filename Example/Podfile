@@ -18,7 +18,7 @@ target 'LXFProtocolTool_Example' do
   pod 'ReactorKit'
   pod 'ReusableKit'
   pod 'Then'
-  pod 'Kingfisher'
+  pod 'Kingfisher', '~> 4.8.0'
 
   target 'LXFProtocolTool_Tests' do
     inherit! :search_paths
