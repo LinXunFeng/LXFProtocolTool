@@ -22,7 +22,6 @@ PODS:
   - LXFProtocolTool/LXFNibloadable (0.6.0)
   - LXFProtocolTool/Refreshable (0.6.0):
     - LXFProtocolTool/AssociatedObjectStore
-    - LXFProtocolTool/Base
     - MJRefresh
     - RxSwift (>= 4.0.0)
   - MJRefresh (3.1.15.7)
@@ -97,7 +96,7 @@ SPEC CHECKSUMS:
   Differentiator: be49ca3408f0ecfc761e4c7763d20c62be01b9ad
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
   Kingfisher: 976d828df2b24834c6a3f2fc4d82cdbd26552be1
-  LXFProtocolTool: bf47b835b5c0e7daee733e753937b4fca39a25f6
+  LXFProtocolTool: 422374ebae3f24d6d33bee69c24d81dddf15253d
   MJRefresh: 697f8ec75ebdbe9207767bb682cf0f51b0d8a41f
   Moya: a725035953bc1c0eb1be505ab903984501d82440
   MoyaMapper: cbc896fe1528bef85abc78bed1295fae4b507f52
