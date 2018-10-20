@@ -9,12 +9,8 @@
 import LXFProtocolTool
 
 class LXFFullScreenView: UIButton, FullScreenable {
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    convenience init(_ type: UIButtonType) {
+        self.init(type: type)
         self.backgroundColor = .cyan
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
 }

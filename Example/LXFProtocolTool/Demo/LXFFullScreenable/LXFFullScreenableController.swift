@@ -21,7 +21,7 @@ class LXFFullScreenableController: UIViewController, FullScreenable {
     }()
     
     fileprivate lazy var cyanView: LXFFullScreenView = {
-        let v = LXFFullScreenView(type: .custom)
+        let v = LXFFullScreenView(.custom)
         v.frame = CGRect(x: 50, y: 250, width: 200, height: 100)
         v.setTitle("exit full screen", for: .normal)
         v.setTitleColor(.black, for: .normal)

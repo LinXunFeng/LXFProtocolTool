@@ -35,13 +35,16 @@ class LXFRefreshableController: UIViewController, View, Refreshable {
         self.title = "Refreshable"
     }
     
+    deinit {
+        print("deinit -- LXFRefreshableController")
+    }
+    
     required convenience init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         tableView.frame = self.view.bounds
         self.view.addSubview(tableView)
         
@@ -63,17 +66,33 @@ class LXFRefreshableController: UIViewController, View, Refreshable {
     
     func bind(reactor: LXFRefreshableReactor) {
         // View
-//        lxf.initRefresh(reactor, tableView, headerAction: { // 默认配置
-//            reactor.action.onNext(.fetchList(true))
-//        }) {
-//            reactor.action.onNext(.fetchList(false))
-//        }.disposed(by: disposeBag)
         
-    lxf.initRefresh(reactor, tableView, headerConfig: RefreshConfig.normalHeader, headerAction: { // 自定义配置
-        reactor.action.onNext(.fetchList(true))
-    }) {
-        reactor.action.onNext(.fetchList(false))
-    }.disposed(by: disposeBag)
+        // 上拉下拉 分开设置
+        /*
+        // 自定义配置
+        self.rx.headerRefresh(reactor, tableView, headerConfig: RefreshConfig.normalHeader)
+            .map { .fetchList(true) }
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
+         
+        // 默认配置
+        self.rx.footerRefresh(reactor, tableView)
+            .map { .fetchList(false) }
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
+ 
+        self.rx.headerRefresh(reactor, tableView)
+            .subscribe(onNext: { _ in
+                reactor.action.onNext(.fetchList(true))
+            })
+            .disposed(by: disposeBag)
+         */
+        
+        // 上拉下拉 一块设置
+        self.rx.refresh(reactor, tableView)
+            .map { .fetchList($0 == .header) }
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
         
         // State
         reactor.state.map { $0.sections }

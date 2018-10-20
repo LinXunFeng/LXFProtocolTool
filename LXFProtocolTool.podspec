@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'LXFProtocolTool'
-  s.version          = '0.5.1'
+  s.version          = '0.6.0'
   s.summary          = 'LXFProtocolTool是实用的协议应用工具库'
 
 # This description is used to generate tags and improve search results.
