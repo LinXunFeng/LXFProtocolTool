@@ -8,9 +8,12 @@
 
 import UIKit
 import LXFProtocolTool
+import RxSwift
 
 class LXFEmptyDemoController: UIViewController, EmptyDataSetable {
 
+    var disposeBag = DisposeBag()
+    
     // 数据
     fileprivate var tipStrArr = ["无法转换", "无法定位", "无法拨通", "无法屏幕分享"]
     
@@ -62,7 +65,7 @@ extension LXFEmptyDemoController {
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "switch", style: UIBarButtonItemStyle.plain, target: self, action: #selector(switchEmpty))
         
         // tableView
-        let tableView = UITableView()
+        let tableView = UITableView(frame: .zero)
         self.tableView = tableView
         self.view.addSubview(tableView)
         tableView.showsVerticalScrollIndicator = false
@@ -74,12 +77,23 @@ extension LXFEmptyDemoController {
         self.lxf.updateEmptyDataSet(tableView, config: EmptyConfig.noData)
 
         // 监听点击事件
-        self.lxf.tapEmptyView(tableView) { view in
-            print("点击了空白视图")
-        }
-        self.lxf.emptyViewDidAppear(tableView) {
-            print("emptyViewDidAppear")
-        }
+//        self.lxf.tapEmptyView(tableView) { view in
+//            print("点击了空白视图")
+//        }
+//        self.lxf.emptyViewDidAppear(tableView) {
+//            print("emptyViewDidAppear")
+//        }
+        
+        self.rx.tapEmptyView(tableView)
+            .subscribe(onNext: { _ in
+                print("点击了空白视图")
+            }).disposed(by: disposeBag)
+        
+        self.rx.emptyViewDidAppear(tableView)
+            .subscribe(onNext: { _ in
+                print("emptyViewDidAppear")
+            })
+            .disposed(by: disposeBag)
     }
 }
 
