@@ -21,6 +21,11 @@ lane :release do |options|
   git_add(path: ".")
   git_commit(path: ".", message: "Bump version to #{target_version}")
 
+  if git_tag_exists(tag: target_version)
+    UI.message("remote the existing tag #{target_version} automatically") 
+    remove_git_tag(tagNum: target_version)
+  end
+
   if version_message.nil?
     add_git_tag(
       tag: target_version

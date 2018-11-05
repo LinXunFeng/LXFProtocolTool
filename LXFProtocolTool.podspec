@@ -19,7 +19,7 @@ LXFProtocolTool是使用Swift中的协议来实现多种方便、实用的工具
   s.source           = { :git => 'https://github.com/LinXunFeng/LXFProtocolTool.git', :tag => s.version.to_s }
 
   s.ios.deployment_target = '8.0'
-  s.pod_target_xcconfig = { 'SWIFT_VERSION' => '4.2' }
+  s.swift_version = "4.2"
 
   s.source_files = 'LXFProtocolTool/Classes/**/*.swift'
 
