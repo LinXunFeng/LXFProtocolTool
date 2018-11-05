@@ -1,0 +1,30 @@
+desc '自动化升级维护私有库'
+lane :LXFProtocolTool do |options|
+
+tagNum = options[:tag]
+podspecName = options[:specName]
+
+cocoapods(
+  clean: true,
+  podfile: "./Example/Podfile"
+)
+
+git_add(path: ".")
+git_commit(path: ".", message: "upgrade repo")
+push_to_git_remote
+
+if git_tag_exists(tag: tagNum)
+  UI.message("您输入的tag:#{tagNum}已存在，即将自动清除") 
+  remove_git_tag(tagNum: tagNum)
+end
+add_git_tag(
+  tag: tagNum
+)
+push_git_tags
+
+pod_lib_lint(allow_warnings: true)
+
+pod_push(path: "#{podspecName}.podspec", repo: "master")
+
+
+end
