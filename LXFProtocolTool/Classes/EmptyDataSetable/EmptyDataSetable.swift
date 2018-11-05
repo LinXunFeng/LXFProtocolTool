@@ -32,9 +32,9 @@ public struct EmptyDataSetConfigure {
     /// 按钮标题
     public var buttonTitle : NSAttributedString
     /// 按钮图片
-    public var buttonImageBlock : ((UIControlState) -> UIImage?)?
+    public var buttonImageBlock : ((UIControl.State) -> UIImage?)?
     /// 按钮背景图片
-    public var buttonBackgroundImageBlock : ((UIControlState)-> UIImage?)?
+    public var buttonBackgroundImageBlock : ((UIControl.State)-> UIImage?)?
     /// image动画
     public var imageAnimation : CAAnimation?
     /// imageTintColor
@@ -61,8 +61,8 @@ public struct EmptyDataSetConfigure {
         allowScroll: Bool = true,
         spaceHeight: CGFloat = 11,
         buttonTitle : NSAttributedString = NSAttributedString(),
-        buttonImageBlock : ((UIControlState)-> UIImage?)? = nil,
-        buttonBackgroundImageBlock : ((UIControlState)-> UIImage?)? = nil,
+        buttonImageBlock : ((UIControl.State)-> UIImage?)? = nil,
+        buttonBackgroundImageBlock : ((UIControl.State)-> UIImage?)? = nil,
         imageAnimation : CAAnimation? = nil, imageTintColor : UIColor? = nil,
         customEmptyView : UIView? = nil,
         shouldFade : Bool = true,
@@ -226,14 +226,14 @@ extension NSObject : DZNEmptyDataSetDelegate, DZNEmptyDataSetSource {
         return spaceHeight
     }
     
-    public func buttonTitle(forEmptyDataSet scrollView: UIScrollView, for state: UIControlState) -> NSAttributedString? {
+    public func buttonTitle(forEmptyDataSet scrollView: UIScrollView, for state: UIControl.State) -> NSAttributedString? {
         let curConfig = scrollView.emptyDataSetConfig
         
         let buttonTitle = curConfig?.buttonTitle != nil ? curConfig!.buttonTitle : defaultEmptyConfig.buttonTitle
         return buttonTitle
     }
     
-    public func buttonImage(forEmptyDataSet scrollView: UIScrollView, for state: UIControlState) -> UIImage? {
+    public func buttonImage(forEmptyDataSet scrollView: UIScrollView, for state: UIControl.State) -> UIImage? {
         let curConfig = scrollView.emptyDataSetConfig
         let buttonImageBlock = curConfig?.buttonImageBlock != nil ? curConfig!.buttonImageBlock : defaultEmptyConfig.buttonImageBlock
         if buttonImageBlock == nil {
@@ -245,7 +245,7 @@ extension NSObject : DZNEmptyDataSetDelegate, DZNEmptyDataSetSource {
         return img
     }
     
-    public func buttonBackgroundImage(forEmptyDataSet scrollView: UIScrollView, for state: UIControlState) -> UIImage? {
+    public func buttonBackgroundImage(forEmptyDataSet scrollView: UIScrollView, for state: UIControl.State) -> UIImage? {
         let curConfig = scrollView.emptyDataSetConfig
         let buttonBackgroundImageBlock = curConfig?.buttonBackgroundImageBlock != nil ? curConfig!.buttonBackgroundImageBlock : defaultEmptyConfig.buttonBackgroundImageBlock
         if buttonBackgroundImageBlock == nil {

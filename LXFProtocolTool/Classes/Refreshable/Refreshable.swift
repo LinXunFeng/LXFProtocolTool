@@ -335,14 +335,30 @@ public struct RefreshableHeaderConfig {
     var labelLeftInset: CGFloat?
     
     // normal type
-    var activityIndicatorViewStyle: UIActivityIndicatorViewStyle = .gray
+    var activityIndicatorViewStyle: UIActivityIndicatorView.Style = .gray
     
     // gif type images
     var idleImages: [UIImage] = []
     var pullingImages: [UIImage] = []
     var refreshingImages: [UIImage] = []
     
-    public init(type: RefreshHeaderType = .normal, idleTitle: String? = nil, pullingTitle: String? = nil, refreshingTitle: String? = nil, stateFont: UIFont? = nil, lastUpdatedTimeFont: UIFont? = nil, stateColor: UIColor? = nil, lastUpdatedTimeColor: UIColor? = nil, hideState: Bool = false, hideLastUpdatedTime: Bool = false, labelLeftInset: CGFloat? = nil, activityIndicatorViewStyle: UIActivityIndicatorViewStyle = .gray, idleImages: [UIImage] = [], pullingImages: [UIImage] = [], refreshingImages: [UIImage] = []) {
+    public init(
+        type: RefreshHeaderType = .normal,
+        idleTitle: String? = nil,
+        pullingTitle: String? = nil,
+        refreshingTitle: String? = nil,
+        stateFont: UIFont? = nil,
+        lastUpdatedTimeFont: UIFont? = nil,
+        stateColor: UIColor? = nil,
+        lastUpdatedTimeColor: UIColor? = nil,
+        hideState: Bool = false,
+        hideLastUpdatedTime: Bool = false,
+        labelLeftInset: CGFloat? = nil,
+        activityIndicatorViewStyle: UIActivityIndicatorView.Style = .gray,
+        idleImages: [UIImage] = [],
+        pullingImages: [UIImage] = [],
+        refreshingImages: [UIImage] = []
+    ) {
         self.type = type
         self.idleTitle = idleTitle
         self.pullingTitle = pullingTitle
@@ -382,12 +398,23 @@ public struct RefreshableFooterConfig {
     var labelLeftInset: CGFloat?
     
     // normal type
-    var activityIndicatorViewStyle: UIActivityIndicatorViewStyle = .gray
+    var activityIndicatorViewStyle: UIActivityIndicatorView.Style = .gray
     
     // gif type images
     var images: [UIImage] = []
     
-    init(type: RefreshFooterType = .autoNormal, idleTitle: String? = nil, refreshingTitle: String? = nil, norMoreDataTitle: String? = nil, stateFont: UIFont? = nil, stateColor: UIColor? = nil, hideState: Bool = false, labelLeftInset: CGFloat? = nil, activityIndicatorViewStyle: UIActivityIndicatorViewStyle = .gray, images: [UIImage] = []) {
+    init(
+        type: RefreshFooterType = .autoNormal,
+        idleTitle: String? = nil,
+        refreshingTitle: String? = nil,
+        norMoreDataTitle: String? = nil,
+        stateFont: UIFont? = nil,
+        stateColor: UIColor? = nil,
+        hideState: Bool = false,
+        labelLeftInset: CGFloat? = nil,
+        activityIndicatorViewStyle: UIActivityIndicatorView.Style = .gray,
+        images: [UIImage] = []
+    ) {
         self.type = type
         self.idleTitle = idleTitle
         self.refreshingTitle = refreshingTitle

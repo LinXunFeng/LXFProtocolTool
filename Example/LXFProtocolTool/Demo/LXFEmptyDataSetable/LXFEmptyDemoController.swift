@@ -54,7 +54,7 @@ extension LXFEmptyDemoController: UITableViewDataSource {
         let cellID = "cellID"
         var cell = tableView.dequeueReusableCell(withIdentifier: cellID)
         if cell == nil {
-            cell = UITableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: cellID)
+            cell = UITableViewCell(style: .default, reuseIdentifier: cellID)
         }
         return cell!
     }
@@ -62,7 +62,7 @@ extension LXFEmptyDemoController: UITableViewDataSource {
 
 extension LXFEmptyDemoController {
     fileprivate func initUI() {
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "switch", style: UIBarButtonItemStyle.plain, target: self, action: #selector(switchEmpty))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "switch", style: .plain, target: self, action: #selector(switchEmpty))
         
         // tableView
         let tableView = UITableView(frame: .zero)

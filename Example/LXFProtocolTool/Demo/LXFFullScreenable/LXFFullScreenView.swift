@@ -9,7 +9,7 @@
 import LXFProtocolTool
 
 class LXFFullScreenView: UIButton, FullScreenable {
-    convenience init(_ type: UIButtonType) {
+    convenience init(_ type: UIButton.ButtonType) {
         self.init(type: type)
         self.backgroundColor = .cyan
     }

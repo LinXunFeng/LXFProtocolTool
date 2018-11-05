@@ -170,7 +170,7 @@ extension UIViewController: AssociatedObjectStore {
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(lxf_orientationChangeNotification),
-            name: .UIDeviceOrientationDidChange,
+            name: UIDevice.orientationDidChangeNotification,
             object: nil)
         UIApplication.shared.lxf.currentFullScreenConfig = lxf_fullScreenableConfig
         self.lxf_viewWillAppear(animated)
@@ -179,7 +179,7 @@ extension UIViewController: AssociatedObjectStore {
     @objc func lxf_viewDidDisappear(_ animated: Bool) {
         NotificationCenter.default.removeObserver(
             self,
-            name: .UIDeviceOrientationDidChange,
+            name: UIDevice.orientationDidChangeNotification,
             object: nil)
         self.lxf_viewDidDisappear(animated)
     }
