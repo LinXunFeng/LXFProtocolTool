@@ -6,6 +6,7 @@
 //  Copyright © 2018年 CocoaPods. All rights reserved.
 //  具体使用方式可参考以下链接：
 //  https://juejin.im/post/59ee1e215188255f5a473b89
+//  https://github.com/LinXunFeng/LXFProtocolTool/wiki/Refreshable
 
 import UIKit
 import MJRefresh
@@ -42,21 +43,21 @@ fileprivate enum TagType: Int {
 /* ==================== OutputRefreshProtocol ==================== */
 // viewModel 中 output使用
 
+public typealias MultipleRefreshStatus = (RefreshStatus, Int)
+
 private var refreshStatusKey = "refreshStatusKey"
 private var refreshStatusMultipleKey = "refreshStatusMultipleKey"
-
-public typealias MultipleRefreshStatus = (RefreshStatus, Int)
 
 public protocol RefreshControllable: class, AssociatedObjectStore, LXFCompatible { }
 
 public extension LXFNameSpace where Base: RefreshControllable {
-    // 告诉外界的tableView当前的刷新状态
+    /// 告诉外界的 scrollView 当前的刷新状态
     var refreshStatus : Variable<RefreshStatus> {
         return base.associatedObject(
             forKey: &refreshStatusKey,
             default: Variable<RefreshStatus>(.none))
     }
-    
+    /// 同 refreshStatus，但可以针对不同 scrollView 做出控制
     var multipleRefreshStatus : Variable<MultipleRefreshStatus> {
         return base.associatedObject(
             forKey: &refreshStatusMultipleKey,
@@ -120,13 +121,29 @@ public class RefreshableConfigure: NSObject {
     fileprivate var headerConfig : RefreshableHeaderConfig?
     fileprivate var footerConfig: RefreshableFooterConfig?
     
+    /// 获取默认下拉配置
+    ///
+    /// - Returns: RefreshableHeaderConfig
     fileprivate static func defaultHeaderConfig() -> RefreshableHeaderConfig? {
         return RefreshableConfigure.shared.headerConfig
     }
+    
+    /// 获取默认上拉配置
+    ///
+    /// - Returns: RefreshableFooterConfig
     fileprivate static func defaultFooterConfig() -> RefreshableFooterConfig? {
         return RefreshableConfigure.shared.footerConfig
     }
-    public static func setDefaultConfig(headerConfig: RefreshableHeaderConfig?, footerConfig: RefreshableFooterConfig? = nil) {
+    
+    /// 设置默认上拉配置
+    ///
+    /// - Parameters:
+    ///   - headerConfig: RefreshableHeaderConfig
+    ///   - footerConfig: RefreshableFooterConfig
+    public static func setDefaultConfig(
+        headerConfig: RefreshableHeaderConfig?,
+        footerConfig: RefreshableFooterConfig? = nil
+    ) {
         RefreshableConfigure.shared.headerConfig = headerConfig
         RefreshableConfigure.shared.footerConfig = footerConfig
     }
@@ -135,7 +152,19 @@ public class RefreshableConfigure: NSObject {
 public protocol Refreshable: LXFCompatible { }
 
 public extension Reactive where Base : Refreshable {
-    func headerRefresh<T: RefreshControllable>(_ vm: T, _ scrollView: UIScrollView, headerConfig: RefreshableHeaderConfig? = nil) -> Observable<Void> {
+    /// 下拉控件
+    ///
+    /// - Parameters:
+    ///   - vm: 遵守 RefreshControllable 协议的对象
+    ///   - scrollView: UIScrollView 及子类
+    ///   - headerConfig: 下拉控件配置
+    /// - Returns: Observable<Void>
+    func headerRefresh<T: RefreshControllable>(
+        _ vm: T,
+        _ scrollView: UIScrollView,
+        headerConfig: RefreshableHeaderConfig? = nil
+    ) -> Observable<Void> {
+        
         return .create { observer -> Disposable in
             vm.lxf.autoSetRefreshStatus(
                 header: self.base.lxf.initRefreshHeader(
@@ -146,7 +175,19 @@ public extension Reactive where Base : Refreshable {
         }
     }
     
-    func footerRefresh<T: RefreshControllable>(_ vm: T, _ scrollView: UIScrollView, footerConfig: RefreshableFooterConfig? = nil) -> Observable<Void> {
+    /// 上拉控件
+    ///
+    /// - Parameters:
+    ///   - vm: 遵守 RefreshControllable 协议的对象
+    ///   - scrollView: UIScrollView 及子类
+    ///   - footerConfig: 上拉控件配置
+    /// - Returns: Observable<Void>
+    func footerRefresh<T: RefreshControllable>(
+        _ vm: T,
+        _ scrollView: UIScrollView,
+        footerConfig: RefreshableFooterConfig? = nil
+    ) -> Observable<Void> {
+        
         return .create { observer -> Disposable in
             vm.lxf.autoSetRefreshStatus(
                 header: nil,
@@ -158,7 +199,21 @@ public extension Reactive where Base : Refreshable {
         }
     }
     
-    func refresh<T: RefreshControllable>(_ vm: T, _ scrollView: UIScrollView, headerConfig: RefreshableHeaderConfig? = nil, footerConfig: RefreshableFooterConfig? = nil) -> Observable<RefreshType> {
+    /// 上下拉控件
+    ///
+    /// - Parameters:
+    ///   - vm: 遵守 RefreshControllable 协议的对象
+    ///   - scrollView: UIScrollView 及子类
+    ///   - headerConfig: 下拉控件配置
+    ///   - footerConfig: 上拉控件配置
+    /// - Returns: Observable<RefreshType>
+    func refresh<T: RefreshControllable>(
+        _ vm: T,
+        _ scrollView: UIScrollView,
+        headerConfig: RefreshableHeaderConfig? = nil,
+        footerConfig: RefreshableFooterConfig? = nil
+    ) -> Observable<RefreshType> {
+        
         return Observable.create { observer -> Disposable in
             vm.lxf.autoSetRefreshStatus(
                 header: self.base.lxf.initRefreshHeader(
@@ -177,13 +232,25 @@ public extension Reactive where Base : Refreshable {
 // MARK: 创建刷新控件
 public extension LXFNameSpace where Base: Refreshable {
     @available(iOS, deprecated: 0.5.1, message: "Use rx.headerRefresh | rx.footerRefresh | rx.refresh instead")
-    public func initRefresh<T: RefreshControllable>(_ vm: T, _ scrollView: UIScrollView, headerConfig: RefreshableHeaderConfig? = nil, footerConfig: RefreshableFooterConfig? = nil, headerAction: RefreshBlock? = nil, footerAction: RefreshBlock? = nil) -> Disposable {
+    public func initRefresh<T: RefreshControllable>(
+        _ vm: T,
+        _ scrollView: UIScrollView,
+        headerConfig: RefreshableHeaderConfig? = nil,
+        footerConfig: RefreshableFooterConfig? = nil,
+        headerAction: RefreshBlock? = nil,
+        footerAction: RefreshBlock? = nil
+    ) -> Disposable {
         let header = headerAction == nil ? nil : initRefreshHeader(scrollView, config: headerConfig, headerAction!)
         let footer = footerAction == nil ? nil : initRefreshFooter(scrollView, config: footerConfig, footerAction!)
         return vm.lxf.autoSetRefreshStatus(header: header, footer: footer)
     }
     
-    fileprivate func initRefreshHeader(_ scrollView: UIScrollView, config: RefreshableHeaderConfig? = nil, _ action: @escaping () -> Void) -> RefreshHeader {
+    fileprivate func initRefreshHeader(
+        _ scrollView: UIScrollView,
+        config: RefreshableHeaderConfig? = nil,
+        _ action: @escaping () -> Void
+    ) -> RefreshHeader {
+        
         if config == nil {
             if let headerConfig = RefreshableConfigure.defaultHeaderConfig() {
                 scrollView.mj_header = createRefreshHeader(scrollView, config: headerConfig, action)
@@ -198,7 +265,12 @@ public extension LXFNameSpace where Base: Refreshable {
         return scrollView.mj_header
     }
     
-    fileprivate func initRefreshFooter(_ scrollView: UIScrollView, config: RefreshableFooterConfig? = nil, _ action: @escaping RefreshBlock) -> RefreshFooter {
+    fileprivate func initRefreshFooter(
+        _ scrollView: UIScrollView,
+        config: RefreshableFooterConfig? = nil,
+        _ action: @escaping RefreshBlock
+    ) -> RefreshFooter {
+        
         if config == nil {
             if let footerConfig = RefreshableConfigure.defaultFooterConfig() {
                 scrollView.mj_footer = createRefreshFooter(scrollView, config: footerConfig, action)
@@ -214,7 +286,12 @@ public extension LXFNameSpace where Base: Refreshable {
         return scrollView.mj_footer
     }
     
-    fileprivate func createRefreshHeader(_ scrollView: UIScrollView, config: RefreshableHeaderConfig ,_ action: @escaping () -> Void) -> RefreshHeader? {
+    fileprivate func createRefreshHeader(
+        _ scrollView: UIScrollView,
+        config: RefreshableHeaderConfig ,
+        _ action: @escaping () -> Void
+    ) -> RefreshHeader? {
+        
         var header: MJRefreshStateHeader?
         switch config.type {
         case .normal:
@@ -258,7 +335,12 @@ public extension LXFNameSpace where Base: Refreshable {
         return header
     }
     
-    fileprivate func createRefreshFooter(_ scrollView: UIScrollView, config: RefreshableFooterConfig ,_ action: @escaping () -> Void) -> RefreshFooter? {
+    fileprivate func createRefreshFooter(
+        _ scrollView: UIScrollView,
+        config: RefreshableFooterConfig ,
+        _ action: @escaping () -> Void
+    ) -> RefreshFooter? {
+        
         var autoFooter : MJRefreshAutoStateFooter?
         var backFooter : MJRefreshBackStateFooter?
         
