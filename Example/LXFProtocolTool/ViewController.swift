@@ -15,6 +15,7 @@ class ViewController: UIViewController, FullScreenable {
         "LXFNibloadable",
         "EmptyDataSetable",
         "Refreshable",
+        "Refreshable-mutiple",
         "FullScreenable"
     ]
     
@@ -61,6 +62,8 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         } else if indexPath.row == 2 {
             vc = LXFRefreshableController(reactor: LXFRefreshableReactor())
         } else if indexPath.row == 3 {
+            vc = LXFRefreshMultipleController(reactor: LXFRefreshMultipleReactor())
+        } else if indexPath.row == 4 {
             vc = LXFFullScreenableController()
         }
         

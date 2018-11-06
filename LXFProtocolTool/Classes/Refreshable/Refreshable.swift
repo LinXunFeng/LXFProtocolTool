@@ -34,10 +34,18 @@ public enum RefreshStatus {
     case showFooter
 }
 
+fileprivate enum TagType: Int {
+    case `default` = 0
+    case indiscrimination = -1
+}
+
 /* ==================== OutputRefreshProtocol ==================== */
 // viewModel 中 output使用
 
 private var refreshStatusKey = "refreshStatusKey"
+private var refreshStatusMultipleKey = "refreshStatusMultipleKey"
+
+public typealias MultipleRefreshStatus = (RefreshStatus, Int)
 
 public protocol RefreshControllable: class, AssociatedObjectStore, LXFCompatible { }
 
@@ -49,30 +57,50 @@ public extension LXFNameSpace where Base: RefreshControllable {
             default: Variable<RefreshStatus>(.none))
     }
     
-    fileprivate func autoSetRefreshStatus(header: RefreshHeader?, footer: RefreshFooter?) -> Disposable {
-        return  refreshStatus.asObservable()
-            .subscribe(onNext: { (status) in
+    var multipleRefreshStatus : Variable<MultipleRefreshStatus> {
+        return base.associatedObject(
+            forKey: &refreshStatusMultipleKey,
+            default: Variable<MultipleRefreshStatus>((.none, TagType.default.rawValue)))
+    }
+    
+    fileprivate func autoSetRefreshStatus(
+        header: RefreshHeader?,
+        footer: RefreshFooter?
+    ) -> Disposable {
+        return Observable.of (
+                multipleRefreshStatus.asObservable(),
+                refreshStatus.asObservable()
+                    .flatMap { Observable.just(($0, TagType.indiscrimination.rawValue)) }
+            )
+            .merge()
+            .subscribe(onNext: { (status, tag) in
+                var isHeader = true
+                var isFooter = true
+                if tag != TagType.indiscrimination.rawValue {
+                    isHeader = tag == header?.tag ?? TagType.default.rawValue
+                    isFooter = tag == footer?.tag ?? TagType.default.rawValue
+                }
                 switch status {
                 case .beginHeaderRefresh:
-                    header?.beginRefreshing()
+                    if isHeader { header?.beginRefreshing() }
                 case .endHeaderRefresh:
-                    header?.endRefreshing()
+                    if isHeader { header?.endRefreshing() }
                 case .beingFooterRefresh:
-                    footer?.beginRefreshing()
+                    if isFooter { footer?.beginRefreshing() }
                 case .endFooterRefresh:
-                    footer?.endRefreshing()
+                    if isFooter { footer?.endRefreshing() }
                 case .noMoreData:
-                    footer?.endRefreshingWithNoMoreData()
+                    if isFooter { footer?.endRefreshingWithNoMoreData() }
                 case .resetNoMoreData:
-                    footer?.resetNoMoreData()
+                    if isFooter { footer?.resetNoMoreData() }
                 case .hiddenHeader:
-                    header?.isHidden = true
+                    if isHeader { header?.isHidden = true }
                 case .hiddenFooter:
-                    footer?.isHidden = true
+                    if isFooter { footer?.isHidden = true }
                 case .showHeader:
-                    header?.isHidden = false
+                    if isHeader { header?.isHidden = false }
                 case .showFooter:
-                    footer?.isHidden = false
+                    if isFooter { footer?.isHidden = false }
                 case .none:
                     break
                 }
@@ -162,9 +190,11 @@ public extension LXFNameSpace where Base: Refreshable {
             } else {
                 scrollView.mj_header = MJRefreshNormalHeader(refreshingBlock: action)
             }
+            scrollView.mj_header.tag = scrollView.tag
             return scrollView.mj_header
         }
         scrollView.mj_header = createRefreshHeader(scrollView, config: config!, action)
+        scrollView.mj_header.tag = scrollView.tag
         return scrollView.mj_header
     }
     
@@ -175,10 +205,12 @@ public extension LXFNameSpace where Base: Refreshable {
             } else {
                 scrollView.mj_footer = MJRefreshBackNormalFooter(refreshingBlock: action)
             }
+            scrollView.mj_footer.tag = scrollView.tag
             return scrollView.mj_footer
         }
         
         scrollView.mj_footer = createRefreshFooter(scrollView, config: config!, action)
+        scrollView.mj_footer.tag = scrollView.tag
         return scrollView.mj_footer
     }
     
