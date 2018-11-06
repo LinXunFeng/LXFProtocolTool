@@ -1,5 +1,5 @@
 //
-//  LXFRefreshMultipleController.swift
+//  LXFRefreshRespectiveController.swift
 //  LXFProtocolTool_Example
 //
 //  Created by LinXunFeng on 2018/11/6.
@@ -13,7 +13,7 @@ import LXFProtocolTool
 import ReusableKit
 import Then
 
-class LXFRefreshMultipleController: UIViewController, View, Refreshable {
+class LXFRefreshRespectiveController: UIViewController, View, Refreshable {
     var disposeBag: DisposeBag = DisposeBag()
 
     fileprivate struct Reusable {
@@ -26,16 +26,16 @@ class LXFRefreshMultipleController: UIViewController, View, Refreshable {
     fileprivate var tableView1 = UITableView(frame: .zero).then {
         $0.register(Reusable.refreshableCell)
         $0.rowHeight = 270
-        $0.tag = LXFRefreshMultipleReactor.ListIndex.first.rawValue
+        $0.tag = LXFRefreshRespectiveReactor.ListIndex.first.rawValue
     }
     fileprivate var tableView2 = UITableView(frame: .zero).then {
         $0.register(Reusable.refreshableCell)
         $0.rowHeight = 270
-        $0.tag = LXFRefreshMultipleReactor.ListIndex.second.rawValue
+        $0.tag = LXFRefreshRespectiveReactor.ListIndex.second.rawValue
     }
     
     init(
-        reactor: LXFRefreshMultipleReactor
+        reactor: LXFRefreshRespectiveReactor
     ) {
         defer { self.reactor = reactor }
         super.init(nibName: nil, bundle: nil)
@@ -77,7 +77,7 @@ class LXFRefreshMultipleController: UIViewController, View, Refreshable {
         })
     }
     
-    func bind(reactor: LXFRefreshMultipleReactor) {
+    func bind(reactor: LXFRefreshRespectiveReactor) {
         // View
         self.rx.refresh(reactor, tableView1)
             .map { .fetchList(isReload: $0 == .header, listIndex: .first) }

@@ -62,7 +62,7 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         } else if indexPath.row == 2 {
             vc = LXFRefreshableController(reactor: LXFRefreshableReactor())
         } else if indexPath.row == 3 {
-            vc = LXFRefreshMultipleController(reactor: LXFRefreshMultipleReactor())
+            vc = LXFRefreshRespectiveController(reactor: LXFRefreshRespectiveReactor())
         } else if indexPath.row == 4 {
             vc = LXFFullScreenableController()
         }

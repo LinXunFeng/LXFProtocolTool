@@ -43,10 +43,10 @@ fileprivate enum TagType: Int {
 /* ==================== OutputRefreshProtocol ==================== */
 // viewModel 中 output使用
 
-public typealias MultipleRefreshStatus = (RefreshStatus, Int)
+public typealias RespectiveRefreshStatus = (RefreshStatus, Int)
 
 private var refreshStatusKey = "refreshStatusKey"
-private var refreshStatusMultipleKey = "refreshStatusMultipleKey"
+private var refreshStatusRespectivelyKey = "refreshStatusRespectivelyKey"
 
 public protocol RefreshControllable: class, AssociatedObjectStore, LXFCompatible { }
 
@@ -58,10 +58,10 @@ public extension LXFNameSpace where Base: RefreshControllable {
             default: Variable<RefreshStatus>(.none))
     }
     /// 同 refreshStatus，但可以针对不同 scrollView 做出控制
-    var multipleRefreshStatus : Variable<MultipleRefreshStatus> {
+    var refreshStatusRespective : Variable<RespectiveRefreshStatus> {
         return base.associatedObject(
-            forKey: &refreshStatusMultipleKey,
-            default: Variable<MultipleRefreshStatus>((.none, TagType.default.rawValue)))
+            forKey: &refreshStatusRespectivelyKey,
+            default: Variable<RespectiveRefreshStatus>((.none, TagType.default.rawValue)))
     }
     
     fileprivate func autoSetRefreshStatus(
@@ -69,7 +69,7 @@ public extension LXFNameSpace where Base: RefreshControllable {
         footer: RefreshFooter?
     ) -> Disposable {
         return Observable.of (
-                multipleRefreshStatus.asObservable(),
+                refreshStatusRespective.asObservable(),
                 refreshStatus.asObservable()
                     .flatMap { Observable.just(($0, TagType.indiscrimination.rawValue)) }
             )

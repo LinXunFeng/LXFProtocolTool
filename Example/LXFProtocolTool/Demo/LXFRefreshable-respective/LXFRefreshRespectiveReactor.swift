@@ -1,5 +1,5 @@
 //
-//  LXFRefreshMultipleReactor.swift
+//  LXFRefreshRespectiveReactor.swift
 //  LXFProtocolTool_Example
 //
 //  Created by LinXunFeng on 2018/11/6.
@@ -11,7 +11,7 @@ import RxSwift
 import LXFProtocolTool
 import MoyaMapper
 
-final class LXFRefreshMultipleReactor: Reactor, RefreshControllable {
+final class LXFRefreshRespectiveReactor: Reactor, RefreshControllable {
     enum ListIndex: Int {
         case first = 1
         case second
@@ -61,15 +61,15 @@ final class LXFRefreshMultipleReactor: Reactor, RefreshControllable {
             }
         case let .setRefreshStatus(status, listIndex):
             switch listIndex {
-            case .first: lxf.multipleRefreshStatus.value = (status, ListIndex.first.rawValue)
-            case .second: lxf.multipleRefreshStatus.value = (status, ListIndex.second.rawValue)
+            case .first: lxf.refreshStatusRespective.value = (status, ListIndex.first.rawValue)
+            case .second: lxf.refreshStatusRespective.value = (status, ListIndex.second.rawValue)
             }
         }
         return newState
     }
 }
 
-extension LXFRefreshMultipleReactor {
+extension LXFRefreshRespectiveReactor {
     fileprivate func fetchList(_ reload: Bool, _ listIndex: ListIndex) -> Observable<Mutation> {
         var pageIndex = 0
         var pageSize = 0
