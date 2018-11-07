@@ -15,7 +15,10 @@ import ObjectiveC
 
 typealias RefreshHeader = MJRefreshHeader
 typealias RefreshFooter = MJRefreshFooter
+
 public typealias RefreshBlock = () -> Void
+public typealias RespectiveRefreshStatus = (RefreshStatus, Int)
+
 public enum RefreshType {
     case header
     case footer
@@ -42,8 +45,6 @@ fileprivate enum TagType: Int {
 
 /* ==================== OutputRefreshProtocol ==================== */
 // viewModel 中 output使用
-
-public typealias RespectiveRefreshStatus = (RefreshStatus, Int)
 
 private var refreshStatusKey = "refreshStatusKey"
 private var refreshStatusRespectivelyKey = "refreshStatusRespectivelyKey"
@@ -102,8 +103,7 @@ public extension LXFNameSpace where Base: RefreshControllable {
                     if isHeader { header?.isHidden = false }
                 case .showFooter:
                     if isFooter { footer?.isHidden = false }
-                case .none:
-                    break
+                case .none: break
                 }
             })
     }
