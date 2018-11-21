@@ -48,7 +48,7 @@ LXFProtocolTool是使用Swift中的协议来实现多种方便、实用的工具
   
   s.subspec 'RxEmptyDataSetable' do |t|
       t.source_files = 'LXFProtocolTool/Classes/RxEmptyDataSetable/**/*.{swift}'
-      t.dependency 'RxSwift', '>= 4.0.0'
+      t.dependency 'RxCocoa', '>= 4.0.0'
       t.dependency "LXFProtocolTool/EmptyDataSetable"
   end
   
