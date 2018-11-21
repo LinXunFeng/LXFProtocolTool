@@ -21,10 +21,12 @@ final class LXFRefreshableReactor: Reactor, RefreshControllable {
     enum Mutation {
         case setSections([LXFRefreshableSection])
         case setRefreshStatus(RefreshStatus)
+        case setEmptyConfig(EmptyDataSetConfigure?)
     }
     
     struct State {
         var sections : [LXFRefreshableSection] = []
+        var emptyConfig : EmptyDataSetConfigure? = nil
     }
     
     fileprivate var pageIndex = 1
@@ -48,6 +50,8 @@ final class LXFRefreshableReactor: Reactor, RefreshControllable {
             newState.sections = sections
         case let .setRefreshStatus(status):
             lxf.refreshStatus.value = status
+        case let .setEmptyConfig(config):
+            newState.emptyConfig = config
         }
         return newState
     }
@@ -74,16 +78,21 @@ extension LXFRefreshableReactor {
                 }
             })
             .flatMap { [weak self] models -> Observable<Mutation> in
-                var items = models.map {
-                    LXFRefreshableSectionItem.item(LXFRefreshableCellReactor(model: $0))
-                }
-                
-                if !reload {
-                    items = (self?.currentState.sections.first?.items ?? []) + items
+                var setEmptyConfig = Observable.just(Mutation.setEmptyConfig(nil))
+                let items: [LXFRefreshableSectionItem] = []
+//                var items = models.map {
+//                    LXFRefreshableSectionItem.item(LXFRefreshableCellReactor(model: $0))
+//                }
+//                if !reload {
+//                    items = (self?.currentState.sections.first?.items ?? []) + items
+//                }
+                if items.isEmpty {
+                    setEmptyConfig = Observable.just(Mutation.setEmptyConfig(EmptyConfig.noData))
                 }
                 
                 let sections = [LXFRefreshableSection.list(items)]
-                return Observable.just(.setSections(sections))
+                let setSections = Observable.just(Mutation.setSections(sections))
+                return Observable.concat([setSections, setEmptyConfig])
             }
         
         return Observable.concat([fetchList, endHeaderRefresh])

@@ -84,6 +84,8 @@ extension LXFEmptyDemoController {
 //            print("emptyViewDidAppear")
 //        }
         
+//        tableView.rx.emptyConfig
+        
         self.rx.tapEmptyView(tableView)
             .subscribe(onNext: { _ in
                 print("点击了空白视图")

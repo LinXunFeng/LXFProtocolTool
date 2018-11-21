@@ -15,6 +15,7 @@
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
 		E54B540712C0EAEEC730D914 /* Pods_LXFProtocolTool_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A401D1702387B816E326C87 /* Pods_LXFProtocolTool_Example.framework */; };
+		FD1FCB2E21A5509800302EDD /* Configs.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD1FCB2D21A5509800302EDD /* Configs.swift */; };
 		FD4A828521916D4F0064C07E /* LXFRefreshRespectiveController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD4A828421916D4F0064C07E /* LXFRefreshRespectiveController.swift */; };
 		FD4A828721916D570064C07E /* LXFRefreshRespectiveReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD4A828621916D570064C07E /* LXFRefreshRespectiveReactor.swift */; };
 		FD51529F21118FCB00A8591F /* LXFNetworkTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD51529E21118FCB00A8591F /* LXFNetworkTool.swift */; };
@@ -63,6 +64,7 @@
 		9A401D1702387B816E326C87 /* Pods_LXFProtocolTool_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LXFProtocolTool_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5ADB34366E5742B80AE43C5 /* Pods-LXFProtocolTool_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LXFProtocolTool_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LXFProtocolTool_Tests/Pods-LXFProtocolTool_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		D8E04661F15EF390557CC447 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		FD1FCB2D21A5509800302EDD /* Configs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configs.swift; sourceTree = "<group>"; };
 		FD4A828421916D4F0064C07E /* LXFRefreshRespectiveController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXFRefreshRespectiveController.swift; sourceTree = "<group>"; };
 		FD4A828621916D570064C07E /* LXFRefreshRespectiveReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXFRefreshRespectiveReactor.swift; sourceTree = "<group>"; };
 		FD51529E21118FCB00A8591F /* LXFNetworkTool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LXFNetworkTool.swift; sourceTree = "<group>"; };
@@ -138,6 +140,7 @@
 				FD51529B21118F1800A8591F /* Util */,
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 				607FACD71AFB9204008FA782 /* ViewController.swift */,
+				FD1FCB2D21A5509800302EDD /* Configs.swift */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
 				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
@@ -504,6 +507,7 @@
 				FD5152AC2111997200A8591F /* LXFRefreshableModel.swift in Sources */,
 				FD5152A62111919700A8591F /* LXFRefreshableReactor.swift in Sources */,
 				FD62EE632077CD82002C1B53 /* LXFXibTestView.swift in Sources */,
+				FD1FCB2E21A5509800302EDD /* Configs.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

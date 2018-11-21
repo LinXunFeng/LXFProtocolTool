@@ -13,7 +13,7 @@ import LXFProtocolTool
 import ReusableKit
 import Then
 
-class LXFRefreshableController: UIViewController, View, Refreshable {
+class LXFRefreshableController: UIViewController, View, Refreshable, EmptyDataSetable {
     var disposeBag: DisposeBag = DisposeBag()
     
     fileprivate struct Reusable {
@@ -45,8 +45,15 @@ class LXFRefreshableController: UIViewController, View, Refreshable {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.frame = self.view.bounds
+        
+        self.view.backgroundColor = UIColor.white
         self.view.addSubview(tableView)
+        tableView.frame = CGRect(
+            x: 0,
+            y: Configs.Screen.navibarH,
+            width: Configs.Screen.width,
+            height: Configs.Screen.height - Configs.Screen.navibarH - Configs.Screen.bottomH
+        )
         
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) {
             self.reactor?.action.onNext(.beginRefresh)
@@ -94,9 +101,18 @@ class LXFRefreshableController: UIViewController, View, Refreshable {
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
         
+        self.rx.tapEmptyView(tableView)
+            .map { _ in .beginRefresh }
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
+        
         // State
         reactor.state.map { $0.sections }
             .bind(to: tableView.rx.items(dataSource: dataSource))
+            .disposed(by: disposeBag)
+        
+        reactor.state.map { $0.emptyConfig }
+            .bind(to: tableView.rx.emptyConfig)
             .disposed(by: disposeBag)
     }
 }
