@@ -7,8 +7,19 @@
 //
 
 import RxSwift
+import RxCocoa
 
 // MARK:- Rx
+// MARK: UIScrollView
+extension Reactive where Base: UIScrollView {
+    public var emptyConfig: Binder<EmptyDataSetConfigure?> {
+        return Binder(self.base) { (scrollView, config) in
+            scrollView.updateEmptyDataSet(config)
+        }
+    }
+}
+
+// MARK: NSObject
 public extension Reactive where Base: NSObject, Base: EmptyDataSetable {
     public enum TapType {
         case emptyView(_ view: UIView)

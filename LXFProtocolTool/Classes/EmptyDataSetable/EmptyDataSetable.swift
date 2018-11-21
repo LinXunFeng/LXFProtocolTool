@@ -53,7 +53,7 @@ public struct EmptyDataSetConfigure {
     public var shouldAnimateImageView : Bool
     
     public init(
-        verticalOffset: CGFloat = -50,
+        verticalOffset: CGFloat = 0,
         tipStr: String = "",
         tipFont: UIFont = .systemFont(ofSize: 15),
         tipColor: UIColor = .lightGray,
@@ -70,7 +70,7 @@ public struct EmptyDataSetConfigure {
         shouldDisplay: Bool = true,
         shouldAllowTouch: Bool = true,
         shouldAnimateImageView : Bool = false
-        ) {
+    ) {
         self.verticalOffset = verticalOffset
         self.tipStr = tipStr
         self.tipFont = tipFont
@@ -136,6 +136,17 @@ extension UIScrollView: AssociatedObjectStore {
         get { return associatedObject(forKey: &lxf_emptyDataSetDidDisappearKey) }
         set { setAssociatedObject(newValue, forKey: &lxf_emptyDataSetDidDisappearKey) }
     }
+    
+    internal func updateEmptyDataSet(_ config: EmptyDataSetConfigure?, base: NSObject? = nil) {
+        self.emptyDataSetConfig = config
+        if self.emptyDataSetDelegate == nil {
+            self.emptyDataSetDelegate = base ?? self
+        }
+        if self.emptyDataSetSource == nil {
+            self.emptyDataSetSource = base ?? self
+        }
+        self.reloadEmptyDataSet()
+    }
 }
 
 // MARK:- 空视图占位协议
@@ -143,20 +154,11 @@ public protocol EmptyDataSetable: LXFCompatible { }
 
 public extension LXFNameSpace where Base: NSObject {
     // MARK:- 更新数据
-    public func updateEmptyDataSet(_ scrollView: UIScrollView, config: EmptyDataSetConfigure? = nil, hideEmpty: Bool = false) {
-        scrollView.emptyDataSetConfig = config
-        if scrollView.emptyDataSetDelegate == nil && !hideEmpty {
-            scrollView.emptyDataSetDelegate = base
-        }
-        if scrollView.emptyDataSetSource == nil && !hideEmpty {
-            scrollView.emptyDataSetSource = base
-        }
-        scrollView.hideEmptyView = hideEmpty
-        if hideEmpty {
-            scrollView.emptyDataSetDelegate = nil
-            scrollView.emptyDataSetSource = nil
-        }
-        scrollView.reloadEmptyDataSet()
+    public func updateEmptyDataSet(
+        _ scrollView: UIScrollView,
+        config: EmptyDataSetConfigure? = nil
+    ) {
+        scrollView.updateEmptyDataSet(config, base: base)
     }
     
     // MARK: 点击回调
@@ -191,7 +193,6 @@ extension NSObject : DZNEmptyDataSetDelegate, DZNEmptyDataSetSource {
     }
     
     public func title(forEmptyDataSet scrollView: UIScrollView) -> NSAttributedString? {
-        
         let curConfig = scrollView.emptyDataSetConfig
         
         let tipColor = curConfig?.tipColor != nil ? curConfig!.tipColor : defaultEmptyConfig.tipColor
@@ -326,14 +327,6 @@ extension NSObject : DZNEmptyDataSetDelegate, DZNEmptyDataSetSource {
     }
 }
 
-extension UIScrollView {
-    var hideEmptyView: Bool {
-        get {  return associatedObject(forKey: &lxf_emptyHideEmptyViewKey) ?? false }
-        set { setAssociatedObject(newValue, forKey: &lxf_emptyHideEmptyViewKey) }
-    }
-}
-
-fileprivate var lxf_emptyHideEmptyViewKey = "lxf_emptyHideEmptyViewKey"
 fileprivate var lxf_emptyDataSetConfigureKey = "lxf_emptyDataSetConfigureKey"
 fileprivate var lxf_emptyViewTapBlockKey = "lxf_emptyViewTapBlockKey"
 fileprivate var lxf_emptyButtonTapBlockKey = "lxf_emptyButtonTapBlockKey"
