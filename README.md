@@ -94,7 +94,14 @@ LXFProtocolTool is available under the MIT license. See the LICENSE file for mor
 - LinXunFeng
 - email: [598600855@qq.com](mailto:598600855@qq.com)
 - Blogs
-    - ![linxunfeng](https://github.com/favicon.ico) [LinXunFeng‘s Blog](http://linxunfeng.top/)
-    - ![juejin](https://juejin.im/favicon.ico) [掘金](https://juejin.im/user/58f8065e61ff4b006646c72d/posts)
-    - ![jianshu](https://www.jianshu.com/favicon.ico) [简书](https://www.jianshu.com/u/31e85e7a22a2) 
+
+| ![linxunfeng](https://github.com/favicon.ico) |           ![juejin](https://juejin.im/favicon.ico)           | ![jianshu](https://www.jianshu.com/favicon.ico) |
+| :-------------------------------------------: | :----------------------------------------------------------: | :---------------------------------------------: |
+|        [Blog](http://linxunfeng.top/)         | [掘金](https://juejin.im/user/58f8065e61ff4b006646c72d/posts) | [简书](https://www.jianshu.com/u/31e85e7a22a2)  |
+
+| <img src="https://github.com/LinXunFeng/linxunfeng.github.io/raw/master/images/others/wx/wxQR.png" style="width:200px;height:200px;"></img> | <img src="https://github.com/LinXunFeng/linxunfeng.github.io/raw/master/images/others/pay/alipay.png" style="width:200px;height:200px;"></img> | <img src="https://github.com/LinXunFeng/linxunfeng.github.io/raw/master/images/others/pay/wechat.png" style="width:200px;height:200px;"></img> |
+| :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: |
+|                  微信公众号(linxunfengtop)                   |                       欢迎打赞(AliPay)                       |                       欢迎打赞(WeChat)                       |
+
+
 
