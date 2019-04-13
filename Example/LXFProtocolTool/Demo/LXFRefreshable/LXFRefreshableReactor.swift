@@ -79,13 +79,14 @@ extension LXFRefreshableReactor {
             })
             .flatMap { [weak self] models -> Observable<Mutation> in
                 var setEmptyConfig = Observable.just(Mutation.setEmptyConfig(nil))
-                let items: [LXFRefreshableSectionItem] = []
-//                var items = models.map {
-//                    LXFRefreshableSectionItem.item(LXFRefreshableCellReactor(model: $0))
-//                }
-//                if !reload {
-//                    items = (self?.currentState.sections.first?.items ?? []) + items
-//                }
+                // 测试占位图使用
+                // let items: [LXFRefreshableSectionItem] = []
+                var items = models.map {
+                    LXFRefreshableSectionItem.item(LXFRefreshableCellReactor(model: $0))
+                }
+                if !reload {
+                    items = (self?.currentState.sections.first?.items ?? []) + items
+                }
                 if items.isEmpty {
                     setEmptyConfig = Observable.just(Mutation.setEmptyConfig(EmptyConfig.noData))
                 }

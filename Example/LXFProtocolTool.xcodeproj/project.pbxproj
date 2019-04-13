@@ -30,6 +30,8 @@
 		FD62EE682077D620002C1B53 /* LXFEmptyDemoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD62EE672077D620002C1B53 /* LXFEmptyDemoController.swift */; };
 		FD97E0DD214B4A030057C3C1 /* LXFFullScreenableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD97E0DC214B4A030057C3C1 /* LXFFullScreenableController.swift */; };
 		FD97E0DF214B5CFE0057C3C1 /* LXFFullScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD97E0DE214B5CFE0057C3C1 /* LXFFullScreenView.swift */; };
+		FD9E556A2261F88A00921471 /* LXFDIYHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD9E55692261F88A00921471 /* LXFDIYHeader.swift */; };
+		FD9E556C2261FD0B00921471 /* LXFDIYAutoFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD9E556B2261FD0B00921471 /* LXFDIYAutoFooter.swift */; };
 		FDDD69A72111A0B40069498D /* UIImageView+Kingfisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDDD69A62111A0B40069498D /* UIImageView+Kingfisher.swift */; };
 		FDDD69A92111AE2C0069498D /* LXFNibloadableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDDD69A82111AE2C0069498D /* LXFNibloadableController.swift */; };
 /* End PBXBuildFile section */
@@ -79,6 +81,8 @@
 		FD62EE672077D620002C1B53 /* LXFEmptyDemoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXFEmptyDemoController.swift; sourceTree = "<group>"; };
 		FD97E0DC214B4A030057C3C1 /* LXFFullScreenableController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXFFullScreenableController.swift; sourceTree = "<group>"; };
 		FD97E0DE214B5CFE0057C3C1 /* LXFFullScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXFFullScreenView.swift; sourceTree = "<group>"; };
+		FD9E55692261F88A00921471 /* LXFDIYHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXFDIYHeader.swift; sourceTree = "<group>"; };
+		FD9E556B2261FD0B00921471 /* LXFDIYAutoFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXFDIYAutoFooter.swift; sourceTree = "<group>"; };
 		FDDD69A62111A0B40069498D /* UIImageView+Kingfisher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+Kingfisher.swift"; sourceTree = "<group>"; };
 		FDDD69A82111AE2C0069498D /* LXFNibloadableController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXFNibloadableController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -257,6 +261,7 @@
 		FD5152AD21119A4800A8591F /* View */ = {
 			isa = PBXGroup;
 			children = (
+				FD9E55682261F87100921471 /* DIY */,
 				FD5152AE21119A7800A8591F /* LXFRefreshableCell.swift */,
 				FD5152B021119A8000A8591F /* LXFRefreshableCellReactor.swift */,
 			);
@@ -288,6 +293,15 @@
 				FD97E0DE214B5CFE0057C3C1 /* LXFFullScreenView.swift */,
 			);
 			path = LXFFullScreenable;
+			sourceTree = "<group>";
+		};
+		FD9E55682261F87100921471 /* DIY */ = {
+			isa = PBXGroup;
+			children = (
+				FD9E55692261F88A00921471 /* LXFDIYHeader.swift */,
+				FD9E556B2261FD0B00921471 /* LXFDIYAutoFooter.swift */,
+			);
+			path = DIY;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -361,6 +375,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -493,11 +508,13 @@
 				FDDD69A72111A0B40069498D /* UIImageView+Kingfisher.swift in Sources */,
 				FD97E0DF214B5CFE0057C3C1 /* LXFFullScreenView.swift in Sources */,
 				FD5152A82111952F00A8591F /* LXFRefreshableSection.swift in Sources */,
+				FD9E556A2261F88A00921471 /* LXFDIYHeader.swift in Sources */,
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
 				FD5152AF21119A7800A8591F /* LXFRefreshableCell.swift in Sources */,
 				FD62EE682077D620002C1B53 /* LXFEmptyDemoController.swift in Sources */,
 				FDDD69A92111AE2C0069498D /* LXFNibloadableController.swift in Sources */,
 				FD4A828721916D570064C07E /* LXFRefreshRespectiveReactor.swift in Sources */,
+				FD9E556C2261FD0B00921471 /* LXFDIYAutoFooter.swift in Sources */,
 				FD5152A22111909C00A8591F /* LXFRefreshableController.swift in Sources */,
 				FD97E0DD214B4A030057C3C1 /* LXFFullScreenableController.swift in Sources */,
 				FD5152B121119A8000A8591F /* LXFRefreshableCellReactor.swift in Sources */,

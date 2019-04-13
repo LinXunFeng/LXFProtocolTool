@@ -310,6 +310,8 @@ public extension LXFNameSpace where Base: Refreshable {
                 gifHeader?.setImages(config.refreshingImages, for: .refreshing)
             }
             header = gifHeader
+        case .diy(let HeaderType):
+            return HeaderType.init{ action() }
         }
         
         // title
@@ -365,6 +367,8 @@ public extension LXFNameSpace where Base: Refreshable {
                 backGifFooter?.setImages(config.images, for: MJRefreshState.refreshing)
             }
             backFooter = backGifFooter
+        case .diy(let FooterType):
+            return FooterType.init{ action() }
         }
         
         if autoFooter != nil {
@@ -416,6 +420,7 @@ public extension LXFNameSpace where Base: Refreshable {
 public enum RefreshHeaderType {
     case normal
     case gif
+    case diy(type: MJRefreshHeader.Type)
 }
 
 public enum RefreshFooterType {
@@ -423,9 +428,11 @@ public enum RefreshFooterType {
     case autoGif
     case backNormal
     case backGif
+    case diy(type: MJRefreshFooter.Type)
 }
 
 public struct RefreshableHeaderConfig {
+    /// 当type为diy时，其它属性就不用再传递了
     var type : RefreshHeaderType = .normal
     
     // title
@@ -492,6 +499,7 @@ public struct RefreshableHeaderConfig {
 }
 
 public struct RefreshableFooterConfig {
+    /// 当type为diy时，其它属性就不用再传递了
     var type : RefreshFooterType = .autoNormal
     
     // title
@@ -517,7 +525,7 @@ public struct RefreshableFooterConfig {
     // gif type images
     var images: [UIImage] = []
     
-    init(
+    public init(
         type: RefreshFooterType = .autoNormal,
         idleTitle: String? = nil,
         refreshingTitle: String? = nil,

@@ -96,7 +96,13 @@ class LXFRefreshableController: UIViewController, View, Refreshable, EmptyDataSe
          */
         
         // 上拉下拉 一块设置
-        self.rx.refresh(reactor, tableView)
+//        self.rx.refresh(reactor, tableView)
+//            .map { .fetchList($0 == .header) }
+//            .bind(to: reactor.action)
+//            .disposed(by: disposeBag)
+        
+        // DIY header footer
+        self.rx.refresh(reactor, tableView, headerConfig: RefreshConfig.diyHeader, footerConfig: RefreshConfig.diyFooter)
             .map { .fetchList($0 == .header) }
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
@@ -131,5 +137,9 @@ struct RefreshConfig {
         hideLastUpdatedTime: true,
         activityIndicatorViewStyle: .white
     )
+    
+    static let diyHeader = RefreshableHeaderConfig(type: RefreshHeaderType.diy(type: LXFDIYHeader.self))
+    
+    static let diyFooter = RefreshableFooterConfig(type: RefreshFooterType.diy(type: LXFDIYAutoFooter.self))
 }
 
