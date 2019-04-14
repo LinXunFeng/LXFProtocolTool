@@ -92,7 +92,7 @@ LXFProtocolTool is available under the MIT license. See the LICENSE file for mor
 
 ## Author
 - LinXunFeng
-- email: [598600855@qq.com](mailto:598600855@qq.com)
+- email: [xunfenghellolo@gmail.com](mailto:xunfenghellolo@gmail.com)
 - Blogs:  [LinXunFeng‘s Blog](http://linxunfeng.top/)  | [掘金](https://juejin.im/user/58f8065e61ff4b006646c72d/posts) | [简书](https://www.jianshu.com/u/31e85e7a22a2)
 
 
