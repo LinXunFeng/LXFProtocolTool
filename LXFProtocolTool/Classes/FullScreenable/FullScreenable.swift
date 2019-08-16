@@ -56,12 +56,22 @@ extension FullScreenable {
         set { setAssociatedObject(newValue, forKey: &lxf_selfFrameKey) }
     }
     fileprivate func lxf_switchFullScreen(isEnter: Bool? = nil, specifiedView: UIView?, superView: UIView?, config: FullScreenableConfig? = nil, completed: FullScreenableCompleteType?) {
-        let config = config == nil ? FullScreenableConfig.defaultConfig() : config!
+//        let config = config == nil ? FullScreenableConfig.defaultConfig() : config!
         let isEnter = isEnter == nil ? !isFullScreen : isEnter!
         
-        UIView.animate(withDuration: config.animateDuration) {
+        var _config: FullScreenableConfig
+        if config == nil {
+            var defaultConfig = FullScreenableConfig.defaultConfig()
+            defaultConfig.supportInterfaceOrientation = isEnter ? .allButUpsideDown : .portrait
+            _config = defaultConfig
+        } else {
+            _config = config!
+        }
+        UIApplication.shared.lxf.currentFullScreenConfig = _config
+        
+        UIView.animate(withDuration: _config.animateDuration) {
             // 强制横竖屏
-            let orientation: UIInterfaceOrientation = isEnter ? config.enterFullScreenOrientation : .portrait
+            let orientation: UIInterfaceOrientation = isEnter ? _config.enterFullScreenOrientation : .portrait
             if !isEnter { // 防止已经竖屏导致无法退出全屏
                 UIDevice.current.setValue(
                     UIApplication.shared.statusBarOrientation.rawValue
@@ -80,7 +90,7 @@ extension FullScreenable {
             if specifiedView != nil {
                 UIApplication.shared.keyWindow?.addSubview(specifiedView!)
             }
-            UIView.animate(withDuration: config.animateDuration, animations: {
+            UIView.animate(withDuration: _config.animateDuration, animations: {
                 specifiedView?.frame = UIScreen.main.bounds
             }) { _ in
                 guard let completed = completed else{ return }
@@ -89,7 +99,7 @@ extension FullScreenable {
         } else { // 退出全屏
             if !isFullScreen { return }
             let specifiedView = self.lxf_specifiedView
-            UIView.animate(withDuration: config.animateDuration, animations: {
+            UIView.animate(withDuration: _config.animateDuration, animations: {
                 specifiedView?.frame = self.lxf_selfFrame ?? CGRect.zero
             }, completion: { _ in
                 specifiedView?.removeFromSuperview()
@@ -198,7 +208,7 @@ extension UIViewController: AssociatedObjectStore {
             lxf_fullScreenableConfig.animateDuration = lxf_defaultAnimateDuration
             lxf_fullScreenableConfig.supportInterfaceOrientation = .allButUpsideDown
         }
-        UIApplication.shared.lxf.currentFullScreenConfig = lxf_fullScreenableConfig
+//        UIApplication.shared.lxf.currentFullScreenConfig = lxf_fullScreenableConfig
     }
 }
 
@@ -244,30 +254,33 @@ public extension LXFNameSpace where Base : UIViewController, Base: FullScreenabl
             let orient = UIDevice.current.orientation
             switch orient {
             case .portrait : // 屏幕正常竖向
+                var _config = config ?? UIApplication.shared.lxf.currentFullScreenConfig
+                _config.enterFullScreenOrientation = .portrait
                 base?.lxf_switchFullScreen(
                     isEnter: false,
                     specifiedView: specifiedView,
                     superView: superView,
+                    config: _config,
                     completed: nil)
                 break
             case .landscapeLeft: // 屏幕左旋转
-                var config = UIApplication.shared.lxf.currentFullScreenConfig
-                config.enterFullScreenOrientation = .landscapeRight
+                var _config = config ?? UIApplication.shared.lxf.currentFullScreenConfig
+                _config.enterFullScreenOrientation = .landscapeRight
                 base?.lxf_switchFullScreen(
                     isEnter: true,
                     specifiedView: specifiedView,
                     superView: superView,
-                    config: config,
+                    config: _config,
                     completed: nil)
                 break
             case .landscapeRight: // 屏幕右旋转
-                var config = UIApplication.shared.lxf.currentFullScreenConfig
-                config.enterFullScreenOrientation = .landscapeLeft
+                var _config = config ?? UIApplication.shared.lxf.currentFullScreenConfig
+                _config.enterFullScreenOrientation = .landscapeLeft
                 base?.lxf_switchFullScreen(
                     isEnter: true,
                     specifiedView: specifiedView,
                     superView: superView,
-                    config: config,
+                    config: _config,
                     completed: nil)
                 break
             default:
