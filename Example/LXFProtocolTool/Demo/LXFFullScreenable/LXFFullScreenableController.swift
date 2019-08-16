@@ -28,13 +28,26 @@ class LXFFullScreenableController: UIViewController, FullScreenable {
         return v
     }()
     
+    fileprivate lazy var switchView: LXFFullSwitchView = {
+        let v = LXFFullSwitchView(.custom)
+        v.frame = CGRect(x: 50, y: 400, width: 200, height: 100)
+        v.setTitle("switch full screen", for: .normal)
+        v.setTitleColor(.black, for: .normal)
+        return v
+    }()
+    
     fileprivate lazy var diyConfig: FullScreenableConfig = {
         return FullScreenableConfig(
             animateDuration: 1,
-            enterFullScreenOrientation : .landscapeLeft
+            enterFullScreenOrientation: .landscapeLeft
         )
     }()
     
+    fileprivate lazy var autoFullScreenConfig: FullScreenableConfig = {
+        return FullScreenableConfig(
+            supportInterfaceOrientation: .allButUpsideDown
+        )
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,12 +55,16 @@ class LXFFullScreenableController: UIViewController, FullScreenable {
         self.view.backgroundColor = .white
         self.view.addSubview(redView)
         self.view.addSubview(cyanView)
+        self.view.addSubview(switchView)
         
         redView.addTarget(self, action: #selector(redViewClick), for: .touchUpInside)
         
         cyanView.addTarget(self, action: #selector(cyanViewClick), for: .touchUpInside)
         
-        lxf.autoFullScreen(specifiedView: redView, superView: view)
+        // 自动旋转下，controller和view最好不要混用屏幕旋转，如果非要如此，请传递config
+        // 传递config的目的是为了退出全屏时恢复supportInterfaceOrientation
+//        lxf.autoFullScreen(specifiedView: redView, superView: view)
+        lxf.autoFullScreen(specifiedView: redView, superView: view, config:autoFullScreenConfig)
     }
     
     deinit {
