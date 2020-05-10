@@ -1,9 +1,9 @@
-osx_image: xcode10
+osx_image: xcode11
 language: swift
 
 before_install: 
-  - gem install xcpretty --no-rdoc --no-ri --no-document --quiet 
-  - gem install cocoapods --pre --no-rdoc --no-ri --no-document --quiet 
+  - gem install xcpretty 
+  - gem install cocoapods
   - pod install --project-directory=Example 
 
 script:
