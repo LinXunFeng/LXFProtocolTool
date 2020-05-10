@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'LXFProtocolTool'
-  s.version          = '1.1.3'
+  s.version          = '2.0.0'
   s.summary          = 'LXFProtocolTool是实用的协议应用工具库'
   s.description      = <<-DESC
 LXFProtocolTool是使用Swift中的协议来实现多种方便、实用的工具库
@@ -19,7 +19,7 @@ LXFProtocolTool是使用Swift中的协议来实现多种方便、实用的工具
   s.source           = { :git => 'https://github.com/LinXunFeng/LXFProtocolTool.git', :tag => s.version.to_s }
 
   s.ios.deployment_target = '8.0'
-  s.swift_version = "4.2"
+  s.swift_version = "5.0"
 
   s.source_files = 'LXFProtocolTool/Classes/**/*.swift'
 
@@ -33,7 +33,7 @@ LXFProtocolTool是使用Swift中的协议来实现多种方便、实用的工具
   
   s.subspec 'Refreshable' do |t|
       t.source_files = 'LXFProtocolTool/Classes/Refreshable/**/*.{swift}'
-      t.dependency 'MJRefresh'
+      t.dependency 'MJRefresh', '>= 3.4.0'
       t.dependency 'RxSwift', '>= 4.0.0'
       t.dependency "LXFProtocolTool/AssociatedObjectStore"
       t.dependency "LXFProtocolTool/Base"
