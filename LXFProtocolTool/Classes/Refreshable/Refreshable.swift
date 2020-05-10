@@ -232,7 +232,7 @@ public extension Reactive where Base : Refreshable {
 // MARK: 创建刷新控件
 public extension LXFNameSpace where Base: Refreshable {
     @available(iOS, deprecated: 0.5.1, message: "Use rx.headerRefresh | rx.footerRefresh | rx.refresh instead")
-    public func initRefresh<T: RefreshControllable>(
+    func initRefresh<T: RefreshControllable>(
         _ vm: T,
         _ scrollView: UIScrollView,
         headerConfig: RefreshableHeaderConfig? = nil,
@@ -249,7 +249,7 @@ public extension LXFNameSpace where Base: Refreshable {
         _ scrollView: UIScrollView,
         config: RefreshableHeaderConfig? = nil,
         _ action: @escaping () -> Void
-    ) -> RefreshHeader {
+    ) -> RefreshHeader? {
         
         if config == nil {
             if let headerConfig = RefreshableConfigure.defaultHeaderConfig() {
@@ -257,11 +257,11 @@ public extension LXFNameSpace where Base: Refreshable {
             } else {
                 scrollView.mj_header = MJRefreshNormalHeader(refreshingBlock: action)
             }
-            scrollView.mj_header.tag = scrollView.tag
+            scrollView.mj_header?.tag = scrollView.tag
             return scrollView.mj_header
         }
         scrollView.mj_header = createRefreshHeader(scrollView, config: config!, action)
-        scrollView.mj_header.tag = scrollView.tag
+        scrollView.mj_header?.tag = scrollView.tag
         return scrollView.mj_header
     }
     
@@ -269,7 +269,7 @@ public extension LXFNameSpace where Base: Refreshable {
         _ scrollView: UIScrollView,
         config: RefreshableFooterConfig? = nil,
         _ action: @escaping RefreshBlock
-    ) -> RefreshFooter {
+    ) -> RefreshFooter? {
         
         if config == nil {
             if let footerConfig = RefreshableConfigure.defaultFooterConfig() {
@@ -277,12 +277,12 @@ public extension LXFNameSpace where Base: Refreshable {
             } else {
                 scrollView.mj_footer = MJRefreshBackNormalFooter(refreshingBlock: action)
             }
-            scrollView.mj_footer.tag = scrollView.tag
+            scrollView.mj_footer?.tag = scrollView.tag
             return scrollView.mj_footer
         }
         
         scrollView.mj_footer = createRefreshFooter(scrollView, config: config!, action)
-        scrollView.mj_footer.tag = scrollView.tag
+        scrollView.mj_footer?.tag = scrollView.tag
         return scrollView.mj_footer
     }
     
@@ -296,18 +296,18 @@ public extension LXFNameSpace where Base: Refreshable {
         switch config.type {
         case .normal:
             let normalHeader = MJRefreshNormalHeader(refreshingBlock: action)
-            normalHeader?.activityIndicatorViewStyle = config.activityIndicatorViewStyle
+            normalHeader.loadingView?.style = config.activityIndicatorViewStyle
             header = normalHeader
         case .gif:
             let gifHeader = MJRefreshGifHeader { action() }
             if config.idleImages.count > 0 {
-                gifHeader?.setImages(config.idleImages, for: .idle)
+                gifHeader.setImages(config.idleImages, for: .idle)
             }
             if config.pullingImages.count > 0 {
-                gifHeader?.setImages(config.pullingImages, for: .pulling)
+                gifHeader.setImages(config.pullingImages, for: .pulling)
             }
             if config.refreshingImages.count > 0 {
-                gifHeader?.setImages(config.refreshingImages, for: .refreshing)
+                gifHeader.setImages(config.refreshingImages, for: .refreshing)
             }
             header = gifHeader
         case .diy(let HeaderType):
@@ -320,16 +320,16 @@ public extension LXFNameSpace where Base: Refreshable {
         if config.refreshingTitle != nil { header?.setTitle(config.refreshingTitle!, for: .refreshing) }
         
         // font
-        if config.stateFont != nil { header?.stateLabel.font = config.stateFont! }
-        if config.lastUpdatedTimeFont != nil { header?.lastUpdatedTimeLabel.font = config.lastUpdatedTimeFont! }
+        if config.stateFont != nil { header?.stateLabel?.font = config.stateFont! }
+        if config.lastUpdatedTimeFont != nil { header?.lastUpdatedTimeLabel?.font = config.lastUpdatedTimeFont! }
         
         // textColor
-        if config.stateColor != nil { header?.stateLabel.textColor = config.stateColor! }
-        if config.lastUpdatedTimeColor != nil { header?.lastUpdatedTimeLabel.textColor = config.lastUpdatedTimeColor! }
+        if config.stateColor != nil { header?.stateLabel?.textColor = config.stateColor! }
+        if config.lastUpdatedTimeColor != nil { header?.lastUpdatedTimeLabel?.textColor = config.lastUpdatedTimeColor! }
         
         // hide
-        header?.stateLabel.isHidden = config.hideState
-        header?.lastUpdatedTimeLabel.isHidden = config.hideLastUpdatedTime
+        header?.stateLabel?.isHidden = config.hideState
+        header?.lastUpdatedTimeLabel?.isHidden = config.hideLastUpdatedTime
         
         // labelLeftInset
         if config.labelLeftInset != nil { header?.labelLeftInset = config.labelLeftInset! }
@@ -349,22 +349,22 @@ public extension LXFNameSpace where Base: Refreshable {
         switch config.type {
         case .autoNormal:
             let autoNormalFooter = MJRefreshAutoNormalFooter(refreshingBlock: action)
-            autoNormalFooter?.activityIndicatorViewStyle = config.activityIndicatorViewStyle
+            autoNormalFooter.loadingView?.style = config.activityIndicatorViewStyle
             autoFooter = autoNormalFooter
         case .autoGif:
             let autoGifFooter = MJRefreshAutoGifFooter(refreshingBlock: action)
             if config.images.count > 0 {
-                autoGifFooter?.setImages(config.images, for: MJRefreshState.refreshing)
+                autoGifFooter.setImages(config.images, for: MJRefreshState.refreshing)
             }
             autoFooter = autoGifFooter
         case .backNormal:
             let backNormalFooter = MJRefreshBackNormalFooter(refreshingBlock: action)
-            backNormalFooter?.activityIndicatorViewStyle = config.activityIndicatorViewStyle
+            backNormalFooter.loadingView?.style = config.activityIndicatorViewStyle
             backFooter = backNormalFooter
         case .backGif:
             let backGifFooter = MJRefreshBackGifFooter(refreshingBlock: action)
             if config.images.count > 0 {
-                backGifFooter?.setImages(config.images, for: MJRefreshState.refreshing)
+                backGifFooter.setImages(config.images, for: MJRefreshState.refreshing)
             }
             backFooter = backGifFooter
         case .diy(let FooterType):
@@ -378,13 +378,13 @@ public extension LXFNameSpace where Base: Refreshable {
             if config.norMoreDataTitle != nil { autoFooter?.setTitle(config.norMoreDataTitle!, for: .noMoreData) }
             
             // font
-            if config.stateFont != nil { autoFooter?.stateLabel.font = config.stateFont! }
+            if config.stateFont != nil { autoFooter?.stateLabel?.font = config.stateFont! }
             
             // textColor
-            if config.stateColor != nil { autoFooter?.stateLabel.textColor = config.stateColor! }
+            if config.stateColor != nil { autoFooter?.stateLabel?.textColor = config.stateColor! }
             
             // hide
-            autoFooter?.stateLabel.isHidden = config.hideState
+            autoFooter?.stateLabel?.isHidden = config.hideState
             
             // labelLeftInset
             if config.labelLeftInset != nil { autoFooter?.labelLeftInset = config.labelLeftInset! }
@@ -397,13 +397,13 @@ public extension LXFNameSpace where Base: Refreshable {
             if config.norMoreDataTitle != nil { backFooter?.setTitle(config.norMoreDataTitle!, for: .noMoreData) }
             
             // font
-            if config.stateFont != nil { backFooter?.stateLabel.font = config.stateFont! }
+            if config.stateFont != nil { backFooter?.stateLabel?.font = config.stateFont! }
             
             // textColor
-            if config.stateColor != nil { backFooter?.stateLabel.textColor = config.stateColor! }
+            if config.stateColor != nil { backFooter?.stateLabel?.textColor = config.stateColor! }
             
             // hide
-            backFooter?.stateLabel.isHidden = config.hideState
+            backFooter?.stateLabel?.isHidden = config.hideState
             
             // labelLeftInset
             if config.labelLeftInset != nil { backFooter?.labelLeftInset = config.labelLeftInset! }
