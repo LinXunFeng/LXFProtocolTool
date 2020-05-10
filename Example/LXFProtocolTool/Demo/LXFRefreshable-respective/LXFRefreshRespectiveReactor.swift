@@ -90,11 +90,13 @@ extension LXFRefreshRespectiveReactor {
         
         let endHeaderRefresh = Observable.just(Mutation.setRefreshStatus(status: .endHeaderRefresh, listIndex: listIndex))
         
-        let fetchList = lxfNetTool.rx.request(.data(type: .welfare, size: pageSize, index: pageIndex))
+        let fetchList = lxfNetTool.rx.request(.data(type: .girl, size: pageSize, index: pageIndex))
             .do(onSuccess: { resp in
                 print("json -- \(resp.fetchJSONString())")
             })
-            .mapArray(LXFRefreshableModel.self)
+            .flatMap {
+                .just($0.mapArray(LXFRefreshableModel.self, modelKey: "data"))
+            }
             .asObservable()
             .do(onNext: { [weak self] models in
                 guard let `self` = self else { return }

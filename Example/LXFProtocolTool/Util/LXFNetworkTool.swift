@@ -17,6 +17,7 @@ enum LXFNetworkTool {
         case android = "Android"
         case ios     = "iOS"
         case welfare = "福利"
+        case girl    = "Girl"
     }
     case data(type: LXFNetworkCategory, size:Int, index:Int)
     case multipleModel
@@ -33,7 +34,7 @@ extension LXFNetworkTool: TargetType {
         case .multipleModel:
             return URL(string: "http://jsonplaceholder.typicode.com/")!
         default:
-            return URL(string: "http://gank.io/api/data/")!
+            return URL(string: "http://gank.io/api/v2/data/")!
         }
     }
     
@@ -43,7 +44,12 @@ extension LXFNetworkTool: TargetType {
         case .multipleModel:
             return "users"
         case .data(let type, let size, let index):
-            return "\(type.rawValue)/\(size)/\(index)"
+            switch type {
+            case .girl:
+                return "category/Girl/type/\(type.rawValue)/page/\(index)/count/\(size)"
+            default:
+                return "\(type.rawValue)/\(size)/\(index)"
+            }
         }
     }
     

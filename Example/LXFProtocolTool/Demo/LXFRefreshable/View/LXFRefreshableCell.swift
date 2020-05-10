@@ -37,8 +37,8 @@ class LXFRefreshableCell: UITableViewCell, View {
     
     func bind(reactor: LXFRefreshableCellReactor) {
         reactor.state.map { $0.model.url }
-            .subscribe(onNext: { [weak self] url in
-            self?.picView.setImage(with: URL(string: url))
-        }).disposed(by: disposeBag)
+            .map { URL(string: $0) }
+            .bind(to: self.picView.rx.image(options: []))
+            .disposed(by: disposeBag)
     }
 }
