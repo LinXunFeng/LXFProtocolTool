@@ -20,7 +20,7 @@ public protocol LXFCompatible {
 }
 
 public extension LXFCompatible {
-    public var lxf: LXFNameSpace<Self> {
+    var lxf: LXFNameSpace<Self> {
         get { return LXFNameSpace(self) }
     }
 }

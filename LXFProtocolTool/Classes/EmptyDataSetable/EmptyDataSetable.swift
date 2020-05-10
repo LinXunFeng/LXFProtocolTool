@@ -154,7 +154,7 @@ public protocol EmptyDataSetable: LXFCompatible { }
 
 public extension LXFNameSpace where Base: NSObject {
     // MARK:- 更新数据
-    public func updateEmptyDataSet(
+    func updateEmptyDataSet(
         _ scrollView: UIScrollView,
         config: EmptyDataSetConfigure? = nil
     ) {
@@ -162,24 +162,24 @@ public extension LXFNameSpace where Base: NSObject {
     }
     
     // MARK: 点击回调
-    public func tapEmptyView(_ scrollView: UIScrollView, block: @escaping EmptyViewTapBlock) {
+    func tapEmptyView(_ scrollView: UIScrollView, block: @escaping EmptyViewTapBlock) {
         scrollView.emptyViewTapBlock = block
     }
-    public func tapEmptyButton(_ scrollView: UIScrollView, block: @escaping EmptyButtonTapBlock) {
+    func tapEmptyButton(_ scrollView: UIScrollView, block: @escaping EmptyButtonTapBlock) {
         scrollView.emptyButtonTapBlock = block
     }
     
     // MARK: 生命周期回调
-    public func emptyViewWillAppear(_ scrollView: UIScrollView, block: @escaping EmptyNormalBlock) {
+    func emptyViewWillAppear(_ scrollView: UIScrollView, block: @escaping EmptyNormalBlock) {
         scrollView.emptyDataSetWillAppearBlock = block
     }
-    public func emptyViewDidAppear(_ scrollView: UIScrollView, block: @escaping EmptyNormalBlock) {
+    func emptyViewDidAppear(_ scrollView: UIScrollView, block: @escaping EmptyNormalBlock) {
         scrollView.emptyDataSetDidAppearBlock = block
     }
-    public func emptyViewWillDisappear(_ scrollView: UIScrollView, block: @escaping EmptyNormalBlock) {
+    func emptyViewWillDisappear(_ scrollView: UIScrollView, block: @escaping EmptyNormalBlock) {
         scrollView.emptyDataSetWillDisappearBlock = block
     }
-    public func emptyViewDidDisappear(_ scrollView: UIScrollView, block: @escaping EmptyNormalBlock) {
+    func emptyViewDidDisappear(_ scrollView: UIScrollView, block: @escaping EmptyNormalBlock) {
         scrollView.emptyDataSetDidDisappearBlock = block
     }
 }
