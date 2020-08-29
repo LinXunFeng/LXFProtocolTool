@@ -33,22 +33,22 @@ LXFProtocolTool是使用Swift中的协议来实现多种方便、实用的工具
   
   s.subspec 'Refreshable' do |t|
       t.source_files = 'LXFProtocolTool/Classes/Refreshable/**/*.{swift}'
-      t.dependency 'MJRefresh', '>= 3.4.0'
-      t.dependency 'RxSwift', '>= 4.0.0'
+      t.dependency 'MJRefresh', '~> 3.5.0'
+      t.dependency 'RxSwift', '~> 5'
       t.dependency "LXFProtocolTool/AssociatedObjectStore"
       t.dependency "LXFProtocolTool/Base"
   end
 
   s.subspec 'EmptyDataSetable' do |t|
       t.source_files = 'LXFProtocolTool/Classes/EmptyDataSetable/**/*.{swift}'
-      t.dependency 'DZNEmptyDataSet', '>= 1.8.1'
+      t.dependency 'DZNEmptyDataSet', '~> 1.8.1'
       t.dependency "LXFProtocolTool/AssociatedObjectStore"
       t.dependency "LXFProtocolTool/Base"
   end
   
   s.subspec 'RxEmptyDataSetable' do |t|
       t.source_files = 'LXFProtocolTool/Classes/RxEmptyDataSetable/**/*.{swift}'
-      t.dependency 'RxCocoa', '>= 4.0.0'
+      t.dependency 'RxCocoa', '~> 5'
       t.dependency "LXFProtocolTool/EmptyDataSetable"
   end
   
