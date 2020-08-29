@@ -12,6 +12,11 @@ import LXFProtocolTool
 import MoyaMapper
 
 final class LXFRefreshRespectiveReactor: Reactor, RefreshControllable {
+    
+    deinit {
+        print("deinit -- LXFRefreshRespectiveReactor")
+    }
+    
     enum ListIndex: Int {
         case first = 1
         case second
@@ -61,8 +66,8 @@ final class LXFRefreshRespectiveReactor: Reactor, RefreshControllable {
             }
         case let .setRefreshStatus(status, listIndex):
             switch listIndex {
-            case .first: lxf.refreshStatusRespective.value = (status, ListIndex.first.rawValue)
-            case .second: lxf.refreshStatusRespective.value = (status, ListIndex.second.rawValue)
+            case .first: lxf.refreshStatusRespective.accept((status, ListIndex.first.rawValue))
+            case .second: lxf.refreshStatusRespective.accept((status, ListIndex.second.rawValue))
             }
         }
         return newState
@@ -101,9 +106,9 @@ extension LXFRefreshRespectiveReactor {
             .do(onNext: { [weak self] models in
                 guard let `self` = self else { return }
                 if models.count < pageSize {
-                    self.lxf.refreshStatus.value = .noMoreData
+                    self.lxf.refreshStatus.accept(.noMoreData)
                 } else {
-                    self.lxf.refreshStatus.value = .resetNoMoreData
+                    self.lxf.refreshStatus.accept(.resetNoMoreData)
                 }
             })
             .flatMap { models -> Observable<Mutation> in

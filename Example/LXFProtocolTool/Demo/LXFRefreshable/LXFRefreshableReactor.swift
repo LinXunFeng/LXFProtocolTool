@@ -13,6 +13,10 @@ import MoyaMapper
 
 final class LXFRefreshableReactor: Reactor, RefreshControllable {
     
+    deinit {
+        print("deinit -- LXFRefreshableReactor")
+    }
+    
     enum Action {
         case fetchList(Bool)
         case beginRefresh
@@ -49,7 +53,7 @@ final class LXFRefreshableReactor: Reactor, RefreshControllable {
         case let .setSections(sections):
             newState.sections = sections
         case let .setRefreshStatus(status):
-            lxf.refreshStatus.value = status
+            lxf.refreshStatus.accept(status)
         case let .setEmptyConfig(config):
             newState.emptyConfig = config
         }
@@ -74,9 +78,9 @@ extension LXFRefreshableReactor {
             .do(onNext: { [weak self] models in
                 guard let `self` = self else { return }
                 if models.count < self.pageSize {
-                    self.lxf.refreshStatus.value = .noMoreData
+                    self.lxf.refreshStatus.accept(.noMoreData)
                 } else {
-                    self.lxf.refreshStatus.value = .resetNoMoreData
+                    self.lxf.refreshStatus.accept(.resetNoMoreData)
                 }
             })
             .flatMap { [weak self] models -> Observable<Mutation> in
