@@ -3,8 +3,14 @@ language: swift
 
 before_install: 
   - gem install xcpretty 
-  - gem install cocoapods
-  - pod install --project-directory=Example 
+  - gem install cocoapods --pre
+  - pod --version
+  - pod setup --silent > /dev/null
+  - pod repo update --silent
+  - xcpretty --version
+  - xcodebuild -version
+  - xcodebuild -showsdks
+  # - pod install --project-directory=Example 
 
 script:
-- pod lib lint --allow-warnings
+  - pod lib lint --allow-warnings --no-clean --verbose
