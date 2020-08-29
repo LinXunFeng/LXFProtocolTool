@@ -43,25 +43,26 @@ extension UIImageView {
     options: ImageOptions? = nil,
     progress: ((Int64, Int64) -> Void)? = nil,
     completion: ((ImageResult) -> Void)? = nil
-  ) -> RetrieveImageTask {
+  ) -> DownloadTask? {
     var options = options ?? []
     // GIF will only animates in the AnimatedImageView
     if self is AnimatedImageView == false {
       options.append(.onlyLoadFirstFrame)
     }
-    let completionHandler: CompletionHandler = { image, error, cacheType, url in
-      if let image = image {
-        completion?(.success(image))
-      } else if let error = error {
-        completion?(.failure(error))
-      }
+    let completionHandler: ((Result<RetrieveImageResult, KingfisherError>) -> Void) = { result in
+        switch result {
+        case let .success(value):
+            completion?(.success(value.image))
+        case let .failure(error):
+            completion?(.failure(error))
+        }
     }
     return self.kf.setImage(
-      with: resource,
-      placeholder: placeholder,
-      options: options,
-      progressBlock: progress,
-      completionHandler: completionHandler
+        with: resource,
+        placeholder: placeholder,
+        options: options,
+        progressBlock: progress,
+        completionHandler: completionHandler
     )
   }
 }

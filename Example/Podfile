@@ -1,3 +1,5 @@
+source 'https://github.com/CocoaPods/Specs.git'
+
 use_frameworks!
 
 target 'LXFProtocolTool_Example' do
@@ -18,7 +20,7 @@ target 'LXFProtocolTool_Example' do
   pod 'ReactorKit'
   pod 'ReusableKit'
   pod 'Then'
-  pod 'Kingfisher', '~> 4.8.0'
+  pod 'Kingfisher', '~> 5.15.0'
 
   target 'LXFProtocolTool_Tests' do
     inherit! :search_paths
