@@ -21,26 +21,26 @@ extension Reactive where Base: UIScrollView {
 
 // MARK: NSObject
 public extension Reactive where Base: NSObject, Base: EmptyDataSetable {
-    public enum TapType {
+    enum TapType {
         case emptyView(_ view: UIView)
         case emptyButton(_ button: UIButton)
     }
     
-    public func tapEmptyView(_ scrollView: UIScrollView) -> Observable<UIView> {
+    func tapEmptyView(_ scrollView: UIScrollView) -> Observable<UIView> {
         return Observable<UIView>.create { observer -> Disposable in
             self.base.lxf.tapEmptyView(scrollView) { observer.onNext($0) }
             return Disposables.create { }
         }
     }
     
-    public func tapEmptyButton(_ scrollView: UIScrollView) -> Observable<UIButton> {
+    func tapEmptyButton(_ scrollView: UIScrollView) -> Observable<UIButton> {
         return Observable<UIButton>.create { observer -> Disposable in
             self.base.lxf.tapEmptyButton(scrollView) { observer.onNext($0) }
             return Disposables.create { }
         }
     }
     
-    public func tap(_ scrollView: UIScrollView) -> Observable<TapType> {
+    func tap(_ scrollView: UIScrollView) -> Observable<TapType> {
         return Observable<TapType>.create { observer -> Disposable in
             self.base.lxf.tapEmptyView(scrollView) { observer.onNext(.emptyView($0)) }
             self.base.lxf.tapEmptyButton(scrollView) { observer.onNext(.emptyButton($0)) }
@@ -48,28 +48,28 @@ public extension Reactive where Base: NSObject, Base: EmptyDataSetable {
         }
     }
     
-    public func emptyViewWillAppear(_ scrollView: UIScrollView) -> Observable<Void> {
+    func emptyViewWillAppear(_ scrollView: UIScrollView) -> Observable<Void> {
         return Observable<Void>.create { observer -> Disposable in
             self.base.lxf.emptyViewWillAppear(scrollView) { observer.onNext(()) }
             return Disposables.create { }
         }
     }
     
-    public func emptyViewDidAppear(_ scrollView: UIScrollView) -> Observable<Void> {
+    func emptyViewDidAppear(_ scrollView: UIScrollView) -> Observable<Void> {
         return Observable<Void>.create { observer -> Disposable in
             self.base.lxf.emptyViewDidAppear(scrollView) { observer.onNext(()) }
             return Disposables.create { }
         }
     }
     
-    public func emptyViewWillDisappear(_ scrollView: UIScrollView) -> Observable<Void> {
+    func emptyViewWillDisappear(_ scrollView: UIScrollView) -> Observable<Void> {
         return Observable<Void>.create { observer -> Disposable in
             self.base.lxf.emptyViewWillDisappear(scrollView) { observer.onNext(()) }
             return Disposables.create { }
         }
     }
     
-    public func emptyViewDidDisappear(_ scrollView: UIScrollView) -> Observable<Void> {
+    func emptyViewDidDisappear(_ scrollView: UIScrollView) -> Observable<Void> {
         return Observable<Void>.create { observer -> Disposable in
             self.base.lxf.emptyViewDidDisappear(scrollView) { observer.onNext(()) }
             return Disposables.create { }
