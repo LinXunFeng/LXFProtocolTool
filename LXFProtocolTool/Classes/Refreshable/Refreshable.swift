@@ -11,6 +11,7 @@
 import UIKit
 import MJRefresh
 import RxSwift
+import RxRelay
 import ObjectiveC
 
 typealias RefreshHeader = MJRefreshHeader
@@ -53,16 +54,16 @@ public protocol RefreshControllable: class, AssociatedObjectStore, LXFCompatible
 
 public extension LXFNameSpace where Base: RefreshControllable {
     /// 告诉外界的 scrollView 当前的刷新状态
-    var refreshStatus : Variable<RefreshStatus> {
+    var refreshStatus : BehaviorRelay<RefreshStatus> {
         return base.associatedObject(
             forKey: &refreshStatusKey,
-            default: Variable<RefreshStatus>(.none))
+            default: BehaviorRelay<RefreshStatus>(value: .none))
     }
     /// 同 refreshStatus，但可以针对不同 scrollView 做出控制
-    var refreshStatusRespective : Variable<RespectiveRefreshStatus> {
+    var refreshStatusRespective : BehaviorRelay<RespectiveRefreshStatus> {
         return base.associatedObject(
             forKey: &refreshStatusRespectivelyKey,
-            default: Variable<RespectiveRefreshStatus>((.none, TagType.default.rawValue)))
+            default: BehaviorRelay<RespectiveRefreshStatus>(value: (.none, TagType.default.rawValue)))
     }
     
     fileprivate func autoSetRefreshStatus(
@@ -151,7 +152,7 @@ public class RefreshableConfigure: NSObject {
 
 public protocol Refreshable: LXFCompatible { }
 
-public extension Reactive where Base : Refreshable {
+public extension Reactive where Base: Refreshable, Base: NSObjectProtocol {
     /// 下拉控件
     ///
     /// - Parameters:
@@ -165,9 +166,9 @@ public extension Reactive where Base : Refreshable {
         headerConfig: RefreshableHeaderConfig? = nil
     ) -> Observable<Void> {
         
-        return .create { observer -> Disposable in
+        return .create { [weak base = self.base] observer -> Disposable in
             vm.lxf.autoSetRefreshStatus(
-                header: self.base.lxf.initRefreshHeader(
+                header: base?.lxf.initRefreshHeader(
                         scrollView,
                         config: headerConfig)
                         { observer.onNext(()) },
@@ -188,10 +189,10 @@ public extension Reactive where Base : Refreshable {
         footerConfig: RefreshableFooterConfig? = nil
     ) -> Observable<Void> {
         
-        return .create { observer -> Disposable in
+        return .create { [weak base = self.base] observer -> Disposable in
             vm.lxf.autoSetRefreshStatus(
                 header: nil,
-                footer: self.base.lxf.initRefreshFooter(
+                footer: base?.lxf.initRefreshFooter(
                         scrollView,
                         config: footerConfig)
                         { observer.onNext(()) }
@@ -214,13 +215,13 @@ public extension Reactive where Base : Refreshable {
         footerConfig: RefreshableFooterConfig? = nil
     ) -> Observable<RefreshType> {
         
-        return Observable.create { observer -> Disposable in
+        return Observable.create { [weak base = self.base] observer -> Disposable in
             vm.lxf.autoSetRefreshStatus(
-                header: self.base.lxf.initRefreshHeader(
+                header: base?.lxf.initRefreshHeader(
                         scrollView,
                         config: headerConfig)
                         { observer.onNext(.header) },
-                footer: self.base.lxf.initRefreshFooter(
+                footer: base?.lxf.initRefreshFooter(
                         scrollView,
                         config: footerConfig)
                         { observer.onNext(.footer) }
