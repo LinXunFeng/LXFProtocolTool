@@ -41,7 +41,7 @@ lane :release do |options|
   push_git_tags
   push_to_git_remote
 
-  pod_lib_lint(no_clean: true, allow_warnings: true)
+  pod_lib_lint(allow_warnings: true)
 
   pod_push
 
