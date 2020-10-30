@@ -16,7 +16,8 @@ class ViewController: UIViewController, FullScreenable {
         "EmptyDataSetable",
         "Refreshable",
         "Refreshable-mutiple",
-        "FullScreenable"
+        "FullScreenable",
+        "FullScreenable-multiVc"
     ]
     
     override func viewDidLoad() {
@@ -65,6 +66,8 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
             vc = LXFRefreshRespectiveController(reactor: LXFRefreshRespectiveReactor())
         } else if indexPath.row == 4 {
             vc = LXFFullScreenableController()
+        } else if indexPath.row == 5 {
+            vc = LXFFullScreenableMultiVcController()
         }
         
         if vc == nil { return }

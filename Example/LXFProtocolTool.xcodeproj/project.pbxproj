@@ -14,6 +14,8 @@
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
+		BD1DA348254BBFF500C99438 /* LXFFullScreenableMultiVcController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD1DA347254BBFF500C99438 /* LXFFullScreenableMultiVcController.swift */; };
+		BD1DA34A254BC06C00C99438 /* LXFFullScreenableOtherController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD1DA349254BC06C00C99438 /* LXFFullScreenableOtherController.swift */; };
 		E54B540712C0EAEEC730D914 /* Pods_LXFProtocolTool_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A401D1702387B816E326C87 /* Pods_LXFProtocolTool_Example.framework */; };
 		FD1D4DE823063F2500C5E359 /* LXFFullSwitchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD1D4DE723063F2400C5E359 /* LXFFullSwitchView.swift */; };
 		FD1FCB2E21A5509800302EDD /* Configs.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD1FCB2D21A5509800302EDD /* Configs.swift */; };
@@ -65,6 +67,8 @@
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
 		9A401D1702387B816E326C87 /* Pods_LXFProtocolTool_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LXFProtocolTool_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BD1DA347254BBFF500C99438 /* LXFFullScreenableMultiVcController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXFFullScreenableMultiVcController.swift; sourceTree = "<group>"; };
+		BD1DA349254BC06C00C99438 /* LXFFullScreenableOtherController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXFFullScreenableOtherController.swift; sourceTree = "<group>"; };
 		C5ADB34366E5742B80AE43C5 /* Pods-LXFProtocolTool_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LXFProtocolTool_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LXFProtocolTool_Tests/Pods-LXFProtocolTool_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		D8E04661F15EF390557CC447 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		FD1D4DE723063F2400C5E359 /* LXFFullSwitchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXFFullSwitchView.swift; sourceTree = "<group>"; };
@@ -292,8 +296,10 @@
 			isa = PBXGroup;
 			children = (
 				FD97E0DC214B4A030057C3C1 /* LXFFullScreenableController.swift */,
+				BD1DA347254BBFF500C99438 /* LXFFullScreenableMultiVcController.swift */,
 				FD97E0DE214B5CFE0057C3C1 /* LXFFullScreenView.swift */,
 				FD1D4DE723063F2400C5E359 /* LXFFullSwitchView.swift */,
+				BD1DA349254BC06C00C99438 /* LXFFullScreenableOtherController.swift */,
 			);
 			path = LXFFullScreenable;
 			sourceTree = "<group>";
@@ -520,12 +526,14 @@
 				FD9E556C2261FD0B00921471 /* LXFDIYAutoFooter.swift in Sources */,
 				FD5152A22111909C00A8591F /* LXFRefreshableController.swift in Sources */,
 				FD1D4DE823063F2500C5E359 /* LXFFullSwitchView.swift in Sources */,
+				BD1DA34A254BC06C00C99438 /* LXFFullScreenableOtherController.swift in Sources */,
 				FD97E0DD214B4A030057C3C1 /* LXFFullScreenableController.swift in Sources */,
 				FD5152B121119A8000A8591F /* LXFRefreshableCellReactor.swift in Sources */,
 				FD51529F21118FCB00A8591F /* LXFNetworkTool.swift in Sources */,
 				FD4A828521916D4F0064C07E /* LXFRefreshRespectiveController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 				FD5152AC2111997200A8591F /* LXFRefreshableModel.swift in Sources */,
+				BD1DA348254BBFF500C99438 /* LXFFullScreenableMultiVcController.swift in Sources */,
 				FD5152A62111919700A8591F /* LXFRefreshableReactor.swift in Sources */,
 				FD62EE632077CD82002C1B53 /* LXFXibTestView.swift in Sources */,
 				FD1FCB2E21A5509800302EDD /* Configs.swift in Sources */,
