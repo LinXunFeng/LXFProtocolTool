@@ -27,3 +27,8 @@ extension AssociatedObjectStore {
         objc_setAssociatedObject(self, key, object, ploicy)
     }
 }
+
+
+class LXFWeakWrapper: NSObject {
+    weak var obj: NSObject?
+}
