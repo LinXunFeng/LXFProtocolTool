@@ -20,11 +20,6 @@ or alternatively using `brew install fastlane`
 fastlane usage
 ```
 Usage help
-### test
-```
-fastlane test
-```
-Test
 ### release
 ```
 fastlane release
