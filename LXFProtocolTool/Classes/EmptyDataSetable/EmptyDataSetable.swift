@@ -327,11 +327,6 @@ extension NSObject : DZNEmptyDataSetDelegate, DZNEmptyDataSetSource {
     }
     
     public func emptyDataSetWillAppear(_ scrollView: UIScrollView!) {
-        // 修复 emptyDataSetView 偏移问题(如:与MJRefresh结合使用时y会出现-54)
-        guard let view = scrollView.value(forKey: "emptyDataSetView") as? UIView else { return }
-        var frame = view.frame
-        frame.origin = CGPoint.zero
-        view.frame = frame
         if scrollView.emptyDataSetWillAppearBlock != nil {
             scrollView.emptyDataSetWillAppearBlock!()
         }
