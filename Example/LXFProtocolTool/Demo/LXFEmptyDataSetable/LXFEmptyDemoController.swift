@@ -102,7 +102,20 @@ extension LXFEmptyDemoController {
 
 // 常用配置
 struct EmptyConfig {
-    static let normal = EmptyDataSetConfigure(tipFont: UIFont.systemFont(ofSize: 14), tipColor: UIColor.gray, tipImage: UIImage(named: "LXFEmptyDataPic")!, spaceHeight: 15)
+    static let normal = EmptyDataSetConfigure(
+        tipFont: UIFont.systemFont(ofSize: 14),
+        tipColor: UIColor.gray,
+        tipImage: UIImage(named: "LXFEmptyDataPic"),
+        spaceHeight: 15,
+        backgroundColor: .yellow,
+        description: NSAttributedString(
+            string: "Hello World",
+            attributes: [
+                .foregroundColor : UIColor.green,
+                .font: UIFont.systemFont(ofSize: 13)
+            ]
+        )
+    )
     static let noData = { () -> EmptyDataSetConfigure in
         var config = EmptyConfig.normal
         config.tipStr = "暂无数据"
