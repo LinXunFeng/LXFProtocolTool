@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'LXFProtocolTool'
-  s.version          = '2.1.0'
+  s.version          = '2.2.0'
   s.summary          = 'LXFProtocolTool是实用的协议应用工具库'
   s.description      = <<-DESC
 LXFProtocolTool是使用Swift中的协议来实现多种方便、实用的工具库
