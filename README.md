@@ -10,13 +10,13 @@
 
 
 
-[iOS - Swift 面向协议编程（一）](https://juejin.im/post/59ee05346fb9a0452845a7e8) -- [【LXF】](http://linxunfeng.top/2017/09/12/iOS-Swift-%E9%9D%A2%E5%90%91%E5%8D%8F%E8%AE%AE%E7%BC%96%E7%A8%8B%EF%BC%88%E4%B8%80%EF%BC%89/) 
-[【掘金】](https://juejin.im/post/59ee05346fb9a0452845a7e8) 
-[【简书】](https://www.jianshu.com/p/0c34114b94e7)
-
-[iOS - Swift 面向协议编程（二）](https://juejin.im/post/59ee05846fb9a0451329dd52) -- [【LXF】](http://linxunfeng.top/2017/09/12/iOS-Swift-%E9%9D%A2%E5%90%91%E5%8D%8F%E8%AE%AE%E7%BC%96%E7%A8%8B%EF%BC%88%E4%BA%8C%EF%BC%89/)
+[iOS - Swift 面向协议编程（一）](https://juejin.im/post/59ee05346fb9a0452845a7e8) -- [【个人博客】](http://linxunfeng.top/2017/09/12/iOS-Swift-%E9%9D%A2%E5%90%91%E5%8D%8F%E8%AE%AE%E7%BC%96%E7%A8%8B%EF%BC%88%E4%B8%80%EF%BC%89/)
 [【掘金】](https://juejin.im/post/59ee05346fb9a0452845a7e8)
-[【简书】](https://www.jianshu.com/p/af1832b27952)
+[【全栈行动】](https://fullstackaction.com/pages/997f68/)
+
+[iOS - Swift 面向协议编程（二）](https://juejin.im/post/59ee05846fb9a0451329dd52) -- [【个人博客】](http://linxunfeng.top/2017/09/12/iOS-Swift-%E9%9D%A2%E5%90%91%E5%8D%8F%E8%AE%AE%E7%BC%96%E7%A8%8B%EF%BC%88%E4%BA%8C%EF%BC%89/)
+[【掘金】](https://juejin.im/post/59ee05346fb9a0452845a7e8)
+[【全栈行动】](https://fullstackaction.com/pages/fb0480/)
 
 
 
@@ -90,19 +90,19 @@ LXFProtocolTool is available under the MIT license. See the LICENSE file for mor
 
 
 
-
-
 ## Author
 
 - LinXunFeng
-- email: [xunfenghellolo@gmail.com](mailto:xunfenghellolo@gmail.com)
-- Blogs:  [LinXunFeng‘s Blog](http://linxunfeng.top/)  | [掘金](https://juejin.im/user/58f8065e61ff4b006646c72d/posts) | [简书](https://www.jianshu.com/u/31e85e7a22a2)
+- email: [linxunfeng@yeah.net](mailto:linxunfeng@yeah.net)
+- Blogs: [全栈行动](https://fullstackaction.com/) | [LinXunFeng‘s Blog](http://linxunfeng.top/)  | [掘金](https://juejin.im/user/58f8065e61ff4b006646c72d/posts) 
 
 
-
-| <img src="https://github.com/LinXunFeng/site/raw/master/source/images/others/wx/wxQR_tip.png" style="width:200px;height:200px;"></img> | <img src="https://github.com/LinXunFeng/site/raw/master/source/images/others/pay/alipay_tip.png" style="width:200px;height:200px;"></img> | <img src="https://github.com/LinXunFeng/site/raw/master/source/images/others/pay/wechat_tip.png" style="width:200px;height:200px;"></img> |
-| :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: |
-|                                                              |                                                              |                                                              |
+<img height="267.5" width="481.5" src="https://github.com/LinXunFeng/LinXunFeng/blob/master/static/img/FSAQR.png" />
 
 
+## Other
+
+| <img width="252" height="294" src="https://github.com/LinXunFeng/site/raw/master/source/images/others/pay/alipay_tip.png" /> | <img width="252" height="294"  src="https://github.com/LinXunFeng/site/raw/master/source/images/others/pay/wechat_tip.png" /> |
+| :----------------------------------------------------------: | :----------------------------------------------------------: |
+|                                                              |                                                              |
 
