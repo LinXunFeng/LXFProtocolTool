@@ -1,8 +1,11 @@
 # LXFProtocolTool
+
+![Author](https://img.shields.io/badge/author-LinXunFeng-blue.svg?style=flat-square)
 [![Build Status](https://travis-ci.org/LinXunFeng/LXFProtocolTool.svg?branch=master)](https://travis-ci.org/LinXunFeng/LXFProtocolTool) 
 [![Version](https://img.shields.io/cocoapods/v/LXFProtocolTool.svg?style=flat)](http://cocoapods.org/pods/LXFProtocolTool)
 [![License](https://img.shields.io/cocoapods/l/LXFProtocolTool.svg?style=flat)](http://cocoapods.org/pods/LXFProtocolTool)
 [![Platform](https://img.shields.io/cocoapods/p/LXFProtocolTool.svg?style=flat)](http://cocoapods.org/pods/LXFProtocolTool)
+![visitors](https://visitor-badge.glitch.me/badge?page_id=LinXunFeng.LXFProtocolTool)
 
 通过协议的方式来方便快捷地实现一些的实用功能，目前功能不多，往后会逐渐增加，喜欢的来个Star吧 : )
 
