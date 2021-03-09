@@ -12,7 +12,9 @@ import DZNEmptyDataSet
 public typealias EmptyViewTapBlock = ((UIView)->())
 public typealias EmptyButtonTapBlock = ((UIButton)->())
 public typealias EmptyNormalBlock = (()->Void)
-fileprivate let defaultEmptyConfig = EmptyDataSetableConfigure.shared.emptyDataSetConfigure
+fileprivate var defaultEmptyConfig: EmptyDataSetConfigure {
+    get { return EmptyDataSetableConfigure.shared.emptyDataSetConfigure }
+}
 
 public struct EmptyDataSetConfigure {
     /// 纵向偏移(0)  CGFloat
@@ -199,15 +201,15 @@ public extension LXFNameSpace where Base: NSObject {
 
 extension NSObject : DZNEmptyDataSetDelegate, DZNEmptyDataSetSource {
     public func title(forEmptyDataSet scrollView: UIScrollView) -> NSAttributedString? {
-        let curConfig = scrollView.emptyDataSetConfig
+        let curConfig = scrollView.emptyDataSetConfig ?? defaultEmptyConfig
         
-        if let title = curConfig?.title ?? defaultEmptyConfig.title {
+        if let title = curConfig.title {
             return title
         }
         
-        let tipColor = curConfig?.tipColor != nil ? curConfig!.tipColor : defaultEmptyConfig.tipColor
-        let tipText = curConfig?.tipStr != nil ? curConfig!.tipStr : defaultEmptyConfig.tipStr
-        let tipFont = curConfig?.tipFont != nil ? curConfig!.tipFont : defaultEmptyConfig.tipFont
+        let tipColor = curConfig.tipColor
+        let tipText = curConfig.tipStr
+        let tipFont = curConfig.tipFont
         
         let attrStr = NSAttributedString(string: tipText, attributes: [
             .font:tipFont,
@@ -217,101 +219,65 @@ extension NSObject : DZNEmptyDataSetDelegate, DZNEmptyDataSetSource {
     }
     
     public func description(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString? {
-        let curConfig = scrollView.emptyDataSetConfig
-        let description = curConfig?.description != nil ? curConfig!.description : defaultEmptyConfig.description
-        return description
+        let curConfig = scrollView.emptyDataSetConfig ?? defaultEmptyConfig
+        return curConfig.description
     }
     
     public func image(forEmptyDataSet scrollView: UIScrollView) -> UIImage? {
-        guard let tipImage = scrollView.emptyDataSetConfig?.tipImage else {
-            return defaultEmptyConfig.tipImage
-        }
-        return tipImage
+        let curConfig = scrollView.emptyDataSetConfig ?? defaultEmptyConfig
+        return curConfig.tipImage
     }
     
     public func imageTintColor(forEmptyDataSet scrollView: UIScrollView) -> UIColor? {
-        let curConfig = scrollView.emptyDataSetConfig
-        let imageTintColor = curConfig?.imageTintColor != nil ? curConfig!.imageTintColor : defaultEmptyConfig.imageTintColor
-        if imageTintColor == nil {
-            return nil
-        }
-        return imageTintColor
+        let curConfig = scrollView.emptyDataSetConfig ?? defaultEmptyConfig
+        return curConfig.imageTintColor
     }
     
     public func imageAnimation(forEmptyDataSet scrollView: UIScrollView) -> CAAnimation? {
-        let curConfig = scrollView.emptyDataSetConfig
-        let imageAnimation = curConfig?.imageAnimation != nil ? curConfig!.imageAnimation : defaultEmptyConfig.imageAnimation
-        if imageAnimation == nil {
-            return nil
-        }
-        return imageAnimation
+        let curConfig = scrollView.emptyDataSetConfig ?? defaultEmptyConfig
+        return curConfig.imageAnimation
     }
     
     public func buttonTitle(forEmptyDataSet scrollView: UIScrollView, for state: UIControl.State) -> NSAttributedString? {
-        let curConfig = scrollView.emptyDataSetConfig
-        
-        let buttonTitle = curConfig?.buttonTitle != nil ? curConfig!.buttonTitle : defaultEmptyConfig.buttonTitle
-        return buttonTitle
+        let curConfig = scrollView.emptyDataSetConfig ?? defaultEmptyConfig
+        return curConfig.buttonTitle
     }
     
     public func buttonImage(forEmptyDataSet scrollView: UIScrollView, for state: UIControl.State) -> UIImage? {
-        let curConfig = scrollView.emptyDataSetConfig
-        let buttonImageBlock = curConfig?.buttonImageBlock != nil ? curConfig!.buttonImageBlock : defaultEmptyConfig.buttonImageBlock
-        if buttonImageBlock == nil {
-            return nil
-        }
-        guard let img = buttonImageBlock!(state) else {
-            return nil
-        }
-        return img
+        let curConfig = scrollView.emptyDataSetConfig ?? defaultEmptyConfig
+        let buttonImageBlock = curConfig.buttonImageBlock
+        return buttonImageBlock?(state)
     }
     
     public func buttonBackgroundImage(forEmptyDataSet scrollView: UIScrollView, for state: UIControl.State) -> UIImage? {
-        let curConfig = scrollView.emptyDataSetConfig
-        let buttonBackgroundImageBlock = curConfig?.buttonBackgroundImageBlock != nil ? curConfig!.buttonBackgroundImageBlock : defaultEmptyConfig.buttonBackgroundImageBlock
-        if buttonBackgroundImageBlock == nil {
-            return nil
-        }
-        guard let img = buttonBackgroundImageBlock!(state) else {
-            return nil
-        }
-        return img
+        let curConfig = scrollView.emptyDataSetConfig ?? defaultEmptyConfig
+        let buttonBackgroundImageBlock = curConfig.buttonBackgroundImageBlock
+        return buttonBackgroundImageBlock?(state)
     }
     
     public func backgroundColor(forEmptyDataSet scrollView: UIScrollView!) -> UIColor? {
-        let curConfig = scrollView.emptyDataSetConfig
-        let backgroundColor = curConfig?.backgroundColor != nil ? curConfig!.backgroundColor : defaultEmptyConfig.backgroundColor
-        return backgroundColor
+        let curConfig = scrollView.emptyDataSetConfig ?? defaultEmptyConfig
+        return curConfig.backgroundColor
     }
     
     public func customView(forEmptyDataSet scrollView: UIScrollView) -> UIView? {
-        let curConfig = scrollView.emptyDataSetConfig
-        let customEmptyView = curConfig?.customEmptyView != nil ? curConfig!.customEmptyView : defaultEmptyConfig.customEmptyView
-        if customEmptyView == nil {
-            return nil
-        }
-        return customEmptyView
+        let curConfig = scrollView.emptyDataSetConfig ?? defaultEmptyConfig
+        return curConfig.customEmptyView
     }
     
     public func verticalOffset(forEmptyDataSet scrollView: UIScrollView) -> CGFloat {
-        let curConfig = scrollView.emptyDataSetConfig
-        
-        let offset = curConfig?.verticalOffset != nil ? curConfig!.verticalOffset : defaultEmptyConfig.verticalOffset
-        return offset
+        let curConfig = scrollView.emptyDataSetConfig ?? defaultEmptyConfig
+        return curConfig.verticalOffset
     }
     
     public func spaceHeight(forEmptyDataSet scrollView: UIScrollView) -> CGFloat {
-        let curConfig = scrollView.emptyDataSetConfig
-        
-        let spaceHeight = curConfig?.spaceHeight != nil ? curConfig!.spaceHeight : defaultEmptyConfig.spaceHeight
-        return spaceHeight
+        let curConfig = scrollView.emptyDataSetConfig ?? defaultEmptyConfig
+        return curConfig.spaceHeight
     }
     
     public func emptyDataSetShouldAllowScroll(_ scrollView: UIScrollView) -> Bool {
-        let curConfig = scrollView.emptyDataSetConfig
-        
-        let allowScroll = curConfig?.allowScroll != nil ? curConfig!.allowScroll : defaultEmptyConfig.allowScroll
-        return allowScroll
+        let curConfig = scrollView.emptyDataSetConfig ?? defaultEmptyConfig
+        return curConfig.allowScroll
     }
     
     public func emptyDataSet(_ scrollView: UIScrollView, didTap view: UIView) {
