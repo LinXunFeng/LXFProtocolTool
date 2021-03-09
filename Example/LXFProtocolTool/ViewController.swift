@@ -23,6 +23,9 @@ class ViewController: UIViewController, FullScreenable {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // 设置默认占位图配置
+        // EmptyDataSetableConfigure.setDefaultEmptyDataSetConfigure(EmptyConfig.normal)
+        
         initUI()
     }
 }

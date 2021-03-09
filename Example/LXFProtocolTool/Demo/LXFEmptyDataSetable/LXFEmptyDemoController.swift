@@ -96,12 +96,21 @@ extension LXFEmptyDemoController {
                 print("emptyViewDidAppear")
             })
             .disposed(by: disposeBag)
+        
+        self.rx.emptyViewWillAppear(tableView)
+            .subscribe(onNext: { _ in
+                print("emptyViewWillAppear")
+            })
+            .disposed(by: disposeBag)
     }
 }
 
 
 // 常用配置
 struct EmptyConfig {
+    
+    static let none = EmptyDataSetConfigure()
+    
     static let normal = EmptyDataSetConfigure(
         tipFont: UIFont.systemFont(ofSize: 14),
         tipColor: UIColor.gray,
