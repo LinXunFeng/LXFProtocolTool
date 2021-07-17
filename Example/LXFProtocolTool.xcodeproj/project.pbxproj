@@ -35,6 +35,9 @@
 		FD97E0DF214B5CFE0057C3C1 /* LXFFullScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD97E0DE214B5CFE0057C3C1 /* LXFFullScreenView.swift */; };
 		FD9E556A2261F88A00921471 /* LXFDIYHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD9E55692261F88A00921471 /* LXFDIYHeader.swift */; };
 		FD9E556C2261FD0B00921471 /* LXFDIYAutoFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD9E556B2261FD0B00921471 /* LXFDIYAutoFooter.swift */; };
+		FDCE664226A2C6CC00B49BE3 /* LXFRefreshableTrailerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCE664126A2C6CC00B49BE3 /* LXFRefreshableTrailerController.swift */; };
+		FDCE664526A2C7B300B49BE3 /* LXFRefreshableTrailerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCE664426A2C7B300B49BE3 /* LXFRefreshableTrailerCell.swift */; };
+		FDCE664B26A2D9D500B49BE3 /* LXFRefreshableTrailerReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCE664A26A2D9D500B49BE3 /* LXFRefreshableTrailerReactor.swift */; };
 		FDDD69A72111A0B40069498D /* UIImageView+Kingfisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDDD69A62111A0B40069498D /* UIImageView+Kingfisher.swift */; };
 		FDDD69A92111AE2C0069498D /* LXFNibloadableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDDD69A82111AE2C0069498D /* LXFNibloadableController.swift */; };
 /* End PBXBuildFile section */
@@ -89,6 +92,9 @@
 		FD97E0DE214B5CFE0057C3C1 /* LXFFullScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXFFullScreenView.swift; sourceTree = "<group>"; };
 		FD9E55692261F88A00921471 /* LXFDIYHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXFDIYHeader.swift; sourceTree = "<group>"; };
 		FD9E556B2261FD0B00921471 /* LXFDIYAutoFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXFDIYAutoFooter.swift; sourceTree = "<group>"; };
+		FDCE664126A2C6CC00B49BE3 /* LXFRefreshableTrailerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXFRefreshableTrailerController.swift; sourceTree = "<group>"; };
+		FDCE664426A2C7B300B49BE3 /* LXFRefreshableTrailerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXFRefreshableTrailerCell.swift; sourceTree = "<group>"; };
+		FDCE664A26A2D9D500B49BE3 /* LXFRefreshableTrailerReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXFRefreshableTrailerReactor.swift; sourceTree = "<group>"; };
 		FDDD69A62111A0B40069498D /* UIImageView+Kingfisher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+Kingfisher.swift"; sourceTree = "<group>"; };
 		FDDD69A82111AE2C0069498D /* LXFNibloadableController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXFNibloadableController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -206,13 +212,13 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		FD4A828321916D310064C07E /* LXFRefreshable-respective */ = {
+		FD4A828321916D310064C07E /* LXFRefreshable-Respective */ = {
 			isa = PBXGroup;
 			children = (
 				FD4A828421916D4F0064C07E /* LXFRefreshRespectiveController.swift */,
 				FD4A828621916D570064C07E /* LXFRefreshRespectiveReactor.swift */,
 			);
-			path = "LXFRefreshable-respective";
+			path = "LXFRefreshable-Respective";
 			sourceTree = "<group>";
 		};
 		FD51529B21118F1800A8591F /* Util */ = {
@@ -227,16 +233,15 @@
 		FD51529C21118F1F00A8591F /* Demo */ = {
 			isa = PBXGroup;
 			children = (
-				FD4A828321916D310064C07E /* LXFRefreshable-respective */,
+				FDCE664C26A2E23300B49BE3 /* LXFRefreshable */,
 				FD97E0D9214B48990057C3C1 /* LXFFullScreenable */,
-				FD5152A02111904300A8591F /* LXFRefreshable */,
 				FD62EE662077D5E4002C1B53 /* LXFEmptyDataSetable */,
 				FD62EE5F2077CD82002C1B53 /* LXFNibloadable */,
 			);
 			path = Demo;
 			sourceTree = "<group>";
 		};
-		FD5152A02111904300A8591F /* LXFRefreshable */ = {
+		FD5152A02111904300A8591F /* LXFRefreshable-Normal */ = {
 			isa = PBXGroup;
 			children = (
 				FD5152AD21119A4800A8591F /* View */,
@@ -245,7 +250,7 @@
 				FD5152A12111909C00A8591F /* LXFRefreshableController.swift */,
 				FD5152A52111919700A8591F /* LXFRefreshableReactor.swift */,
 			);
-			path = LXFRefreshable;
+			path = "LXFRefreshable-Normal";
 			sourceTree = "<group>";
 		};
 		FD5152A92111953400A8591F /* Section */ = {
@@ -313,6 +318,34 @@
 			path = DIY;
 			sourceTree = "<group>";
 		};
+		FDCE664026A2C68900B49BE3 /* LXFRefreshable-Trailer */ = {
+			isa = PBXGroup;
+			children = (
+				FDCE664326A2C7A000B49BE3 /* View */,
+				FDCE664126A2C6CC00B49BE3 /* LXFRefreshableTrailerController.swift */,
+				FDCE664A26A2D9D500B49BE3 /* LXFRefreshableTrailerReactor.swift */,
+			);
+			path = "LXFRefreshable-Trailer";
+			sourceTree = "<group>";
+		};
+		FDCE664326A2C7A000B49BE3 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				FDCE664426A2C7B300B49BE3 /* LXFRefreshableTrailerCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		FDCE664C26A2E23300B49BE3 /* LXFRefreshable */ = {
+			isa = PBXGroup;
+			children = (
+				FD5152A02111904300A8591F /* LXFRefreshable-Normal */,
+				FD4A828321916D310064C07E /* LXFRefreshable-Respective */,
+				FDCE664026A2C68900B49BE3 /* LXFRefreshable-Trailer */,
+			);
+			path = LXFRefreshable;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -366,13 +399,13 @@
 				TargetAttributes = {
 					607FACCF1AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
-						DevelopmentTeam = 94TA46J9NJ;
+						DevelopmentTeam = 2RA5LSHPUJ;
 						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 					};
 					607FACE41AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
-						DevelopmentTeam = 94TA46J9NJ;
+						DevelopmentTeam = 2RA5LSHPUJ;
 						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 607FACCF1AFB9204008FA782;
@@ -526,15 +559,18 @@
 				FD9E556C2261FD0B00921471 /* LXFDIYAutoFooter.swift in Sources */,
 				FD5152A22111909C00A8591F /* LXFRefreshableController.swift in Sources */,
 				FD1D4DE823063F2500C5E359 /* LXFFullSwitchView.swift in Sources */,
+				FDCE664226A2C6CC00B49BE3 /* LXFRefreshableTrailerController.swift in Sources */,
 				BD1DA34A254BC06C00C99438 /* LXFFullScreenableOtherController.swift in Sources */,
 				FD97E0DD214B4A030057C3C1 /* LXFFullScreenableController.swift in Sources */,
 				FD5152B121119A8000A8591F /* LXFRefreshableCellReactor.swift in Sources */,
+				FDCE664526A2C7B300B49BE3 /* LXFRefreshableTrailerCell.swift in Sources */,
 				FD51529F21118FCB00A8591F /* LXFNetworkTool.swift in Sources */,
 				FD4A828521916D4F0064C07E /* LXFRefreshRespectiveController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 				FD5152AC2111997200A8591F /* LXFRefreshableModel.swift in Sources */,
 				BD1DA348254BBFF500C99438 /* LXFFullScreenableMultiVcController.swift in Sources */,
 				FD5152A62111919700A8591F /* LXFRefreshableReactor.swift in Sources */,
+				FDCE664B26A2D9D500B49BE3 /* LXFRefreshableTrailerReactor.swift in Sources */,
 				FD62EE632077CD82002C1B53 /* LXFXibTestView.swift in Sources */,
 				FD1FCB2E21A5509800302EDD /* Configs.swift in Sources */,
 			);
@@ -688,7 +724,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 94TA46J9NJ;
+				DEVELOPMENT_TEAM = 2RA5LSHPUJ;
 				INFOPLIST_FILE = LXFProtocolTool/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
@@ -708,7 +744,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 94TA46J9NJ;
+				DEVELOPMENT_TEAM = 2RA5LSHPUJ;
 				INFOPLIST_FILE = LXFProtocolTool/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
@@ -726,7 +762,7 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 94TA46J9NJ;
+				DEVELOPMENT_TEAM = 2RA5LSHPUJ;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -751,7 +787,7 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 94TA46J9NJ;
+				DEVELOPMENT_TEAM = 2RA5LSHPUJ;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
