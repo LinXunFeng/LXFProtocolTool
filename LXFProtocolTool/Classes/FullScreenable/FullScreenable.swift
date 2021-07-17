@@ -35,7 +35,7 @@ typealias LXFNormalBlockType = ()->Void
 public let lxf_defaultAnimateDuration: Double = 0.25
 
 // MARK:- FullScreenable
-public protocol FullScreenable: class, AssociatedObjectStore, LXFCompatible {}
+public protocol FullScreenable: AnyObject, AssociatedObjectStore, LXFCompatible {}
 extension FullScreenable {
     var isFullScreen: Bool {
         get { return associatedObject(forKey: &lxf_isFullKey, default: false) }
