@@ -9,15 +9,26 @@
 import UIKit
 import LXFProtocolTool
 
+enum LXFListOptionType: String {
+    case nibloadable = "LXFNibloadable"
+    case emptyDataSetable = "EmptyDataSetable"
+    case refreshable = "Refreshable"
+    case refreshableTrailer = "Refreshable-左滑"
+    case refreshableMutiple = "Refreshable-多个列表"
+    case fullScreenable = "FullScreenable"
+    case fullScreenableMultiVc = "FullScreenable-multiVc"
+}
+
 class ViewController: UIViewController, FullScreenable {
 
-    let dataArray = [
-        "LXFNibloadable",
-        "EmptyDataSetable",
-        "Refreshable",
-        "Refreshable-mutiple",
-        "FullScreenable",
-        "FullScreenable-multiVc"
+    let dataArray: [LXFListOptionType] = [
+        .nibloadable,
+        .emptyDataSetable,
+        .refreshable,
+        .refreshableTrailer,
+        .refreshableMutiple,
+        .fullScreenable,
+        .fullScreenableMultiVc
     ]
     
     override func viewDidLoad() {
@@ -52,29 +63,32 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         if cell == nil {
             cell = UITableViewCell(style: .default, reuseIdentifier: cellID)
         }
-        cell?.textLabel?.text = dataArray[indexPath.row]
+        cell?.textLabel?.text = dataArray[indexPath.row].rawValue
         return cell!
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         var vc: UIViewController?
-        if indexPath.row == 0 {
+        switch self.dataArray[indexPath.row] {
+        case .nibloadable:
             vc = LXFNibloadableController()
-        } else if indexPath.row == 1 {
+        case .emptyDataSetable:
             vc = LXFEmptyDemoController()
-        } else if indexPath.row == 2 {
+        case .refreshable:
             vc = LXFRefreshableController(reactor: LXFRefreshableReactor())
-        } else if indexPath.row == 3 {
+        case .refreshableTrailer:
+            vc = LXFRefreshableTrailerController(reactor: LXFRefreshableTrailerReactor())
+        case .refreshableMutiple:
             vc = LXFRefreshRespectiveController(reactor: LXFRefreshRespectiveReactor())
-        } else if indexPath.row == 4 {
+        case .fullScreenable:
             vc = LXFFullScreenableController()
-        } else if indexPath.row == 5 {
+        case .fullScreenableMultiVc:
             vc = LXFFullScreenableMultiVcController()
         }
         
         if vc == nil { return }
-        vc?.title = dataArray[indexPath.row]
+        vc?.title = dataArray[indexPath.row].rawValue
         self.navigationController?.pushViewController(vc!, animated: true)
     }
 }

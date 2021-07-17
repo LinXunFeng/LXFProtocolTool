@@ -16,6 +16,7 @@ import ObjectiveC
 
 public typealias LXFRefreshHeader = MJRefreshHeader
 public typealias LXFRefreshFooter = MJRefreshFooter
+public typealias LXFRefreshTrailer = MJRefreshTrailer
 
 public typealias RefreshBlock = () -> Void
 public typealias RespectiveRefreshStatus = (RefreshStatus, Int)
@@ -23,6 +24,7 @@ public typealias RespectiveRefreshStatus = (RefreshStatus, Int)
 public enum RefreshType {
     case header
     case footer
+    case trailer
 }
 
 public enum RefreshStatus {
@@ -31,12 +33,16 @@ public enum RefreshStatus {
     case endHeaderRefresh
     case beingFooterRefresh
     case endFooterRefresh
+    case beginTrailerRefresh
+    case endTrailerRefresh
     case noMoreData
     case resetNoMoreData
     case hiddenHeader
     case hiddenFooter
+    case hiddenTrailer
     case showHeader
     case showFooter
+    case showTrailer
 }
 
 fileprivate enum TagType: Int {
@@ -50,7 +56,7 @@ fileprivate enum TagType: Int {
 private var refreshStatusKey = "refreshStatusKey"
 private var refreshStatusRespectivelyKey = "refreshStatusRespectivelyKey"
 
-public protocol RefreshControllable: class, AssociatedObjectStore, LXFCompatible { }
+public protocol RefreshControllable: AnyObject, AssociatedObjectStore, LXFCompatible { }
 
 public extension LXFNameSpace where Base: RefreshControllable {
     /// 告诉外界的 scrollView 当前的刷新状态
@@ -67,8 +73,9 @@ public extension LXFNameSpace where Base: RefreshControllable {
     }
     
     fileprivate func autoSetRefreshStatus(
-        header: LXFRefreshHeader?,
-        footer: LXFRefreshFooter?
+        header: LXFRefreshHeader? = nil,
+        footer: LXFRefreshFooter? = nil,
+        trailer: LXFRefreshTrailer? = nil
     ) -> Disposable {
         return Observable.of (
                 refreshStatusRespective.asObservable(),
@@ -79,9 +86,11 @@ public extension LXFNameSpace where Base: RefreshControllable {
             .subscribe(onNext: { (status, tag) in
                 var isHeader = true
                 var isFooter = true
+                var isTrailer = true
                 if tag != TagType.indiscrimination.rawValue {
                     isHeader = tag == header?.tag ?? TagType.default.rawValue
                     isFooter = tag == footer?.tag ?? TagType.default.rawValue
+                    isTrailer = tag == trailer?.tag ?? TagType.default.rawValue
                 }
                 switch status {
                 case .beginHeaderRefresh:
@@ -92,6 +101,10 @@ public extension LXFNameSpace where Base: RefreshControllable {
                     if isFooter { footer?.beginRefreshing() }
                 case .endFooterRefresh:
                     if isFooter { footer?.endRefreshing() }
+                case .beginTrailerRefresh:
+                    if isTrailer { trailer?.beginRefreshing() }
+                case .endTrailerRefresh:
+                    if isTrailer { trailer?.endRefreshing() }
                 case .noMoreData:
                     if isFooter { footer?.endRefreshingWithNoMoreData() }
                 case .resetNoMoreData:
@@ -100,10 +113,14 @@ public extension LXFNameSpace where Base: RefreshControllable {
                     if isHeader { header?.isHidden = true }
                 case .hiddenFooter:
                     if isFooter { footer?.isHidden = true }
+                case .hiddenTrailer:
+                    if isTrailer { trailer?.isHidden = true }
                 case .showHeader:
                     if isHeader { header?.isHidden = false }
                 case .showFooter:
                     if isFooter { footer?.isHidden = false }
+                case .showTrailer:
+                    if isTrailer { trailer?.isHidden = false }
                 case .none: break
                 }
             })
@@ -121,6 +138,7 @@ public class RefreshableConfigure: NSObject {
     
     fileprivate var headerConfig : RefreshableHeaderConfig?
     fileprivate var footerConfig: RefreshableFooterConfig?
+    fileprivate var trailerConfig: RefreshableTrailerConfig?
     
     /// 获取默认下拉配置
     ///
@@ -136,17 +154,27 @@ public class RefreshableConfigure: NSObject {
         return RefreshableConfigure.shared.footerConfig
     }
     
-    /// 设置默认上拉配置
+    /// 获取默认左拉配置
+    ///
+    /// - Returns: RefreshableTrailerConfig
+    fileprivate static func defaultTrailerConfig() -> RefreshableTrailerConfig? {
+        return RefreshableConfigure.shared.trailerConfig
+    }
+    
+    /// 设置默认配置
     ///
     /// - Parameters:
     ///   - headerConfig: RefreshableHeaderConfig
     ///   - footerConfig: RefreshableFooterConfig
+    ///   - trailerConfig: RefreshableTrailerConfig
     public static func setDefaultConfig(
         headerConfig: RefreshableHeaderConfig?,
-        footerConfig: RefreshableFooterConfig? = nil
+        footerConfig: RefreshableFooterConfig? = nil,
+        trailerConfig: RefreshableTrailerConfig? = nil
     ) {
         RefreshableConfigure.shared.headerConfig = headerConfig
         RefreshableConfigure.shared.footerConfig = footerConfig
+        RefreshableConfigure.shared.trailerConfig = trailerConfig
     }
 }
 
@@ -176,9 +204,7 @@ public extension Reactive where Base: Refreshable, Base: NSObjectProtocol {
             }
             headerInitCompleteBlock?(header)
             
-            return vm.lxf.autoSetRefreshStatus(
-                header: header,
-                footer: nil)
+            return vm.lxf.autoSetRefreshStatus(header: header)
         }
     }
     
@@ -205,10 +231,34 @@ public extension Reactive where Base: Refreshable, Base: NSObjectProtocol {
             }
             footerInitCompleteBlock?(footer)
             
-            return vm.lxf.autoSetRefreshStatus(
-                header: nil,
-                footer: footer
-            )
+            return vm.lxf.autoSetRefreshStatus(footer: footer)
+        }
+    }
+    
+    /// 左拉控件
+    ///
+    /// - Parameters:
+    ///   - vm: 遵守 RefreshControllable 协议的对象
+    ///   - scrollView: UIScrollView 及子类
+    ///   - trailerConfig: 左拉控件配置
+    ///   - trailerInitCompleteBlock: 左拉控件初始化完成回调
+    /// - Returns: Observable<Void>
+    func trailerRefresh<T: RefreshControllable>(
+        _ vm: T,
+        _ scrollView: UIScrollView,
+        trailerConfig: RefreshableTrailerConfig? = nil,
+        trailerInitCompleteBlock: ((LXFRefreshTrailer?) -> Void)? = nil
+    ) -> Observable<Void> {
+        
+        return .create { [weak base = self.base] observer -> Disposable in
+            let trailer = base?.lxf.initRefreshTrailer(
+                scrollView,
+                config: trailerConfig)
+                { observer.onNext(())
+            }
+            trailerInitCompleteBlock?(trailer)
+            
+            return vm.lxf.autoSetRefreshStatus(trailer: trailer)
         }
     }
     
@@ -311,9 +361,30 @@ public extension LXFNameSpace where Base: Refreshable {
         return scrollView.mj_footer
     }
     
+    fileprivate func initRefreshTrailer(
+        _ scrollView: UIScrollView,
+        config: RefreshableTrailerConfig? = nil,
+        _ action: @escaping RefreshBlock
+    ) -> LXFRefreshTrailer? {
+        
+        if config == nil {
+            if let trailerConfig = RefreshableConfigure.defaultTrailerConfig() {
+                scrollView.mj_trailer = createRefreshTrailer(scrollView, config: trailerConfig, action)
+            } else {
+                scrollView.mj_trailer = MJRefreshNormalTrailer(refreshingBlock: action)
+            }
+            scrollView.mj_trailer?.tag = scrollView.tag
+            return scrollView.mj_trailer
+        }
+        
+        scrollView.mj_trailer = createRefreshTrailer(scrollView, config: config!, action)
+        scrollView.mj_trailer?.tag = scrollView.tag
+        return scrollView.mj_trailer
+    }
+    
     fileprivate func createRefreshHeader(
         _ scrollView: UIScrollView,
-        config: RefreshableHeaderConfig ,
+        config: RefreshableHeaderConfig,
         _ action: @escaping () -> Void
     ) -> LXFRefreshHeader? {
         
@@ -364,7 +435,7 @@ public extension LXFNameSpace where Base: Refreshable {
     
     fileprivate func createRefreshFooter(
         _ scrollView: UIScrollView,
-        config: RefreshableFooterConfig ,
+        config: RefreshableFooterConfig,
         _ action: @escaping () -> Void
     ) -> LXFRefreshFooter? {
         
@@ -436,6 +507,46 @@ public extension LXFNameSpace where Base: Refreshable {
             return backFooter
         }
     }
+    
+    fileprivate func createRefreshTrailer(
+        _ scrollView: UIScrollView,
+        config: RefreshableTrailerConfig,
+        _ action: @escaping () -> Void
+    ) -> LXFRefreshTrailer? {
+        
+        var trailer: MJRefreshStateTrailer?
+        switch config.type {
+        case .normal:
+            let normalTrailer = MJRefreshNormalTrailer(refreshingBlock: action)
+            normalTrailer.arrowView?.isHidden = config.hideArrowView
+            if let arrowViewImage = config.arrowViewImage {
+                normalTrailer.arrowView?.image = arrowViewImage
+            }
+            trailer = normalTrailer
+        }
+        
+        trailer?.ignoredScrollViewContentInsetRight = config.ignoredScrollViewContentInsetRight
+        
+        // title
+        if config.idleTitle != nil { trailer?.setTitle(config.idleTitle!, for: .idle) }
+        if config.pullingTitle != nil { trailer?.setTitle(config.pullingTitle!, for: .pulling) }
+        if config.refreshingTitle != nil { trailer?.setTitle(config.refreshingTitle!, for: .refreshing) }
+        
+        // font
+        if let stateFont = config.stateFont {
+            trailer?.stateLabel?.font = stateFont
+        }
+        
+        // textColor
+        if let stateColor = config.stateColor {
+            trailer?.stateLabel?.textColor = stateColor
+        }
+        
+        // hide
+        trailer?.stateLabel?.isHidden = config.hideState
+        
+        return trailer
+    }
 }
 
 // MARK:- RefreshableConfig
@@ -454,6 +565,10 @@ public enum RefreshFooterType {
     case backNormal
     case backGif
     case diy(type: MJRefreshFooter.Type)
+}
+
+public enum RefreshTrailerType {
+    case normal
 }
 
 public struct RefreshableHeaderConfig {
@@ -575,3 +690,56 @@ public struct RefreshableFooterConfig {
     }
 }
 
+public struct RefreshableTrailerConfig {
+    /// 类型
+    var type : RefreshTrailerType
+    
+    /// 忽略多少scrollView的contentInset的right
+    var ignoredScrollViewContentInsetRight: CGFloat = 0
+    
+    // 标题
+    /// 标题（普通闲置状态）
+    var idleTitle : String? = nil
+    /// 标题（正在刷新中的状态）
+    var refreshingTitle : String? = nil
+    /// 标题（松开就可以进行刷新的状态）
+    var pullingTitle : String? = nil
+    
+    // 状态
+    /// 状态文字的字体
+    var stateFont : UIFont? = nil
+    /// 状态文字的颜色
+    var stateColor : UIColor? = nil
+    /// 是否隐藏状态
+    var hideState = false
+    
+    // 箭头
+    /// 箭头图标
+    var arrowViewImage: UIImage?
+    /// 是否隐藏箭头
+    var hideArrowView = false
+    
+    public init(
+        type: RefreshTrailerType = .normal,
+        ignoredScrollViewContentInsetRight: CGFloat = 0,
+        idleTitle: String? = nil,
+        pullingTitle: String? = nil,
+        refreshingTitle: String? = nil,
+        stateFont: UIFont? = nil,
+        stateColor: UIColor? = nil,
+        hideState: Bool = false,
+        arrowViewImage: UIImage? = nil,
+        hideArrowView: Bool = false
+    ) {
+        self.type = type
+        self.ignoredScrollViewContentInsetRight = ignoredScrollViewContentInsetRight
+        self.idleTitle = idleTitle
+        self.pullingTitle = pullingTitle
+        self.refreshingTitle = refreshingTitle
+        self.stateFont = stateFont
+        self.stateColor = stateColor
+        self.hideState = hideState
+        self.arrowViewImage = arrowViewImage
+        self.hideArrowView = hideArrowView
+    }
+}
