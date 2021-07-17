@@ -33,7 +33,7 @@ LXFProtocolTool是使用Swift中的协议来实现多种方便、实用的工具
   
   s.subspec 'Refreshable' do |t|
       t.source_files = 'LXFProtocolTool/Classes/Refreshable/**/*.{swift}'
-      t.dependency 'MJRefresh', '~> 3.5.0'
+      t.dependency 'MJRefresh', '>= 3.5.0'
       t.dependency 'RxSwift', '~> 5'
       t.dependency 'RxRelay', '~> 5'
       t.dependency "LXFProtocolTool/AssociatedObjectStore"
