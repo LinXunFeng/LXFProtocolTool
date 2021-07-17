@@ -88,7 +88,8 @@ class LXFRefreshableTrailerController: UIViewController, View, Refreshable {
             .bind(to: listView.rx.items(dataSource: dataSource))
             .disposed(by: disposeBag)
         
-        self.rx.trailerRefresh(reactor, self.listView, trailerConfig: RefreshTrailerConfig.normal)
+//        self.rx.trailerRefresh(reactor, self.listView, trailerConfig: RefreshTrailerConfig.normal)
+        self.rx.trailerRefresh(reactor, self.listView)
             .map { .fetchList(false) }
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
