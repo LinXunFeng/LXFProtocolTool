@@ -61,6 +61,7 @@ extension FullScreenable {
         isEnter: Bool? = nil,
         specifiedView: UIView?,
         superView: UIView?,
+        exitFullScreenToFrame : CGRect?,
         config: FullScreenableConfig? = nil,
         isAutoTrigger: Bool = false,
         completed: FullScreenableCompleteType?
@@ -98,12 +99,16 @@ extension FullScreenable {
             if _isEnter { // 进入全屏
                 if self.isFullScreen { return }
                 self.lxf_specifiedView = specifiedView
-                self.lxf_superView = superView
+                self.lxf_superView = superView ?? specifiedView?.superview
                 self.lxf_selfFrame = specifiedView?.frame
                 
                 specifiedView?.removeFromSuperview()
-                if specifiedView != nil {
-                    UIApplication.shared.keyWindow?.addSubview(specifiedView!)
+                if let _specifiedView = self.lxf_specifiedView,
+                   let _superView = self.lxf_superView,
+                   let keyWindow = UIApplication.shared.keyWindow {
+                    keyWindow.addSubview(_specifiedView)
+                    // 先将 specifiedView 调整为 keyWindow 下的 frame
+                    _specifiedView.frame = _superView.convert(_specifiedView.frame, to: keyWindow)
                 }
                 UIView.animate(withDuration: _config.animateDuration, animations: {
                     specifiedView?.frame = UIScreen.main.bounds
@@ -115,12 +120,13 @@ extension FullScreenable {
                 if !self.isFullScreen { return }
                 let specifiedView = self.lxf_specifiedView
                 UIView.animate(withDuration: _config.animateDuration, animations: {
-                    specifiedView?.frame = self.lxf_selfFrame ?? CGRect.zero
+                    specifiedView?.frame = exitFullScreenToFrame ?? self.lxf_selfFrame ?? .zero
                 }, completion: { _ in
                     specifiedView?.removeFromSuperview()
                     let superView = superView == nil ? self.lxf_superView : superView
                     if specifiedView != nil {
                         superView?.addSubview(specifiedView!)
+                        specifiedView?.frame = self.lxf_selfFrame ?? .zero
                     }
                     guard let completed = completed else{ return }
                     completed(isEnter)
@@ -132,7 +138,14 @@ extension FullScreenable {
 }
 public extension LXFNameSpace where Base: FullScreenable {
     
-    func switchFullScreen(isEnter: Bool? = nil, specifiedView: UIView? = nil, superView: UIView? = nil, config: FullScreenableConfig? = nil, completed: FullScreenableCompleteType? = nil) {
+    func switchFullScreen(
+        isEnter: Bool? = nil,
+        specifiedView: UIView? = nil,
+        superView: UIView? = nil,
+        exitFullScreenToFrame: CGRect? = nil,
+        config: FullScreenableConfig? = nil,
+        completed: FullScreenableCompleteType? = nil
+    ) {
         var specifiedView = specifiedView
         var superView = superView
         
@@ -147,6 +160,7 @@ public extension LXFNameSpace where Base: FullScreenable {
             isEnter: isEnter,
             specifiedView: specifiedView,
             superView: superView,
+            exitFullScreenToFrame: exitFullScreenToFrame,
             config: config,
             completed: completed
         )
@@ -214,7 +228,7 @@ extension UIViewController: AssociatedObjectStore {
         self.lxf_viewWillDisappear(animated)
     }
     
-    @objc func lxf_orientationChangeNotification(){
+    @objc func lxf_orientationChangeNotification() {
         if !LXFCanControlFullScreen(self) { return }
         
         if lxf_disableAutoFullScreen { return }
@@ -259,7 +273,11 @@ public extension LXFNameSpace where Base : UIViewController, Base: FullScreenabl
         UIApplication.shared.lxf.currentFullScreenMaster = nil
     }
     
-    func enterFullScreen(specifiedView: UIView, config: FullScreenableConfig? = nil, completed: FullScreenableCompleteType? = nil) {
+    func enterFullScreen(
+        specifiedView: UIView,
+        config: FullScreenableConfig? = nil,
+        completed: FullScreenableCompleteType? = nil
+    ) {
         if !LXFCanControlFullScreen(self.base) { return }
         
         UIApplication.shared.lxf.currentFullScreenConfig.supportInterfaceOrientation = .landscape
@@ -273,7 +291,11 @@ public extension LXFNameSpace where Base : UIViewController, Base: FullScreenabl
         )
     }
     
-    func exitFullScreen(superView: UIView, config: FullScreenableConfig? = nil, completed: FullScreenableCompleteType? = nil) {
+    func exitFullScreen(
+        superView: UIView,
+        config: FullScreenableConfig? = nil,
+        completed: FullScreenableCompleteType? = nil
+    ) {
         if !LXFCanControlFullScreen(self.base) { return }
         
         if self.base.lxf_isRegisteAutoFullScreen {
@@ -291,7 +313,12 @@ public extension LXFNameSpace where Base : UIViewController, Base: FullScreenabl
         self.base.lxf_disableAutoFullScreen = false
     }
     
-    func autoFullScreen(specifiedView: UIView, superView: UIView, config: FullScreenableConfig? = nil) {
+    func autoFullScreen(
+        specifiedView: UIView,
+        superView: UIView,
+        exitFullScreenToFrame: CGRect? = nil,
+        config: FullScreenableConfig? = nil
+    ) {
         if !LXFCanControlFullScreen(self.base) { return }
         
         self.base.initAutoFullScreen()
@@ -312,6 +339,7 @@ public extension LXFNameSpace where Base : UIViewController, Base: FullScreenabl
                     isEnter: false,
                     specifiedView: specifiedView,
                     superView: superView,
+                    exitFullScreenToFrame: exitFullScreenToFrame,
                     config: _config,
                     isAutoTrigger: true,
                     completed: nil)
@@ -323,6 +351,7 @@ public extension LXFNameSpace where Base : UIViewController, Base: FullScreenabl
                     isEnter: true,
                     specifiedView: specifiedView,
                     superView: superView,
+                    exitFullScreenToFrame: exitFullScreenToFrame,
                     config: _config,
                     isAutoTrigger: true,
                     completed: nil)
@@ -334,6 +363,7 @@ public extension LXFNameSpace where Base : UIViewController, Base: FullScreenabl
                     isEnter: true,
                     specifiedView: specifiedView,
                     superView: superView,
+                    exitFullScreenToFrame: exitFullScreenToFrame,
                     config: _config,
                     isAutoTrigger: true,
                     completed: nil)
@@ -346,7 +376,11 @@ public extension LXFNameSpace where Base : UIViewController, Base: FullScreenabl
 }
 
 public extension LXFNameSpace where Base : UIView, Base : FullScreenable {
-    func enterFullScreen(specifiedView: UIView? = nil, config: FullScreenableConfig? = nil, completed: FullScreenableCompleteType? = nil) {
+    func enterFullScreen(
+        specifiedView: UIView? = nil,
+        config: FullScreenableConfig? = nil,
+        completed: FullScreenableCompleteType? = nil
+    ) {
         let curVc = base.viewController()
         if !LXFCanControlFullScreen(curVc) { return }
         
@@ -361,7 +395,11 @@ public extension LXFNameSpace where Base : UIView, Base : FullScreenable {
         )
     }
     
-    func exitFullScreen(superView: UIView? = nil, config: FullScreenableConfig? = nil, completed: FullScreenableCompleteType? = nil) {
+    func exitFullScreen(
+        superView: UIView? = nil,
+        config: FullScreenableConfig? = nil,
+        completed: FullScreenableCompleteType? = nil
+    ) {
         let curVc = base.lxf_superView?.viewController()
         if !LXFCanControlFullScreen(curVc) { return }
         
