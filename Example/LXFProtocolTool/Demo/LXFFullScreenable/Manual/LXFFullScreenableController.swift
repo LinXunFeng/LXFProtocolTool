@@ -28,14 +28,6 @@ class LXFFullScreenableController: UIViewController, FullScreenable {
         return v
     }()
     
-    fileprivate lazy var switchView: LXFFullSwitchView = {
-        let v = LXFFullSwitchView(.custom)
-        v.frame = CGRect(x: 50, y: 400, width: 200, height: 100)
-        v.setTitle("switch full screen", for: .normal)
-        v.setTitleColor(.black, for: .normal)
-        return v
-    }()
-    
     fileprivate lazy var diyConfig: FullScreenableConfig = {
         return FullScreenableConfig(
             animateDuration: 1,
@@ -55,7 +47,6 @@ class LXFFullScreenableController: UIViewController, FullScreenable {
         self.view.backgroundColor = .white
         self.view.addSubview(redView)
         self.view.addSubview(cyanView)
-        self.view.addSubview(switchView)
         
         redView.addTarget(self, action: #selector(redViewClick), for: .touchUpInside)
         

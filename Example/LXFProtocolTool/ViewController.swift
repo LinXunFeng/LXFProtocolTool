@@ -16,6 +16,7 @@ enum LXFListOptionType: String {
     case refreshableTrailer = "Refreshable-左滑"
     case refreshableMutiple = "Refreshable-多个列表"
     case fullScreenable = "FullScreenable"
+    case fullScreenableViewAuto = "fullScreenableViewAuto"
     case fullScreenableMultiVc = "FullScreenable-multiVc"
 }
 
@@ -28,6 +29,7 @@ class ViewController: UIViewController, FullScreenable {
         .refreshableTrailer,
         .refreshableMutiple,
         .fullScreenable,
+        .fullScreenableViewAuto,
         .fullScreenableMultiVc
     ]
     
@@ -83,6 +85,8 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
             vc = LXFRefreshRespectiveController(reactor: LXFRefreshRespectiveReactor())
         case .fullScreenable:
             vc = LXFFullScreenableController()
+        case .fullScreenableViewAuto:
+            vc = LXFFullScreenableViewAutoController()
         case .fullScreenableMultiVc:
             vc = LXFFullScreenableMultiVcController()
         }

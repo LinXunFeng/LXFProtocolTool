@@ -31,6 +31,7 @@
 		FD62EE622077CD82002C1B53 /* LXFXibTestView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FD62EE602077CD82002C1B53 /* LXFXibTestView.xib */; };
 		FD62EE632077CD82002C1B53 /* LXFXibTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD62EE612077CD82002C1B53 /* LXFXibTestView.swift */; };
 		FD62EE682077D620002C1B53 /* LXFEmptyDemoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD62EE672077D620002C1B53 /* LXFEmptyDemoController.swift */; };
+		FD75175526D0AB4D000B0E2B /* LXFFullScreenableViewAutoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD75175426D0AB4D000B0E2B /* LXFFullScreenableViewAutoController.swift */; };
 		FD97E0DD214B4A030057C3C1 /* LXFFullScreenableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD97E0DC214B4A030057C3C1 /* LXFFullScreenableController.swift */; };
 		FD97E0DF214B5CFE0057C3C1 /* LXFFullScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD97E0DE214B5CFE0057C3C1 /* LXFFullScreenView.swift */; };
 		FD9E556A2261F88A00921471 /* LXFDIYHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD9E55692261F88A00921471 /* LXFDIYHeader.swift */; };
@@ -88,6 +89,7 @@
 		FD62EE602077CD82002C1B53 /* LXFXibTestView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LXFXibTestView.xib; sourceTree = "<group>"; };
 		FD62EE612077CD82002C1B53 /* LXFXibTestView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LXFXibTestView.swift; sourceTree = "<group>"; };
 		FD62EE672077D620002C1B53 /* LXFEmptyDemoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXFEmptyDemoController.swift; sourceTree = "<group>"; };
+		FD75175426D0AB4D000B0E2B /* LXFFullScreenableViewAutoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXFFullScreenableViewAutoController.swift; sourceTree = "<group>"; };
 		FD97E0DC214B4A030057C3C1 /* LXFFullScreenableController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXFFullScreenableController.swift; sourceTree = "<group>"; };
 		FD97E0DE214B5CFE0057C3C1 /* LXFFullScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXFFullScreenView.swift; sourceTree = "<group>"; };
 		FD9E55692261F88A00921471 /* LXFDIYHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXFDIYHeader.swift; sourceTree = "<group>"; };
@@ -297,14 +299,39 @@
 			path = LXFEmptyDataSetable;
 			sourceTree = "<group>";
 		};
-		FD97E0D9214B48990057C3C1 /* LXFFullScreenable */ = {
+		FD75175126D0AAF3000B0E2B /* MultiVc */ = {
+			isa = PBXGroup;
+			children = (
+				BD1DA347254BBFF500C99438 /* LXFFullScreenableMultiVcController.swift */,
+				BD1DA349254BC06C00C99438 /* LXFFullScreenableOtherController.swift */,
+			);
+			path = MultiVc;
+			sourceTree = "<group>";
+		};
+		FD75175226D0AAFF000B0E2B /* Manual */ = {
 			isa = PBXGroup;
 			children = (
 				FD97E0DC214B4A030057C3C1 /* LXFFullScreenableController.swift */,
-				BD1DA347254BBFF500C99438 /* LXFFullScreenableMultiVcController.swift */,
 				FD97E0DE214B5CFE0057C3C1 /* LXFFullScreenView.swift */,
+			);
+			path = Manual;
+			sourceTree = "<group>";
+		};
+		FD75175326D0AB27000B0E2B /* ViewAuto */ = {
+			isa = PBXGroup;
+			children = (
 				FD1D4DE723063F2400C5E359 /* LXFFullSwitchView.swift */,
-				BD1DA349254BC06C00C99438 /* LXFFullScreenableOtherController.swift */,
+				FD75175426D0AB4D000B0E2B /* LXFFullScreenableViewAutoController.swift */,
+			);
+			path = ViewAuto;
+			sourceTree = "<group>";
+		};
+		FD97E0D9214B48990057C3C1 /* LXFFullScreenable */ = {
+			isa = PBXGroup;
+			children = (
+				FD75175326D0AB27000B0E2B /* ViewAuto */,
+				FD75175226D0AAFF000B0E2B /* Manual */,
+				FD75175126D0AAF3000B0E2B /* MultiVc */,
 			);
 			path = LXFFullScreenable;
 			sourceTree = "<group>";
@@ -571,6 +598,7 @@
 				BD1DA348254BBFF500C99438 /* LXFFullScreenableMultiVcController.swift in Sources */,
 				FD5152A62111919700A8591F /* LXFRefreshableReactor.swift in Sources */,
 				FDCE664B26A2D9D500B49BE3 /* LXFRefreshableTrailerReactor.swift in Sources */,
+				FD75175526D0AB4D000B0E2B /* LXFFullScreenableViewAutoController.swift in Sources */,
 				FD62EE632077CD82002C1B53 /* LXFXibTestView.swift in Sources */,
 				FD1FCB2E21A5509800302EDD /* Configs.swift in Sources */,
 			);
