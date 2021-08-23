@@ -293,6 +293,7 @@ public extension LXFNameSpace where Base : UIViewController, Base: FullScreenabl
     
     func exitFullScreen(
         superView: UIView,
+        exitFullScreenToFrame: CGRect? = nil,
         config: FullScreenableConfig? = nil,
         completed: FullScreenableCompleteType? = nil
     ) {
@@ -307,6 +308,7 @@ public extension LXFNameSpace where Base : UIViewController, Base: FullScreenabl
             isEnter: false,
             specifiedView: nil,
             superView: superView,
+            exitFullScreenToFrame: exitFullScreenToFrame,
             config: config,
             completed: completed
         )
