@@ -28,6 +28,13 @@ class LXFFullScreenableController: UIViewController, FullScreenable {
         return v
     }()
     
+    fileprivate lazy var onlyLandscapeConfig: FullScreenableConfig = {
+        return FullScreenableConfig(
+            animateDuration: 0.25,
+            supportInterfaceOrientation: .landscape
+        )
+    }()
+    
     fileprivate lazy var diyConfig: FullScreenableConfig = {
         return FullScreenableConfig(
             animateDuration: 1,
@@ -67,7 +74,8 @@ class LXFFullScreenableController: UIViewController, FullScreenable {
 extension LXFFullScreenableController {
     @objc func redViewClick() {
 //        lxf.switchFullScreen()
-        lxf.enterFullScreen(specifiedView: cyanView)
+        lxf.enterFullScreen(specifiedView: cyanView, config: onlyLandscapeConfig)
+        
 //        cyanView.lxf.enterFullScreen()
         
 //        cyanView.lxf.enterFullScreen(config: diyConfig)
@@ -75,6 +83,10 @@ extension LXFFullScreenableController {
     }
     @objc func cyanViewClick() {
         lxf.exitFullScreen(superView: self.view)
+        
+        // 可以指定退出时动画过程中回到指定的frame
+        // lxf.exitFullScreen(superView: self.view, exitFullScreenToFrame: self.redView.frame)
+        
 //        cyanView.lxf.exitFullScreen()
         
 //        cyanView.lxf.exitFullScreen(config: diyConfig)
