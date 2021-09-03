@@ -17,7 +17,7 @@ class LXFFullScreenableOtherController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.view.backgroundColor = .black.withAlphaComponent(0.2)
+        self.view.backgroundColor = UIColor.black.withAlphaComponent(0.2)
 
         self.view.addSubview(redView)
         self.redView.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
