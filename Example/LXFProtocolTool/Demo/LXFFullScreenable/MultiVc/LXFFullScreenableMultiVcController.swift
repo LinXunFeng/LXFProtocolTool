@@ -14,7 +14,7 @@ class LXFFullScreenableMultiVcController: UIViewController, FullScreenable {
     fileprivate let contentView = UIView().then {
         $0.backgroundColor = .orange
     }
-    fileprivate let otherVc = LXFFullScreenableOtherController()
+    fileprivate let otherVc = LXFFullScreenableMultiVcOtherController()
 
     override func viewDidLoad() {
         super.viewDidLoad()

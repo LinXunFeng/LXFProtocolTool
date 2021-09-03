@@ -15,7 +15,9 @@
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
 		BD1DA348254BBFF500C99438 /* LXFFullScreenableMultiVcController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD1DA347254BBFF500C99438 /* LXFFullScreenableMultiVcController.swift */; };
-		BD1DA34A254BC06C00C99438 /* LXFFullScreenableOtherController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD1DA349254BC06C00C99438 /* LXFFullScreenableOtherController.swift */; };
+		BD1DA34A254BC06C00C99438 /* LXFFullScreenableMultiVcOtherController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD1DA349254BC06C00C99438 /* LXFFullScreenableMultiVcOtherController.swift */; };
+		BD9800B926E21A8300153E1A /* LXFFullScreenableOtherController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD9800B826E21A8300153E1A /* LXFFullScreenableOtherController.swift */; };
+		BD98FF7E26E20F6F00153E1A /* LXFEquatableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD98FF7D26E20F6F00153E1A /* LXFEquatableViewController.swift */; };
 		E54B540712C0EAEEC730D914 /* Pods_LXFProtocolTool_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A401D1702387B816E326C87 /* Pods_LXFProtocolTool_Example.framework */; };
 		FD1D4DE823063F2500C5E359 /* LXFFullSwitchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD1D4DE723063F2400C5E359 /* LXFFullSwitchView.swift */; };
 		FD1FCB2E21A5509800302EDD /* Configs.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD1FCB2D21A5509800302EDD /* Configs.swift */; };
@@ -73,7 +75,9 @@
 		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
 		9A401D1702387B816E326C87 /* Pods_LXFProtocolTool_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LXFProtocolTool_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD1DA347254BBFF500C99438 /* LXFFullScreenableMultiVcController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXFFullScreenableMultiVcController.swift; sourceTree = "<group>"; };
-		BD1DA349254BC06C00C99438 /* LXFFullScreenableOtherController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXFFullScreenableOtherController.swift; sourceTree = "<group>"; };
+		BD1DA349254BC06C00C99438 /* LXFFullScreenableMultiVcOtherController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXFFullScreenableMultiVcOtherController.swift; sourceTree = "<group>"; };
+		BD9800B826E21A8300153E1A /* LXFFullScreenableOtherController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXFFullScreenableOtherController.swift; sourceTree = "<group>"; };
+		BD98FF7D26E20F6F00153E1A /* LXFEquatableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXFEquatableViewController.swift; sourceTree = "<group>"; };
 		C5ADB34366E5742B80AE43C5 /* Pods-LXFProtocolTool_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LXFProtocolTool_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LXFProtocolTool_Tests/Pods-LXFProtocolTool_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		D8E04661F15EF390557CC447 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		FD1D4DE723063F2400C5E359 /* LXFFullSwitchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXFFullSwitchView.swift; sourceTree = "<group>"; };
@@ -205,6 +209,22 @@
 			name = "Podspec Metadata";
 			sourceTree = "<group>";
 		};
+		BD9800B726E21A5100153E1A /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				BD9800B826E21A8300153E1A /* LXFFullScreenableOtherController.swift */,
+			);
+			path = Other;
+			sourceTree = "<group>";
+		};
+		BD98FF7A26E20EFD00153E1A /* LXFEquatable */ = {
+			isa = PBXGroup;
+			children = (
+				BD98FF7D26E20F6F00153E1A /* LXFEquatableViewController.swift */,
+			);
+			path = LXFEquatable;
+			sourceTree = "<group>";
+		};
 		E7D1F034292A1D9C98B8E28D /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -237,6 +257,7 @@
 		FD51529C21118F1F00A8591F /* Demo */ = {
 			isa = PBXGroup;
 			children = (
+				BD98FF7A26E20EFD00153E1A /* LXFEquatable */,
 				FDCE664C26A2E23300B49BE3 /* LXFRefreshable */,
 				FD97E0D9214B48990057C3C1 /* LXFFullScreenable */,
 				FD62EE662077D5E4002C1B53 /* LXFEmptyDataSetable */,
@@ -305,7 +326,7 @@
 			isa = PBXGroup;
 			children = (
 				BD1DA347254BBFF500C99438 /* LXFFullScreenableMultiVcController.swift */,
-				BD1DA349254BC06C00C99438 /* LXFFullScreenableOtherController.swift */,
+				BD1DA349254BC06C00C99438 /* LXFFullScreenableMultiVcOtherController.swift */,
 			);
 			path = MultiVc;
 			sourceTree = "<group>";
@@ -343,6 +364,7 @@
 				FD75175326D0AB27000B0E2B /* ViewAuto */,
 				FD75175126D0AAF3000B0E2B /* MultiVc */,
 				FD75175626D0C665000B0E2B /* Nest */,
+				BD9800B726E21A5100153E1A /* Other */,
 			);
 			path = LXFFullScreenable;
 			sourceTree = "<group>";
@@ -589,6 +611,7 @@
 				FD97E0DF214B5CFE0057C3C1 /* LXFFullScreenView.swift in Sources */,
 				FD5152A82111952F00A8591F /* LXFRefreshableSection.swift in Sources */,
 				FD9E556A2261F88A00921471 /* LXFDIYHeader.swift in Sources */,
+				BD98FF7E26E20F6F00153E1A /* LXFEquatableViewController.swift in Sources */,
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
 				FD5152AF21119A7800A8591F /* LXFRefreshableCell.swift in Sources */,
 				FD62EE682077D620002C1B53 /* LXFEmptyDemoController.swift in Sources */,
@@ -599,7 +622,7 @@
 				FD5152A22111909C00A8591F /* LXFRefreshableController.swift in Sources */,
 				FD1D4DE823063F2500C5E359 /* LXFFullSwitchView.swift in Sources */,
 				FDCE664226A2C6CC00B49BE3 /* LXFRefreshableTrailerController.swift in Sources */,
-				BD1DA34A254BC06C00C99438 /* LXFFullScreenableOtherController.swift in Sources */,
+				BD1DA34A254BC06C00C99438 /* LXFFullScreenableMultiVcOtherController.swift in Sources */,
 				FD97E0DD214B4A030057C3C1 /* LXFFullScreenableController.swift in Sources */,
 				FD5152B121119A8000A8591F /* LXFRefreshableCellReactor.swift in Sources */,
 				FDCE664526A2C7B300B49BE3 /* LXFRefreshableTrailerCell.swift in Sources */,
@@ -610,6 +633,7 @@
 				BD1DA348254BBFF500C99438 /* LXFFullScreenableMultiVcController.swift in Sources */,
 				FD5152A62111919700A8591F /* LXFRefreshableReactor.swift in Sources */,
 				FDCE664B26A2D9D500B49BE3 /* LXFRefreshableTrailerReactor.swift in Sources */,
+				BD9800B926E21A8300153E1A /* LXFFullScreenableOtherController.swift in Sources */,
 				FD75175526D0AB4D000B0E2B /* LXFFullScreenableViewAutoController.swift in Sources */,
 				FD62EE632077CD82002C1B53 /* LXFXibTestView.swift in Sources */,
 				FD1FCB2E21A5509800302EDD /* Configs.swift in Sources */,
