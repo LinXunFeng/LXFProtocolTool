@@ -8,7 +8,7 @@
 import Foundation
 
 public final class LXFNameSpace<Base> {
-    public let base: Base
+    public var base: Base
     public init(_ base: Base) {
         self.base = base
     }
