@@ -16,7 +16,7 @@ fileprivate var defaultEmptyConfig: EmptyDataSetConfigure {
     get { return EmptyDataSetableConfigure.shared.emptyDataSetConfigure }
 }
 
-public struct EmptyDataSetConfigure {
+public struct EmptyDataSetConfigure: LXFEquatable {
     /// 纵向偏移(0)  CGFloat
     public var verticalOffset : CGFloat
     /// 提示语(暂无数据)  String
@@ -59,6 +59,9 @@ public struct EmptyDataSetConfigure {
     public var shouldAllowTouch : Bool
     /// shouldAnimateImageView(false)
     public var shouldAnimateImageView : Bool
+    
+    /// 随机id
+    public var lxf_randomId: String
     
     public init(
         verticalOffset: CGFloat = 0,
@@ -104,6 +107,11 @@ public struct EmptyDataSetConfigure {
         self.shouldDisplay = shouldDisplay
         self.shouldAllowTouch = shouldAllowTouch
         self.shouldAnimateImageView = shouldAnimateImageView
+        self.lxf_randomId = Self.generateRandomId()
+    }
+    
+    public static func == (lhs: EmptyDataSetConfigure, rhs: EmptyDataSetConfigure) -> Bool {
+        return lhs.lxf.randomId == rhs.lxf.randomId
     }
 }
 
