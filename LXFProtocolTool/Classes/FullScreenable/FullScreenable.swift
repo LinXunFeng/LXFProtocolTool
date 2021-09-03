@@ -172,13 +172,13 @@ extension FullScreenable {
                 originalCls: UIViewController.self,
                 originalSelector: #selector(UIViewController.viewWillAppear(_:)),
                 swizzledCls: UIViewController.self,
-                swizzledSelector: #selector(UIViewController.lxf_viewWillAppear(_:)))
+                swizzledSelector: #selector(UIViewController.lxf_fullScreenable_viewWillAppear(_:)))
             
             LXFSwizzleMethod(
                 originalCls: UIViewController.self,
                 originalSelector: #selector(UIViewController.viewWillDisappear(_:)),
                 swizzledCls: UIViewController.self,
-                swizzledSelector: #selector(UIViewController.lxf_viewWillDisappear(_:)))
+                swizzledSelector: #selector(UIViewController.lxf_fullScreenable_viewWillDisappear(_:)))
         }
     }
 }
@@ -203,7 +203,7 @@ extension UIViewController: AssociatedObjectStore {
         set { setAssociatedObject(newValue, forKey: &lxf_disableAutoFullScreenKey) }
     }
     
-    @objc func lxf_viewWillAppear(_ animated: Bool) {
+    @objc func lxf_fullScreenable_viewWillAppear(_ animated: Bool) {
         if LXFCanControlFullScreen(self) {
             UIDevice.current.beginGeneratingDeviceOrientationNotifications()
             NotificationCenter.default.addObserver(
@@ -213,17 +213,17 @@ extension UIViewController: AssociatedObjectStore {
                 object: nil)
             applyCurrentFullScreenableConfig()
         }
-        self.lxf_viewWillAppear(animated)
+        self.lxf_fullScreenable_viewWillAppear(animated)
     }
     
-    @objc func lxf_viewWillDisappear(_ animated: Bool) {
+    @objc func lxf_fullScreenable_viewWillDisappear(_ animated: Bool) {
         if LXFCanControlFullScreen(self) {
             NotificationCenter.default.removeObserver(
                 self,
                 name: UIDevice.orientationDidChangeNotification,
                 object: nil)
         }
-        self.lxf_viewWillDisappear(animated)
+        self.lxf_fullScreenable_viewWillDisappear(animated)
     }
     
     @objc func lxf_orientationChangeNotification() {
