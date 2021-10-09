@@ -53,6 +53,17 @@ extension ViewController {
         tableView.dataSource = self
         tableView.delegate = self
         self.view.addSubview(tableView)
+        
+        // 适配iOS15导航栏
+        if #available(iOS 15.0, *) {
+            let navBarAppearance = UINavigationBarAppearance()
+            navBarAppearance.backgroundColor = .white // 背景色
+            navBarAppearance.titleTextAttributes = [
+                .foregroundColor: UIColor.black // 字体颜色
+            ]
+            self.navigationController?.navigationBar.standardAppearance = navBarAppearance
+            self.navigationController?.navigationBar.scrollEdgeAppearance = navBarAppearance
+        }
     }
 }
 
