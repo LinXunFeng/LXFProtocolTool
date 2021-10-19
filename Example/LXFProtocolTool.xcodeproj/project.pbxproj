@@ -39,6 +39,7 @@
 		FD97E0DF214B5CFE0057C3C1 /* LXFFullScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD97E0DE214B5CFE0057C3C1 /* LXFFullScreenView.swift */; };
 		FD9E556A2261F88A00921471 /* LXFDIYHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD9E55692261F88A00921471 /* LXFDIYHeader.swift */; };
 		FD9E556C2261FD0B00921471 /* LXFDIYAutoFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD9E556B2261FD0B00921471 /* LXFDIYAutoFooter.swift */; };
+		FDA19600271F0F5E00226AF5 /* LXFDIYTrailer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDA195FF271F0F5E00226AF5 /* LXFDIYTrailer.swift */; };
 		FDCE664226A2C6CC00B49BE3 /* LXFRefreshableTrailerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCE664126A2C6CC00B49BE3 /* LXFRefreshableTrailerController.swift */; };
 		FDCE664526A2C7B300B49BE3 /* LXFRefreshableTrailerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCE664426A2C7B300B49BE3 /* LXFRefreshableTrailerCell.swift */; };
 		FDCE664B26A2D9D500B49BE3 /* LXFRefreshableTrailerReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCE664A26A2D9D500B49BE3 /* LXFRefreshableTrailerReactor.swift */; };
@@ -100,6 +101,7 @@
 		FD97E0DE214B5CFE0057C3C1 /* LXFFullScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXFFullScreenView.swift; sourceTree = "<group>"; };
 		FD9E55692261F88A00921471 /* LXFDIYHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXFDIYHeader.swift; sourceTree = "<group>"; };
 		FD9E556B2261FD0B00921471 /* LXFDIYAutoFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXFDIYAutoFooter.swift; sourceTree = "<group>"; };
+		FDA195FF271F0F5E00226AF5 /* LXFDIYTrailer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXFDIYTrailer.swift; sourceTree = "<group>"; };
 		FDCE664126A2C6CC00B49BE3 /* LXFRefreshableTrailerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXFRefreshableTrailerController.swift; sourceTree = "<group>"; };
 		FDCE664426A2C7B300B49BE3 /* LXFRefreshableTrailerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXFRefreshableTrailerCell.swift; sourceTree = "<group>"; };
 		FDCE664A26A2D9D500B49BE3 /* LXFRefreshableTrailerReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXFRefreshableTrailerReactor.swift; sourceTree = "<group>"; };
@@ -378,6 +380,14 @@
 			path = DIY;
 			sourceTree = "<group>";
 		};
+		FDA195FE271F0F4E00226AF5 /* DIY */ = {
+			isa = PBXGroup;
+			children = (
+				FDA195FF271F0F5E00226AF5 /* LXFDIYTrailer.swift */,
+			);
+			path = DIY;
+			sourceTree = "<group>";
+		};
 		FDCE664026A2C68900B49BE3 /* LXFRefreshable-Trailer */ = {
 			isa = PBXGroup;
 			children = (
@@ -391,6 +401,7 @@
 		FDCE664326A2C7A000B49BE3 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				FDA195FE271F0F4E00226AF5 /* DIY */,
 				FDCE664426A2C7B300B49BE3 /* LXFRefreshableTrailerCell.swift */,
 			);
 			path = View;
@@ -611,6 +622,7 @@
 				FD97E0DF214B5CFE0057C3C1 /* LXFFullScreenView.swift in Sources */,
 				FD5152A82111952F00A8591F /* LXFRefreshableSection.swift in Sources */,
 				FD9E556A2261F88A00921471 /* LXFDIYHeader.swift in Sources */,
+				FDA19600271F0F5E00226AF5 /* LXFDIYTrailer.swift in Sources */,
 				BD98FF7E26E20F6F00153E1A /* LXFEquatableViewController.swift in Sources */,
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
 				FD5152AF21119A7800A8591F /* LXFRefreshableCell.swift in Sources */,
