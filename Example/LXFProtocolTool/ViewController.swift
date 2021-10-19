@@ -19,6 +19,8 @@ enum LXFListOptionType: String {
     case fullScreenableViewAuto = "fullScreenable-子视图全屏"
     case fullScreenableMultiVc = "FullScreenable-多个控制器"
     case fullScreenableNest = "FullScreenable-嵌套"
+    case fullScreenableOther = "FullScreenable-其它功能"
+    case equatable = "LXFEquatable"
 }
 
 class ViewController: UIViewController, FullScreenable {
@@ -32,7 +34,9 @@ class ViewController: UIViewController, FullScreenable {
         .fullScreenable,
         .fullScreenableViewAuto,
         .fullScreenableMultiVc,
-        .fullScreenableNest
+        .fullScreenableNest,
+        .fullScreenableOther,
+        .equatable
     ]
     
     override func viewDidLoad() {
@@ -104,6 +108,10 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
             vc = LXFFullScreenableMultiVcController()
         case .fullScreenableNest:
             vc = LXFFullScreenableNestController()
+        case .fullScreenableOther:
+            vc = LXFFullScreenableOtherController()
+        case .equatable:
+            vc = LXFEquatableViewController()
         }
         
         if vc == nil { return }

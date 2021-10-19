@@ -89,11 +89,9 @@ extension FullScreenable {
                 // 强制横竖屏
                 let orientation: UIInterfaceOrientation = _isEnter ? _config.enterFullScreenOrientation : .portrait
                 if !_isEnter { // 防止已经竖屏导致无法退出全屏
-                    UIDevice.current.setValue(
-                        UIApplication.shared.statusBarOrientation.rawValue
-                        ,forKey: "orientation")
+                    UIApplication.shared.lxf.rotate(with: UIApplication.shared.statusBarOrientation)
                 }
-                UIDevice.current.setValue(orientation.rawValue, forKey: "orientation")
+                UIApplication.shared.lxf.rotate(with: orientation)
             }
         
             if _isEnter { // 进入全屏
@@ -174,13 +172,13 @@ extension FullScreenable {
                 originalCls: UIViewController.self,
                 originalSelector: #selector(UIViewController.viewWillAppear(_:)),
                 swizzledCls: UIViewController.self,
-                swizzledSelector: #selector(UIViewController.lxf_viewWillAppear(_:)))
+                swizzledSelector: #selector(UIViewController.lxf_fullScreenable_viewWillAppear(_:)))
             
             LXFSwizzleMethod(
                 originalCls: UIViewController.self,
                 originalSelector: #selector(UIViewController.viewWillDisappear(_:)),
                 swizzledCls: UIViewController.self,
-                swizzledSelector: #selector(UIViewController.lxf_viewWillDisappear(_:)))
+                swizzledSelector: #selector(UIViewController.lxf_fullScreenable_viewWillDisappear(_:)))
         }
     }
 }
@@ -205,7 +203,7 @@ extension UIViewController: AssociatedObjectStore {
         set { setAssociatedObject(newValue, forKey: &lxf_disableAutoFullScreenKey) }
     }
     
-    @objc func lxf_viewWillAppear(_ animated: Bool) {
+    @objc func lxf_fullScreenable_viewWillAppear(_ animated: Bool) {
         if LXFCanControlFullScreen(self) {
             UIDevice.current.beginGeneratingDeviceOrientationNotifications()
             NotificationCenter.default.addObserver(
@@ -215,17 +213,17 @@ extension UIViewController: AssociatedObjectStore {
                 object: nil)
             applyCurrentFullScreenableConfig()
         }
-        self.lxf_viewWillAppear(animated)
+        self.lxf_fullScreenable_viewWillAppear(animated)
     }
     
-    @objc func lxf_viewWillDisappear(_ animated: Bool) {
+    @objc func lxf_fullScreenable_viewWillDisappear(_ animated: Bool) {
         if LXFCanControlFullScreen(self) {
             NotificationCenter.default.removeObserver(
                 self,
                 name: UIDevice.orientationDidChangeNotification,
                 object: nil)
         }
-        self.lxf_viewWillDisappear(animated)
+        self.lxf_fullScreenable_viewWillDisappear(animated)
     }
     
     @objc func lxf_orientationChangeNotification() {
@@ -271,6 +269,12 @@ public extension LXFNameSpace where Base : UIViewController, Base: FullScreenabl
     /// 移除当前全屏控制的主人
     func resignCurrentFullScreenMaster() {
         UIApplication.shared.lxf.currentFullScreenMaster = nil
+    }
+    
+    /// 初始化全屏控制参数
+    func setupFullScreenConfig(with config: FullScreenableConfig) {
+        self.base.handleConfig(config)
+        self.base.applyCurrentFullScreenableConfig()
     }
     
     func enterFullScreen(
@@ -431,22 +435,22 @@ extension LXFNameSpace where Base : UIApplication {
         set { UIApplication.shared.setAssociatedObject(newValue, forKey: &lxf_appCurFullScreenableConfigKey) }
     }
     
-    /// 当前拥有控制主权的对象
-    fileprivate var currentFullScreenMaster : UIViewController? {
-        get {
-            let wrapper: LXFWeakWrapper? = UIApplication.shared.associatedObject(forKey: &lxf_appCurFullScreenMasterConfigKey)
-            return wrapper?.obj as? UIViewController
-        }
-        set {
-            let wrapper = LXFWeakWrapper()
-            wrapper.obj = newValue
-            UIApplication.shared.setAssociatedObject(wrapper, forKey: &lxf_appCurFullScreenMasterConfigKey)
-        }
-    }
-    
     /// 当前控制器所支持的所有方向
     public var currentVcOrientationMask: UIInterfaceOrientationMask {
         return currentFullScreenConfig.supportInterfaceOrientation
+    }
+    
+    /// 触发屏幕旋转
+    public func rotate(with orientation: UIInterfaceOrientation) {
+        var deviceOrientation: UIDeviceOrientation = .unknown
+        switch orientation {
+        case .portrait: deviceOrientation = .portrait
+        case .portraitUpsideDown: deviceOrientation = .portraitUpsideDown
+        case .landscapeLeft: deviceOrientation = .landscapeRight
+        case .landscapeRight: deviceOrientation = .landscapeLeft
+        default: deviceOrientation = .unknown
+        }
+        UIDevice.current.setValue(deviceOrientation.rawValue, forKey: "orientation")
     }
     
     /// 设置当前全屏配置
@@ -464,6 +468,19 @@ extension LXFNameSpace where Base : UIApplication {
             return true
         }
         return master == curAccessor
+    }
+    
+    /// 当前拥有控制主权的对象
+    fileprivate var currentFullScreenMaster : UIViewController? {
+        get {
+            let wrapper: LXFWeakWrapper? = UIApplication.shared.associatedObject(forKey: &lxf_appCurFullScreenMasterConfigKey)
+            return wrapper?.obj as? UIViewController
+        }
+        set {
+            let wrapper = LXFWeakWrapper()
+            wrapper.obj = newValue
+            UIApplication.shared.setAssociatedObject(wrapper, forKey: &lxf_appCurFullScreenMasterConfigKey)
+        }
     }
 }
 

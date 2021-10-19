@@ -1,4 +1,4 @@
-#
+# 
 # Be sure to run `pod lib lint LXFProtocolTool.podspec' to ensure this is a
 # valid spec before submitting.
 #
@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'LXFProtocolTool'
-  s.version          = '2.4.0'
+  s.version          = '2.6.0'
   s.summary          = 'LXFProtocolTool是实用的协议应用工具库'
   s.description      = <<-DESC
 LXFProtocolTool是使用Swift中的协议来实现多种方便、实用的工具库
@@ -45,6 +45,7 @@ LXFProtocolTool是使用Swift中的协议来实现多种方便、实用的工具
       t.dependency 'DZNEmptyDataSet', '~> 1.8.1'
       t.dependency "LXFProtocolTool/AssociatedObjectStore"
       t.dependency "LXFProtocolTool/Base"
+      t.dependency "LXFProtocolTool/LXFEquatable"
   end
   
   s.subspec 'RxEmptyDataSetable' do |t|
@@ -61,5 +62,11 @@ LXFProtocolTool是使用Swift中的协议来实现多种方便、实用的工具
       t.source_files = 'LXFProtocolTool/Classes/FullScreenable/**/*.{swift}'
       t.dependency "LXFProtocolTool/AssociatedObjectStore"
       t.dependency "LXFProtocolTool/Base"
+  end
+  
+  s.subspec 'LXFEquatable' do |t|
+      t.source_files = 'LXFProtocolTool/Classes/LXFEquatable/**/*.{swift}'
+      t.dependency "LXFProtocolTool/Base"
+      t.dependency "LXFProtocolTool/AssociatedObjectStore"
   end
 end
