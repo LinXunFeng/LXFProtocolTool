@@ -89,6 +89,7 @@ class LXFRefreshableTrailerController: UIViewController, View, Refreshable {
             .disposed(by: disposeBag)
         
 //        self.rx.trailerRefresh(reactor, self.listView, trailerConfig: RefreshTrailerConfig.normal)
+//        self.rx.trailerRefresh(reactor, self.listView, trailerConfig: RefreshTrailerConfig.diy)
         self.rx.trailerRefresh(reactor, self.listView)
             .map { .fetchList(false) }
             .bind(to: reactor.action)
@@ -107,4 +108,6 @@ struct RefreshTrailerConfig {
         stateColor: .systemBlue,
         hideArrowView: true
     )
+    
+    static let diy = RefreshableTrailerConfig(type: .diy(type: LXFDIYTrailer.self))
 }
