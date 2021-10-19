@@ -523,6 +523,8 @@ public extension LXFNameSpace where Base: Refreshable {
                 normalTrailer.arrowView?.image = arrowViewImage
             }
             trailer = normalTrailer
+        case let .diy(TrailerType):
+            return TrailerType.init{ action() }
         }
         
         trailer?.ignoredScrollViewContentInsetRight = config.ignoredScrollViewContentInsetRight
@@ -569,6 +571,7 @@ public enum RefreshFooterType {
 
 public enum RefreshTrailerType {
     case normal
+    case diy(type: MJRefreshTrailer.Type)
 }
 
 public struct RefreshableHeaderConfig {
@@ -692,7 +695,7 @@ public struct RefreshableFooterConfig {
 
 public struct RefreshableTrailerConfig {
     /// 类型
-    var type : RefreshTrailerType
+    var type : RefreshTrailerType = .normal
     
     /// 忽略多少scrollView的contentInset的right
     var ignoredScrollViewContentInsetRight: CGFloat = 0
