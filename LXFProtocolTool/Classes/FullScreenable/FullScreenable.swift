@@ -88,9 +88,8 @@ extension FullScreenable {
             UIView.animate(withDuration: _config.animateDuration) {
                 // 强制横竖屏
                 let orientation: UIInterfaceOrientation = _isEnter ? _config.enterFullScreenOrientation : .portrait
-                if !_isEnter { // 防止已经竖屏导致无法退出全屏
-                    UIApplication.shared.lxf.rotate(with: UIApplication.shared.statusBarOrientation)
-                }
+                // 防止 设备已经竖放导致无法退出全屏 或 设备已经横屏导致无法进入全屏
+                UIApplication.shared.lxf.rotate(with: UIApplication.shared.statusBarOrientation)
                 UIApplication.shared.lxf.rotate(with: orientation)
             }
         
