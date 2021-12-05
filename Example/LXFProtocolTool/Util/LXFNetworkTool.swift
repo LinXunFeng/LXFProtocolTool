@@ -9,18 +9,23 @@
 import Foundation
 import Moya
 import MoyaMapper
+import Alamofire
 
 enum LXFNetworkTool {
     
     enum LXFNetworkCategory: String {
-        case all     = "all"
-        case android = "Android"
-        case ios     = "iOS"
-        case welfare = "福利"
-        case girl    = "Girl"
+        /// 游戏壁纸
+        case game = "5"
+        /// 美女模特
+        case model = "6"
+        /// 动漫卡通
+        case cartoon = "26"
+        /// 风景大片
+        case scenery = "9"
+        /// 萌宠动物
+        case pet = "14"
     }
     case data(type: LXFNetworkCategory, size:Int, index:Int)
-    case multipleModel
 }
 
 extension LXFNetworkTool: TargetType {
@@ -30,27 +35,12 @@ extension LXFNetworkTool: TargetType {
     
     /// The target's base `URL`.
     var baseURL: URL {
-        switch self {
-        case .multipleModel:
-            return URL(string: "http://jsonplaceholder.typicode.com/")!
-        default:
-            return URL(string: "http://gank.io/api/v2/data/")!
-        }
+        return URL(string: "http://wallpaper.apc.360.cn/")!
     }
     
     /// The path to be appended to `baseURL` to form the full `URL`.
     var path: String {
-        switch self {
-        case .multipleModel:
-            return "users"
-        case .data(let type, let size, let index):
-            switch type {
-            case .girl:
-                return "category/Girl/type/\(type.rawValue)/page/\(index)/count/\(size)"
-            default:
-                return "\(type.rawValue)/\(size)/\(index)"
-            }
-        }
+        return "index.php"
     }
     
     /// The HTTP method used in the request.
@@ -75,7 +65,19 @@ extension LXFNetworkTool: TargetType {
     
     /// The type of HTTP task to be performed.
     var task: Task {
-        return .requestPlain
+        switch self {
+        case .data(let type, let size, let index):
+            return .requestParameters(
+                parameters: [
+                    "c": "WallPaperAndroid",
+                    "a": "getAppsByCategory",
+                    "cid": "\(type.rawValue)",
+                    "start": "\(index)",
+                    "count": "\(size)"
+                ],
+                encoding: URLEncoding.default
+            )
+        }
     }
     
     /// Whether or not to perform Alamofire validation. Defaults to `false`.

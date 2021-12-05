@@ -63,11 +63,11 @@ final class LXFRefreshableReactor: Reactor, RefreshControllable {
 
 extension LXFRefreshableReactor {
     fileprivate func fetchList(_ reload: Bool) -> Observable<Mutation> {
-        pageIndex = reload ? 1 : pageIndex+1
+        pageIndex = reload ? 0 : pageIndex+1
         
         let endHeaderRefresh = Observable.just(Mutation.setRefreshStatus(.endHeaderRefresh))
         
-        let fetchList = lxfNetTool.rx.request(.data(type: .girl, size: pageSize, index: pageIndex))
+        let fetchList = lxfNetTool.rx.request(.data(type: .pet, size: pageSize, index: pageIndex))
             .do(onSuccess: { resp in
                 print("json -- \(resp.fetchJSONString())")
             })

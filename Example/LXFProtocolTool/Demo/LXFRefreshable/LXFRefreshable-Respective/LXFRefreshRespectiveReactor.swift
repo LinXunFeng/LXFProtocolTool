@@ -95,7 +95,7 @@ extension LXFRefreshRespectiveReactor {
         
         let endHeaderRefresh = Observable.just(Mutation.setRefreshStatus(status: .endHeaderRefresh, listIndex: listIndex))
         
-        let fetchList = lxfNetTool.rx.request(.data(type: .girl, size: pageSize, index: pageIndex))
+        let fetchList = lxfNetTool.rx.request(.data(type: .game, size: pageSize, index: pageIndex))
             .do(onSuccess: { resp in
                 print("json -- \(resp.fetchJSONString())")
             })
