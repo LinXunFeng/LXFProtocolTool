@@ -34,6 +34,14 @@ typealias LXFNormalBlockType = ()->Void
 
 public let lxf_defaultAnimateDuration: Double = 0.25
 
+/// 设置屏幕方向的方式
+enum FullScreenableSetOrientationType {
+    /// 通过 UIWindowScene（iOS16及以上时使用）
+    case iOS16RequestGeometryUpdate
+    /// 通过 UIDevice（iOS16以下使用）
+    case uiDeviceSetValue
+}
+
 // MARK:- FullScreenable
 public protocol FullScreenable: AnyObject, AssociatedObjectStore, LXFCompatible {}
 extension FullScreenable {
@@ -66,12 +74,13 @@ extension FullScreenable {
         isAutoTrigger: Bool = false,
         completed: FullScreenableCompleteType?
     ) {
+        let curVc = superView?.viewController()
         let isEnter = isEnter == nil ? !isFullScreen : isEnter!
         
         var _config: FullScreenableConfig
         if config == nil {
             var defaultConfig = FullScreenableConfig.defaultConfig()
-            defaultConfig.supportInterfaceOrientation = isEnter ? .allButUpsideDown : .portrait
+            defaultConfig.supportInterfaceOrientation = isEnter ? .landscape : .portrait
             _config = defaultConfig
         } else {
             _config = config!
@@ -88,9 +97,18 @@ extension FullScreenable {
             UIView.animate(withDuration: _config.animateDuration) {
                 // 强制横竖屏
                 let orientation: UIInterfaceOrientation = _isEnter ? _config.enterFullScreenOrientation : .portrait
-                // 防止 设备已经竖放导致无法退出全屏 或 设备已经横屏导致无法进入全屏
-                UIApplication.shared.lxf.rotate(with: UIApplication.shared.statusBarOrientation)
-                UIApplication.shared.lxf.rotate(with: orientation)
+                if LXFSetOrientationType() == .uiDeviceSetValue {
+                    // 防止 设备已经竖放导致无法退出全屏 或 设备已经横屏导致无法进入全屏
+                    // 通过 UIDevice 强制横竖屏的方式才需要
+                    UIApplication.shared.lxf.rotate(
+                        with: UIApplication.shared.statusBarOrientation,
+                        viewController: curVc
+                    )
+                }
+                UIApplication.shared.lxf.rotate(
+                    with: orientation,
+                    viewController: curVc
+                )
             }
         
             if _isEnter { // 进入全屏
@@ -102,13 +120,13 @@ extension FullScreenable {
                 specifiedView?.removeFromSuperview()
                 if let _specifiedView = self.lxf_specifiedView,
                    let _superView = self.lxf_superView,
-                   let keyWindow = UIApplication.shared.keyWindow {
+                   let keyWindow = LXFCurrentWindow() {
                     keyWindow.addSubview(_specifiedView)
                     // 先将 specifiedView 调整为 keyWindow 下的 frame
                     _specifiedView.frame = _superView.convert(_specifiedView.frame, to: keyWindow)
                 }
                 UIView.animate(withDuration: _config.animateDuration, animations: {
-                    specifiedView?.frame = UIScreen.main.bounds
+                    specifiedView?.frame = self.screenBounds(isFullScreen: _isEnter)
                 }) { _ in
                     guard let completed = completed else{ return }
                     completed(isEnter)
@@ -132,7 +150,26 @@ extension FullScreenable {
             self.isFullScreen = _isEnter
         }
     }
+    
+    /// 获取屏幕尺寸
+    public func screenBounds(isFullScreen: Bool) -> CGRect {
+        // iOS16开始，强制屏幕方向与之前的不一样，导致宽高不会自动变化，所以这里需要手动调整
+        var bounds = UIScreen.main.bounds
+        if (!isFullScreen) { // 竖屏下，不用做任何调整
+            return bounds
+        }
+        var boundsSize = bounds.size
+        if (isFullScreen && boundsSize.width < boundsSize.height) {
+            // 横屏且宽依旧小于高，则需要手动调整
+            let boundsOriginWidth = boundsSize.width
+            boundsSize.width = boundsSize.height
+            boundsSize.height = boundsOriginWidth
+        }
+        bounds.size = boundsSize
+        return bounds
+    }
 }
+
 public extension LXFNameSpace where Base: FullScreenable {
     
     func switchFullScreen(
@@ -237,8 +274,7 @@ extension UIViewController: AssociatedObjectStore {
         if !LXFCanControlFullScreen(self) { return }
         
         if config != nil {
-            lxf_fullScreenableConfig.animateDuration = config!.animateDuration
-            lxf_fullScreenableConfig.supportInterfaceOrientation = config!.supportInterfaceOrientation
+            lxf_fullScreenableConfig = config!
         } else {
             lxf_fullScreenableConfig.animateDuration = lxf_defaultAnimateDuration
             lxf_fullScreenableConfig.supportInterfaceOrientation = .allButUpsideDown
@@ -277,11 +313,14 @@ public extension LXFNameSpace where Base : UIViewController, Base: FullScreenabl
     }
     
     func enterFullScreen(
-        specifiedView: UIView,
+        specifiedView: UIView? = nil,
         config: FullScreenableConfig? = nil,
         completed: FullScreenableCompleteType? = nil
     ) {
         if !LXFCanControlFullScreen(self.base) { return }
+        
+        var _config = config ?? self.base.lxf_fullScreenableConfig
+        _config.supportInterfaceOrientation = .landscape
         
         UIApplication.shared.lxf.currentFullScreenConfig.supportInterfaceOrientation = .landscape
         self.base.lxf_disableAutoFullScreen = true
@@ -289,38 +328,41 @@ public extension LXFNameSpace where Base : UIViewController, Base: FullScreenabl
             isEnter: true,
             specifiedView: specifiedView,
             superView: nil,
-            config: config,
+            config: _config,
             completed: completed
         )
     }
     
     func exitFullScreen(
-        superView: UIView,
+        superView: UIView? = nil,
         exitFullScreenToFrame: CGRect? = nil,
         config: FullScreenableConfig? = nil,
         completed: FullScreenableCompleteType? = nil
     ) {
         if !LXFCanControlFullScreen(self.base) { return }
         
+        var _config = config ?? self.base.lxf_fullScreenableConfig
+        _config.supportInterfaceOrientation = .portrait
+        
         if self.base.lxf_isRegisteAutoFullScreen {
             if let block = self.base.lxf_orientationChangeBlock { block() }
         } else {
-            UIApplication.shared.lxf.setCurrentFullScreenConfig(isEnter: false, config: self.base.lxf_fullScreenableConfig)
+            UIApplication.shared.lxf.setCurrentFullScreenConfig(isEnter: false, config: _config)
         }
         switchFullScreen(
             isEnter: false,
             specifiedView: nil,
             superView: superView,
             exitFullScreenToFrame: exitFullScreenToFrame,
-            config: config,
+            config: _config,
             completed: completed
         )
         self.base.lxf_disableAutoFullScreen = false
     }
     
     func autoFullScreen(
-        specifiedView: UIView,
-        superView: UIView,
+        specifiedView: UIView? = nil,
+        superView: UIView? = nil,
         exitFullScreenToFrame: CGRect? = nil,
         config: FullScreenableConfig? = nil
     ) {
@@ -440,16 +482,49 @@ extension LXFNameSpace where Base : UIApplication {
     }
     
     /// 触发屏幕旋转
-    public func rotate(with orientation: UIInterfaceOrientation) {
-        var deviceOrientation: UIDeviceOrientation = .unknown
-        switch orientation {
-        case .portrait: deviceOrientation = .portrait
-        case .portraitUpsideDown: deviceOrientation = .portraitUpsideDown
-        case .landscapeLeft: deviceOrientation = .landscapeRight
-        case .landscapeRight: deviceOrientation = .landscapeLeft
-        default: deviceOrientation = .unknown
+    /// 注：外部请不要直接使用
+    public func rotate(
+        with orientation: UIInterfaceOrientation,
+        viewController: UIViewController? = nil
+    ) {
+        switch LXFSetOrientationType() {
+        case .iOS16RequestGeometryUpdate: // 适配 iOS 16.0
+            if #available(iOS 16.0, *) {
+                let interfaceOrientations: UIInterfaceOrientationMask
+                switch orientation {
+                case .portrait, .portraitUpsideDown:
+                    interfaceOrientations = .portrait
+                case .landscapeLeft:
+                    interfaceOrientations = .landscapeLeft
+                case .landscapeRight:
+                    interfaceOrientations = .landscapeRight
+                default: interfaceOrientations = .portrait
+                }
+                
+                let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
+                let perference = UIWindowScene.GeometryPreferences.iOS(interfaceOrientations: interfaceOrientations)
+                
+                windowScene?.requestGeometryUpdate(perference) { error in
+                    // 强制旋转屏幕失败
+                    // print("error -- \(error)")
+                }
+                viewController?.setNeedsUpdateOfHomeIndicatorAutoHidden()
+                // 使屏幕界面和设备方向同步（iOS16的适配方式依旧需要该方法同步）
+                UIViewController.attemptRotationToDeviceOrientation()
+            }
+        case .uiDeviceSetValue: // 旧方式
+            var deviceOrientation: UIDeviceOrientation = .unknown
+            switch orientation {
+            case .portrait: deviceOrientation = .portrait
+            case .portraitUpsideDown: deviceOrientation = .portraitUpsideDown
+            case .landscapeLeft: deviceOrientation = .landscapeRight
+            case .landscapeRight: deviceOrientation = .landscapeLeft
+            default: deviceOrientation = .unknown
+            }
+            UIDevice.current.setValue(deviceOrientation.rawValue, forKey: "orientation")
+            // 使屏幕界面和设备方向同步
+            UIViewController.attemptRotationToDeviceOrientation()
         }
-        UIDevice.current.setValue(deviceOrientation.rawValue, forKey: "orientation")
     }
     
     /// 设置当前全屏配置
@@ -567,4 +642,25 @@ fileprivate func LXFSwizzleMethod(originalCls: AnyClass?, originalSelector: Sele
 // MARK: Other
 fileprivate func LXFCanControlFullScreen(_ curAccessor: UIViewController?) -> Bool {
     return UIApplication.shared.lxf.canControlFullScreen(curAccessor)
+}
+
+/// 获取设置屏幕方向的方式
+fileprivate func LXFSetOrientationType() -> FullScreenableSetOrientationType {
+    if #available(iOS 16.0, *) {
+        return .iOS16RequestGeometryUpdate
+    }
+    return .uiDeviceSetValue
+}
+
+/// 获取 keyWindow
+fileprivate func LXFCurrentWindow() -> UIWindow? {
+    if let window = UIApplication.shared.delegate?.window {
+        return window
+    }
+    if #available(iOS 13.0, *) {
+        if let window = (UIApplication.shared.connectedScenes.first as? UIWindowScene)?.windows.first {
+            return window
+        }
+    }
+    return UIApplication.shared.keyWindow
 }
