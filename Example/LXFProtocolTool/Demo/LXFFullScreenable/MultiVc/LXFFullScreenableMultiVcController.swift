@@ -50,7 +50,7 @@ class LXFFullScreenableMultiVcController: UIViewController, FullScreenable {
         self.view.backgroundColor = .white
         self.view.addSubview(contentView)
         contentView.addSubview(otherVc.view)
-        contentView.frame = CGRect(x: 50, y: 80, width: 100, height: 100)
+        contentView.frame = CGRect(x: 50, y: 150, width: 100, height: 100)
         otherVc.view.frame = contentView.bounds
     }
 

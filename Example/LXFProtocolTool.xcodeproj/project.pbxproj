@@ -19,6 +19,7 @@
 		BD9800B926E21A8300153E1A /* LXFFullScreenableOtherController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD9800B826E21A8300153E1A /* LXFFullScreenableOtherController.swift */; };
 		BD98FF7E26E20F6F00153E1A /* LXFEquatableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD98FF7D26E20F6F00153E1A /* LXFEquatableViewController.swift */; };
 		E54B540712C0EAEEC730D914 /* Pods_LXFProtocolTool_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A401D1702387B816E326C87 /* Pods_LXFProtocolTool_Example.framework */; };
+		FD0957D528E04266000A9CE3 /* LXFFullScreenableNestOtherController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD0957D428E04266000A9CE3 /* LXFFullScreenableNestOtherController.swift */; };
 		FD1D4DE823063F2500C5E359 /* LXFFullSwitchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD1D4DE723063F2400C5E359 /* LXFFullSwitchView.swift */; };
 		FD1FCB2E21A5509800302EDD /* Configs.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD1FCB2D21A5509800302EDD /* Configs.swift */; };
 		FD4A828521916D4F0064C07E /* LXFRefreshRespectiveController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD4A828421916D4F0064C07E /* LXFRefreshRespectiveController.swift */; };
@@ -81,6 +82,7 @@
 		BD98FF7D26E20F6F00153E1A /* LXFEquatableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXFEquatableViewController.swift; sourceTree = "<group>"; };
 		C5ADB34366E5742B80AE43C5 /* Pods-LXFProtocolTool_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LXFProtocolTool_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LXFProtocolTool_Tests/Pods-LXFProtocolTool_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		D8E04661F15EF390557CC447 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		FD0957D428E04266000A9CE3 /* LXFFullScreenableNestOtherController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LXFFullScreenableNestOtherController.swift; sourceTree = "<group>"; };
 		FD1D4DE723063F2400C5E359 /* LXFFullSwitchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXFFullSwitchView.swift; sourceTree = "<group>"; };
 		FD1FCB2D21A5509800302EDD /* Configs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configs.swift; sourceTree = "<group>"; };
 		FD4A828421916D4F0064C07E /* LXFRefreshRespectiveController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXFRefreshRespectiveController.swift; sourceTree = "<group>"; };
@@ -354,6 +356,7 @@
 		FD75175626D0C665000B0E2B /* Nest */ = {
 			isa = PBXGroup;
 			children = (
+				FD0957D428E04266000A9CE3 /* LXFFullScreenableNestOtherController.swift */,
 				FD75175726D0C6AB000B0E2B /* LXFFullScreenableNestController.swift */,
 			);
 			path = Nest;
@@ -621,6 +624,7 @@
 				FDDD69A72111A0B40069498D /* UIImageView+Kingfisher.swift in Sources */,
 				FD97E0DF214B5CFE0057C3C1 /* LXFFullScreenView.swift in Sources */,
 				FD5152A82111952F00A8591F /* LXFRefreshableSection.swift in Sources */,
+				FD0957D528E04266000A9CE3 /* LXFFullScreenableNestOtherController.swift in Sources */,
 				FD9E556A2261F88A00921471 /* LXFDIYHeader.swift in Sources */,
 				FDA19600271F0F5E00226AF5 /* LXFDIYTrailer.swift in Sources */,
 				BD98FF7E26E20F6F00153E1A /* LXFEquatableViewController.swift in Sources */,

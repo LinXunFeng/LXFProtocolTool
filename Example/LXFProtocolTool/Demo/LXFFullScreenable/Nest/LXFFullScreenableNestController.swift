@@ -14,7 +14,7 @@ class LXFFullScreenableNestController: UIViewController, FullScreenable {
     fileprivate let contentView = UIView().then {
         $0.backgroundColor = .orange
     }
-    fileprivate let otherVc = LXFFullScreenableMultiVcOtherController()
+    fileprivate let otherVc = LXFFullScreenableNestOtherController()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,9 +22,9 @@ class LXFFullScreenableNestController: UIViewController, FullScreenable {
         initUI()
         
         // 在嵌套多层的情况下，需要指定退出全屏时目标容器的frame，否则会很突兀
-//        lxf.autoFullScreen(specifiedView: self.otherVc.view, superView: contentView)
+//        lxf.autoFullScreen(specifiedView: self.otherVc.contentView, superView: contentView)
         lxf.autoFullScreen(
-            specifiedView: self.otherVc.view,
+            specifiedView: self.otherVc.contentView,
             superView: contentView,
             exitFullScreenToFrame: contentView.frame
         )
@@ -58,7 +58,7 @@ class LXFFullScreenableNestController: UIViewController, FullScreenable {
         self.view.backgroundColor = .white
         self.view.addSubview(contentView)
         contentView.addSubview(otherVc.view)
-        contentView.frame = CGRect(x: 50, y: 80, width: 100, height: 100)
+        contentView.frame = CGRect(x: 50, y: 150, width: 100, height: 100)
         otherVc.view.frame = contentView.bounds
     }
 

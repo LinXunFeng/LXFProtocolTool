@@ -31,7 +31,9 @@ class LXFFullScreenableOtherController: UIViewController, FullScreenable {
         super.viewWillAppear(animated)
         
         // 配置支持的方向
-        self.lxf.setupFullScreenConfig(with: .init(supportInterfaceOrientation: .allButUpsideDown))
+        self.lxf.setupFullScreenConfig(with: .init(
+            supportInterfaceOrientation: .allButUpsideDown
+        ))
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -56,7 +58,11 @@ class LXFFullScreenableOtherController: UIViewController, FullScreenable {
     }
 
     @objc func rotateBtnClick() {
-        UIApplication.shared.lxf.rotate(with: UIApplication.shared.statusBarOrientation.isPortrait ? .landscapeRight : .portrait)
+        if UIApplication.shared.statusBarOrientation.isPortrait {
+            self.lxf.enterFullScreen()
+        } else {
+            self.lxf.exitFullScreen()
+        }
     }
 }
 
