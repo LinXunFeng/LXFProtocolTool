@@ -62,6 +62,8 @@ public struct EmptyDataSetConfigure: LXFEquatable {
     
     /// 随机id
     public var lxf_randomId: String
+    /// 内部 emptyDataSetView 视图的 clipsToBounds (默认: true)
+    public var emptyViewClipsToBounds: Bool
     
     public init(
         verticalOffset: CGFloat = 0,
@@ -84,7 +86,8 @@ public struct EmptyDataSetConfigure: LXFEquatable {
         shouldBeForcedToDisplay: Bool = false,
         shouldDisplay: Bool = true,
         shouldAllowTouch: Bool = true,
-        shouldAnimateImageView: Bool = false
+        shouldAnimateImageView: Bool = false,
+        emptyViewClipsToBounds: Bool = true
     ) {
         self.verticalOffset = verticalOffset
         self.tipStr = tipStr
@@ -108,6 +111,7 @@ public struct EmptyDataSetConfigure: LXFEquatable {
         self.shouldAllowTouch = shouldAllowTouch
         self.shouldAnimateImageView = shouldAnimateImageView
         self.lxf_randomId = Self.generateRandomId()
+        self.emptyViewClipsToBounds = emptyViewClipsToBounds
     }
     
     public static func == (lhs: EmptyDataSetConfigure, rhs: EmptyDataSetConfigure) -> Bool {
@@ -158,6 +162,13 @@ extension UIScrollView: AssociatedObjectStore {
     var emptyDataSetDidDisappearBlock : EmptyNormalBlock? {
         get { return associatedObject(forKey: &lxf_emptyDataSetDidDisappearKey) }
         set { setAssociatedObject(newValue, forKey: &lxf_emptyDataSetDidDisappearKey) }
+    }
+    
+    /// 内部的 emptyDataSetView 视图
+    fileprivate var lxf_emptyDataSetView: UIView? {
+        get {
+            return self.value(forKey: "emptyDataSetView") as? UIView
+        }
     }
     
     internal func updateEmptyDataSet(_ config: EmptyDataSetConfigure?, base: NSObject? = nil) {
@@ -307,6 +318,10 @@ extension NSObject : DZNEmptyDataSetDelegate, DZNEmptyDataSetSource {
     }
     
     public func emptyDataSetDidAppear(_ scrollView: UIScrollView!) {
+        if let emptyDataSetView = scrollView.lxf_emptyDataSetView {
+            let curConfig = scrollView.emptyDataSetConfig ?? defaultEmptyConfig
+            emptyDataSetView.clipsToBounds = curConfig.emptyViewClipsToBounds
+        }
         if scrollView.emptyDataSetDidAppearBlock != nil {
             scrollView.emptyDataSetDidAppearBlock!()
         }
