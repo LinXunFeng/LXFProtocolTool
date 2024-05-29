@@ -528,7 +528,7 @@ extension LXFNameSpace where Base : UIApplication {
     }
     
     /// 设置当前全屏配置
-    fileprivate func setCurrentFullScreenConfig(isEnter: Bool, config: FullScreenableConfig?) {
+    public func setCurrentFullScreenConfig(isEnter: Bool, config: FullScreenableConfig?) {
         if config != nil { base.lxf.currentFullScreenConfig = config! }
         else { base.lxf.currentFullScreenConfig.supportInterfaceOrientation = isEnter ? .landscape : .portrait }
     }
